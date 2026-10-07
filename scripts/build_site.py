@@ -22,6 +22,7 @@ from html import escape
 REPO = pathlib.Path(__file__).resolve().parent.parent
 GITHUB = "https://github.com/mevlanayalcin/bedir-ai"
 LI = "https://www.linkedin.com/in/mevlanayalcin/"
+LI_SIRKET = "https://www.linkedin.com/company/bedir-ai/"
 
 T = {
     "tr": dict(
@@ -386,7 +387,7 @@ TPL = """<!DOCTYPE html>
 
   <footer class="footer">
     <div class="container">
-      <p class="footer-legal">{legal} · <a href="{legal_base}company/">{nav_company}</a> · <a href="{github}">GitHub</a> · <a href="https://www.linkedin.com/in/mevlanayalcin/">LinkedIn</a> · <a href="{legal_base}privacy/">Privacy</a> · <a href="{legal_base}terms/">Terms</a></p>
+      <p class="footer-legal">{legal} · <a href="{legal_base}company/">{nav_company}</a> · <a href="{github}">GitHub</a> · <a href="https://www.linkedin.com/company/bedir-ai/">LinkedIn</a> · <a href="{legal_base}privacy/">Privacy</a> · <a href="{legal_base}terms/">Terms</a></p>
       <div class="library-list">{library}</div>
     </div>
   </footer>
@@ -496,7 +497,7 @@ def jsonld_for(lang, t):
         '{"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/%s/","applicationCategory":"EducationalApplication",'
         '"operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},'
         '"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":%s}]}'
-        % (LI, GITHUB, GITHUB, LI, json.dumps(t["desc"], ensure_ascii=False), lang, json.dumps(t["desc"], ensure_ascii=False))
+        % (LI, GITHUB, GITHUB, LI_SIRKET, json.dumps(t["desc"], ensure_ascii=False), lang, json.dumps(t["desc"], ensure_ascii=False))
     )
 
 

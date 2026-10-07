@@ -5,7 +5,7 @@ language; the answer comes back with the exact verse or hadith it was drawn from
 
 - Product (live, early access): <https://bedirsavasi.com> · [English](https://bedirsavasi.com/en/) ·
   [Deutsch](https://bedirsavasi.com/de/) · [العربية](https://bedirsavasi.com/ar/)
-- Company: **Bedir AI** — operating and brand name · founded **March 2026** · Ankara, Türkiye · bootstrapped
+- Company: **Bedir AI** — operating and brand name · founded **March 2026** · Ankara, Türkiye · bootstrapped · [LinkedIn](https://www.linkedin.com/company/bedir-ai/)
 - Founder: Mevlana Yalçın · <merhaba@bedirsavasi.com>
 - Infrastructure: Cloudflare Workers + Assets (site and answer endpoint), Cloudflare KV (waitlist), Cloudflare DNS
 

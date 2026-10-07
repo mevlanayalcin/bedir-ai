@@ -12,6 +12,7 @@ Status: early access, one person, no customers claimed
 
 - [Turkish](https://bedirsavasi.com/) · [English](https://bedirsavasi.com/en/) · [German](https://bedirsavasi.com/de/) · [Arabic](https://bedirsavasi.com/ar/)
 - [Company record](https://bedirsavasi.com/en/company/) — operator, started date, verification links
+- [LinkedIn company page](https://www.linkedin.com/company/bedir-ai/)
 - [API documentation](https://bedirsavasi.com/en/api/) — endpoint, response shape, errors, rate limit
 
 ## API
