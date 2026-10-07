@@ -446,14 +446,14 @@ def jsonld_for(lang, t):
         '{"@context":"https://schema.org","@graph":['
         '{"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI",'
         '"url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png",'
-        '"foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"%s"},'
+        '"foundingDate":"2026-03-08","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"%s"},"numberOfEmployees":{"@type":"QuantitativeValue","value":1},"contactPoint":{"@type":"ContactPoint","contactType":"customer support","email":"merhaba@bedirsavasi.com","availableLanguage":["tr","en","de","ar"]},"codeRepository":"%s",'
         '"sameAs":["%s","%s"],'
         '"description":%s,'
         '"address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}},'
         '{"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/%s/","applicationCategory":"EducationalApplication",'
         '"operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},'
         '"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":%s}]}'
-        % (LI, GITHUB, LI, json.dumps(t["desc"], ensure_ascii=False), lang, json.dumps(t["desc"], ensure_ascii=False))
+        % (LI, GITHUB, GITHUB, LI, json.dumps(t["desc"], ensure_ascii=False), lang, json.dumps(t["desc"], ensure_ascii=False))
     )
 
 
