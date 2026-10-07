@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="tr" dir="ltr">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bedir AI • Kaynağını Gösteren Yapay Zekâ İslami Bilgi Asistanı</title>
-  <meta name="description" content="Bedir AI: Kur’ân ve hadis kaynaklarını alıntılarla incelemeye yardımcı olan yapay zekâ asistanı. Bedir Savaşı hakkında hemen soru sorun." />
+  <meta name="description" content="Kur'an ve hadis sorularına, her cümlenin dayandığı âyeti veya hadisi ve kaynağa bağlantıyı göstererek yanıt veren yapay zekâ asistanı. Anthropic Claude API üzerinde kurulu." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://bedirsavasi.com/" />
   <link rel="alternate" hreflang="tr" href="https://bedirsavasi.com/" />
@@ -14,45 +13,32 @@
   <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <meta property="og:title" content="Bedir AI • Kaynağını gösteren yapay zekâ asistanı" />
-  <meta property="og:description" content="Bedir AI: Kur’ân ve hadis kaynaklarını alıntılarla incelemeye yardımcı olan yapay zekâ asistanı. Bedir Savaşı hakkında hemen soru sorun." />
+  <link rel="stylesheet" href="/assets/product.css" />
+  <meta property="og:title" content="Bedir AI • Kaynağını Gösteren Yapay Zekâ İslami Bilgi Asistanı" />
+  <meta property="og:description" content="Kur'an ve hadis sorularına, her cümlenin dayandığı âyeti veya hadisi ve kaynağa bağlantıyı göstererek yanıt veren yapay zekâ asistanı. Anthropic Claude API üzerinde kurulu." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bedirsavasi.com/" />
   <meta property="og:image" content="https://bedirsavasi.com/epic-badr.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <style>body{background-color:#120d0a;color:#f5ebda;margin:0}</style>
-  <link rel="stylesheet" href="/assets/style-DgdjaNys.css">
-  <link rel="stylesheet" href="/assets/product.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PL31HZZM6P"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-PL31HZZM6P', { anonymize_ip: true });
-  </script>
+  <meta property="og:locale" content="tr" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[
-    {"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],"founder":{"@type":"Person","name":"Mevlana Yalçın"},"address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}},
-    {"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Source-cited Islamic knowledge assistant built on Anthropic's Claude API."}
-  ]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"https://www.linkedin.com/in/mevlanayalcin/"},"sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],"description":"Kur'an ve hadis sorularına, her cümlenin dayandığı âyeti veya hadisi ve kaynağa bağlantıyı göstererek yanıt veren yapay zekâ asistanı. Anthropic Claude API üzerinde kurulu.","address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}},{"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/tr/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Kur'an ve hadis sorularına, her cümlenin dayandığı âyeti veya hadisi ve kaynağa bağlantıyı göstererek yanıt veren yapay zekâ asistanı. Anthropic Claude API üzerinde kurulu."}]}
   </script>
 </head>
-
-<body>
+<body class="home">
   <nav class="navbar glass">
     <div class="container nav-content">
-      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menü">&#9776;</button>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
       <div class="nav-links" id="navLinks">
         <a href="/" class="btn-ghost active-link">Bedir AI</a>
-        <a href="#sor" class="btn-ghost">Soru Sor</a>
-        <a href="/ayet-i-kerimeler/" class="btn-ghost">Ayetler</a>
-        <a href="/hadis-i-serifler/" class="btn-ghost">Hadisler</a>
-        <a href="/ashabi-bedir/" class="btn-ghost">Ashab-ı Bedir</a>
-        <a href="/savasin-hikayesi/" class="btn-ghost">Bedir'in Hikâyesi</a>
+        <a href="#product" class="btn-ghost">Ürün</a>
+        <a href="#how" class="btn-ghost">Nasıl çalışır</a>
+        <a href="#corpus" class="btn-ghost">Koleksiyon</a>
+        <a href="#institutions" class="btn-ghost">Kurumsal</a>
+        <a href="/company/" class="btn-ghost">Kurumsal bilgi</a>
         <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">İletişim</a>
       </div>
       <div class="lang-switcher">
-        <a href="/" class="lang-btn active-lang">TR</a>
+        <a href="/" class="lang-btn active-link">TR</a>
         <a href="/en/" class="lang-btn">EN</a>
         <a href="/de/" class="lang-btn">DE</a>
         <a href="/ar/" class="lang-btn">AR</a>
@@ -61,184 +47,119 @@
   </nav>
 
   <main>
-    <section class="hero-section product-hero">
-      <div class="container hero-content">
-        <span class="badge">ERKEN ERİŞİM · İLK SÜRÜM YAYINDA</span>
-        <p class="product-eyebrow">BEDIR AI · KAYNAKLI ÖĞRENME</p><h1 class="hero-title product-headline">Sorunu sor.<br><em>Kaynağını gör.</em></h1>
-        <p class="hero-sub">Kur’ân ve hadis kaynaklarını incelemek isteyen okuyucular için <strong>alıntıları ve kaynak bağlantılarını gösteren</strong> yapay zekâ asistanı. Bedir Savaşı odaklı ilk sürümü hemen deneyin; yanıtları verilen kaynaklarla karşılaştırın. Kaynakların söylemediğini söylemez; mevcut koleksiyon bir soruyu kapsamıyorsa bunu açıkça belirtir.</p>
-        <div class="cta-row">
-          <a class="btn-solid" href="#sor">Bedir AI’ı kullan</a>
-          <a class="btn-outline" href="/data/corpus.json">Korpusu indir (JSON)</a>
+    <section class="hero-section product-hero" id="product">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="badge">KAYNAK-GROUNDED YANIT · CLAUDE API</span>
+          <h1 class="hero-title product-headline">Cevabı taşıyan kaynak,<br><em>kaynağı taşıyan cevaba.</em></h1>
+          <p class="hero-sub">Kur'an ve hadis sorularını seçilmiş bir koleksiyon üzerinden yanıtlarız ve her yanıtın hangi âyeti veya hadisi gösterdiğini, yayıncıya bağlantısıyla birlikte açarsın. Şüphe edersen kontrol edebilirsin; edit edemezsin.</p>
+          <div class="cta-row">
+            <a class="btn-solid" href="#ask">Soru sor</a>
+            <a class="btn-outline" href="#institutions">Okullar ve platformlar için API</a>
+          </div>
+          <ul class="proof-strip"><li>111 kaynak metin, hepsi tek JSON dosyasında</li><li>4 dil: TR · EN · DE · AR</li><li>Sunucu taraflı atıflar (Claude API)</li><li>Kod açık: GitHub</li></ul>
         </div>
-      </div>
-    </section>
-
-<aside class="product-preview" aria-label="Örnek soru ve kaynak"><span class="preview-label">Örnek soru ve kaynak</span><p class="preview-question">Bedir’de yardım hangi ayette anlatılıyor?</p><div class="preview-answer"><span class="preview-brand">Bedir AI</span><p>Âl-i İmrân 3:123, Bedir’de yapılan yardımdan söz eder. <sup>[1]</sup></p><a href="https://quran.com/3/123" target="_blank" rel="noopener">[1] Quran 3:123 · Kaynağa git ↗</a></div></aside>
-    <div class="trust-strip">
-      <span>Anthropic Claude API ile çalışır</span>
-      <span>Kurucu: Mevlana Yalçın</span>
-      <span>Ankara · Mart 2026</span>
-      <span>Bootstrapped</span>
-    </div>
-
-    <section class="section product-audience"><div class="container"><div class="product-metrics"><div><strong>111</strong><span>kaynak metin</span></div><div><strong>4</strong><span>desteklenen dil</span></div><div><strong>JSON</strong><span>açık korpus</span></div></div><p class="metrics-note">İlk sürümün kapsamı: 41 ayet + 70 hadis. Kaynak koleksiyonunu doğrudan inceleyin.</p><h2>Merakını kaynaklarla derinleştir.</h2><p class="lead">İlk sürüm, Bedir Savaşı hakkında öğrenmek, ders hazırlamak ve ilgili metinleri incelemek isteyenler için tasarlandı.</p><div class="feature-grid"><article class="feature-card glass"><h3>Kendi başına öğrenenler</h3><p>Sorunu doğal dilde sor; yanıttan ilgili ayete veya hadise geç.</p></article><article class="feature-card glass"><h3>Eğitimciler</h3><p>Ders hazırlığında ilgili pasajları keşfet, alıntıları asıl kaynakta kontrol et.</p></article><article class="feature-card glass"><h3>Araştırmaya başlayanlar</h3><p>Belirli bir konu için başlangıç noktası bul; yanıtı, alıntıyı ve kaynak bağlantısını birlikte incele.</p></article></div></div></section>
-<section class="section" id="sor">
-      <div class="container">
-        <h2>Bedir AI'a sorun</h2>
-        <p class="lead">İlk sürüm, Bedir Savaşı ile ilgili 41 ayet ve 70 sahih hadisten oluşan kütüphane üzerinde çalışır. Cevaptaki her
-          numara, alıntılanan metnin kendisini ve kaynağını gösterir.</p>
-        <div class="demo-box glass">
+        <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
-            <input type="text" name="q" maxlength="400" placeholder="Örn: Bedir'de meleklerle yardım edildiği nerede geçer?" aria-label="Sorunuz" required />
+            <input type="text" name="q" maxlength="400" placeholder="Örn. Meleklerin yardımı hangi âyette?" aria-label="Sorunuz" required />
             <button class="btn-solid" type="submit">Sor</button>
           </form>
-          <div class="demo-examples">
-            <button type="button">Kur'ân Bedir'deki yardımı nasıl anlatır?</button>
-            <button type="button">Peygamberimiz Bedir günü nasıl dua etti?</button>
-            <button type="button">Ebû Cehil'in sonu nasıl oldu?</button>
-          </div>
+          <div class="demo-examples"><button type="button">Bedir'de yardım hangi ayette geçiyor?</button><button type="button">Bedir'e kaç kişiyle gidildi?</button><button type="button">Bedir esirlerine nasıl muamele edildi?</button></div>
+          <p class="demo-disclosure">Bir kişiyle değil, yapay zekâ asistanıyla konuşuyorsunuz. Yanıtlar atıf gösterilen kaynaklardan üretilir ve hata içerebilir.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+          <p class="demo-note">Bedir AI bir bilgi aracıdır, fetva vermez. Bağlayıcı dinî hüküm için yetkin bir âlime danışın.</p>
         </div>
-        <p class="demo-disclosure">Bir kişiyle değil, yapay zekâ asistanıyla konuşuyorsunuz. Yanıtlar atıf gösterilen kaynaklardan üretilir ve hata içerebilir.</p>
-        <p class="demo-note">Bedir AI bir bilgi aracıdır, fetva vermez. Bağlayıcı dinî hüküm için yetkin bir âlime danışın.</p>
+      </div>
+    </section>
+
+    <section class="section" id="recorded">
+      <div class="container">
+        <h2>Bir kere sor, iki kere denetle</h2>
+        <p class="lead">Numaralı her im, cevabın dayandığı metni ve yayıncıya bağlantısını açar. Aşağıdaki, koleksiyondan birebir alıntılanmış gerçek bir kayıt.</p>
+        <div class="recorded glass">
+          <p class="preview-question">Bedir'de Ebû Cehil'i kim öldürdü?</p>
+          <p class="recorded-answer">Ebû Cehil'i, Bedir günü Afra oğulları yaralamış; Abdullah b. Mesud onu bu hâlde bulup üzerine dayanmıştır.</p>
+          <div class="demo-sources">
+            <div class="demo-source" id="src-demo">
+              <b>[1] Buhârî 3963</b> · <a href="https://sunnah.com/bukhari:3963" target="_blank" rel="noopener">kaynağı aç ↗</a>
+              <blockquote>Narrated Anas: On the day of Badr, the Prophet (ﷺ) said, "Who will go and see what has happened to Abu Jahl?" Ibn Mas`ud went and found that the two sons of 'Afra had struck him fatally.</blockquote>
+            </div>
+          </div>
+          <p class="metrics-note">Atıf, cevabın doğru olduğunu garanti etmez — kontrol edebileceğin bir şeyi garanti eder.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <h2>Nasıl çalışır</h2>
+        <p class="lead">Uydurma bir cevap yerine, ne olduğunu gösteren bir hat.</p>
+        <div class="how-grid"><div class="how-card glass"><span class="how-num">1</span><h3>Koleksiyon</h3><p>Kur'an metni Tanzil (Osmanlı) nüshasından, Türkçe Diyanet Vakfı, İngilizce Saheeh International, Almanca Bubenheim & Elyas mealinden gelir; hadisler Buhârî ve Müslim açık veri kümelerinden, numaralar sunnah.com ile hizalı.</p></div><div class="how-card glass"><span class="how-num">2</span><h3>Belge olarak Claude'a</h3><p>Her âyet ve hadis ayrı bir belge olarak, sunucu taraflı atıflar etkin şekilde Claude API'ye geçirilir. Son belgeye cache_control eklenir ki koleksiyon yinelenen sorularda prompt cache'ten okunsun.</p></div><div class="how-card glass"><span class="how-num">3</span><h3>Atıflı cevap</h3><p>Claude yalnızca verilen belgelerden cevaplamakla, sorunun dilinde yazmakla ve koleksiyon bir soruyu kapsamıyorsa bunu söylemekle yükümlüdür; ezber bilgisine düşmez.</p></div><div class="how-card glass"><span class="how-num">4</span><h3>Ekranda alıntı</h3><p>Arayüz her atfın alıntıladığı metni, kaynağın başlığını ve quran.com / sunnah.com bağlantısını gösterir; cevabın kendisi düz metindir.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="audience">
+      <div class="container">
+        <h2>Kimin için</h2>
+        <p class="lead">İlk sürüm Bedir Gazvesi ile sınırlı; odaklandığımız iş, ders hazırlayan birinin kaynağı tek adımda görmesidir.</p>
+        <div class="feature-grid"><article class="feature-card glass"><h3>Ders hazırlayanlar</h3><p>Bir konu için âyet ve hadis adayı bul, sonra alıntıyı bağlamında oku. Kopyala-yapıştır değil, tıklayarak doğrula.</p></article><article class="feature-card glass"><h3>Kendi başına okuyanlar</h3><p>Doğal dille sor; cevabın hangi metne dayandığını gör; kitap ve tefsir taraflı okuma için bağlantıyı kullan.</p></article><article class="feature-card glass"><h3>Erken araştırma</h3><p>Bir konuda başlangıç noktası bul; cevap, alıntı ve kaynağı birlikte incele; hataları raporla.</p></article></div>
+        <div class="cta-box glass" id="institutions">
+          <h3>Okullar ve çalışma platformları için</h3>
+          <p>Koleksiyonumuz genişledikçe, atıflı yanıtı ürünlerinde göstermek isteyenler için bir API açacağız.</p>
+          <ul class="api-list"><li>İsteğe göre metin + alıntı + yayıncı URL'si döner</li><li>Hangi dilden ve hangi koleksiyon sürümünden yanıt verildiği cevapla birlikte gelir</li><li>Yanıtlanamayan soru uydurulmaz; işaretlenir</li><li>Kurumsal deneme için merhaba@bedirsavasi.com</li></ul>
+          <a class="btn-solid" href="mailto:merhaba@bedirsavasi.com?subject=Bedir%20AI%20pilot">Kurumsal deneme için yaz</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="corpus">
+      <div class="container">
+        <h2>Bedir koleksiyonu</h2>
+        <p class="lead">Yanıt verirken kullandığımız metinlerin tamamı, kaynaklarıyla birlikte açıktır.</p>
+        <table class="fact-table">
+          <tr><th scope="col">Kaynak</th><th scope="col">Açıklama</th></tr>
+          <tr><th scope="row">Kur'an (Arapça)</th><td>Tanzil Uthmani metni, api.alquran.cloud üzerinden</td></tr><tr><th scope="row">Kur'an (Türkçe)</th><td>Diyanet Vakfı meali (tr.vakfi)</td></tr><tr><th scope="row">Kur'an (İngilizce)</th><td>Saheeh International (en.sahih)</td></tr><tr><th scope="row">Kur'an (Almanca)</th><td>Bubenheim & Elyas (de.bubenheim)</td></tr><tr><th scope="row">Hadis</th><td>Sahîh-i Buhârî ve Sahîh-i Müslim; fawazahmed0/hadith-api; numaralar sunnah.com ile hizalı</td></tr>
+        </table>
+        <p class="metrics-note">Çevirilerin telifi yayıncılarındır; burada yayımladığımız şey seçkimiz, dört dilli hizalamamız ve atıf meta verimizdir. Tek dosya: /data/corpus.json · <a href="/data/corpus.json">/data/corpus.json</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a></p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Neden Bedir AI?</h2>
-        <p class="lead">Dinî metinleri araştırırken bir yanıtın kaynağını bulmak zaman alabilir. Bedir AI, yanıtı ve ilgili alıntıları aynı ekranda sunarak okuyucunun kaynakları incelemesine yardımcı olur.</p>
-        <div class="feature-grid">
-          <div class="feature-card glass">
-            <h3>Kaynağı inceleyin</h3>
-            <p>Claude API’nin atıf özelliğiyle dönen alıntılar ve kaynak bağlantıları yanıtın yanında gösterilir. Atıf bulunması, yanıtın tamamının doğru olduğunu garanti etmez.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Dört dil</h3>
-            <p>Türkçe, İngilizce, Almanca ve Arapça. Ayetler Arapça aslı ve üç mealiyle, hadisler Arapça, Türkçe ve
-              İngilizce metinleriyle korpusta yer alır.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Açık korpus</h3>
-            <p>Bedir AI'ın kullandığı bütün metinler ve kaynakları <a href="/data/corpus.json" style="color:#c9a35c">tek bir JSON dosyasında</a>
-              herkese açık. Her kayıt quran.com veya sunnah.com bağlantısıyla doğrulanabilir.</p>
-          </div>
-        </div>
+        <h2>Yol haritası (durumuyla)</h2>
+        <p class="lead">Ne bitti, ne sürüyor, ne sadece tasarlandı — ayırt ediyoruz.</p>
+        <div class="roadmap"><div class="road-item"><span class="road-label">Yayında</span><p>Bedir Gazvesi koleksiyonu üzerinde atıflı yanıt: 41 Kur'an, 70 hadis kaydı; TR/EN/DE/AR.</p></div><div class="road-item"><span class="road-label">Sürmekte</span><p>Tüm Kur'an ve altı hadis koleksiyonuna genişleme; konu bazlı geri getirme.</p></div><div class="road-item"><span class="road-label">Tasarlandı, henüz koşmadı</span><p>Yayımlanacak atıf doğruluğu değerlendirmesi: alıntı sadakati ile atfın iddiayı desteklemesi ayrı ölçülür.</p></div><div class="road-item"><span class="road-label">Sırada</span><p>İslam okulları ve çalışma platformları için atıflı yanıt API'si; mobil uygulama.</p></div></div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Nasıl çalışır?</h2>
-        <div class="feature-grid">
-          <div class="feature-card glass">
-            <span class="how-num">1</span>
-            <h3>Korpus</h3>
-            <p>Ayetler Tanzil Arapça metni, Diyanet Vakfı meali, Saheeh International ve Bubenheim &amp; Elyas
-              tercümelerinden; hadisler Buhârî ve Müslim'in açık veri setlerinden alınır.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">2</span>
-            <h3>Belge olarak Claude'a</h3>
-            <p>Her ayet ve hadis, citations açık ayrı bir belge olarak Claude'a verilir. Korpus, maliyeti düşürmek
-              için prompt caching ile önbelleğe alınır.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">3</span>
-            <h3>Kaynaklı cevap</h3>
-            <p>Claude’a yalnızca verilen belgelerden yanıt yazması ve kapsam dışı soruları belirtmesi talimatı verilir. Yanıtlar hata içerebilir; alıntıları ve bağlamlarını kontrol edin.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">4</span>
-            <h3>Alıntıyı göster</h3>
-            <p>Arayüz her atfın alıntılanan metnini ve kaynağını gösterir. Kullanıcı ayeti veya hadisi tek tıkla
-              doğrulayabilir.</p>
-          </div>
-        </div>
+        <h2>Sık sorulanlar</h2>
+        <div class="faq"><details class="faq-item" open><summary>Fetva veriyor musunuz?</summary><p>Hayır. Bedir AI bir bilgi aracıdır; bağlayıcı dinî hüküm istiyorsan yetkin bir âlime yönlendirir.</p></details><details class="faq-item" open><summary>Hangi modeli kullanıyorsunuz?</summary><p>Ürün Claude API üzerinde kuruludur. Console hesabında bakiye kalmadığı dönemlerde demo, yanıtın üstünde belirtilen etiketli bir yedek modelle çalışır; yedek yanıt Claude atfı olarak sunulmaz.</p></details><details class="faq-item" open><summary>Yanıtlar hatalı olabilir mi?</summary><p>Evet. Atıf, alıntının kaynakta gerçekten geçtiğini ölçülebilir kılar; cümlenin tamamının doğruluğunu garanti etmez.</p></details><details class="faq-item" open><summary>Verilerimi saklıyor musunuz?</summary><p>Sohbet geçmişi tutmuyoruz. Listeye yazıldığında sadece e-posta adresin saklanır.</p></details><details class="faq-item" open><summary>Neden sadece Bedir?</summary><p>Kapsamlı bir koleksiyon, dar bir konu üzerinde doğrulanabilir şekilde kurulduğunda güvenilirdir. Genişleme sürüyor.</p></details></div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <h2>Bedir kütüphanesi</h2>
-        <p class="lead">İlk sürümün konusu olan Bedir Savaşı hakkında okunabilir sayfalar.</p>
-        <div class="library-list">
-          <a class="glass" href="/ayet-i-kerimeler/"><span>Bedir ile ilgili ayetler</span><span>Diyanet Vakfı meali</span></a>
-          <a class="glass" href="/hadis-i-serifler/"><span>Bedir ile ilgili hadisler</span><span>Buhârî · Müslim</span></a>
-          <a class="glass" href="/ashabi-bedir/"><span>Ashab-ı Bedir listesi</span><span>İsim listesi</span></a>
-          <a class="glass" href="/savasin-hikayesi/"><span>Bedir'in hikâyesi</span><span>Anlatı</span></a>
-          <a class="glass" href="/gunumuzde-bedir/"><span>Bedir bugün</span><span>Konum ve ziyaret</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-box glass">
-          <h2>Haberdar olun</h2>
-          <p>Korpus genişledikçe (tüm Kur'ân ve Kütüb-i Sitte) e-posta ile haber veriyoruz.</p>
-          <form name="beta-waitlist" method="POST" data-netlify="true" netlify-honeypot="_gotcha" class="waitlist-form">
-            <input type="hidden" name="form-name" value="beta-waitlist">
-            <input type="hidden" name="lang" value="tr">
-            <p style="display:none"><input name="_gotcha"></p>
-            <input type="email" name="email" placeholder="ornek@mail.com" aria-label="E-posta" required>
-            <button class="btn-solid" type="submit">Listeye katıl</button>
-          </form>
-          <p class="foot-note">Göndererek <a href="/privacy/">Gizlilik Politikası</a>'nı kabul etmiş olursunuz.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <h2>Yol haritası</h2>
-        <div class="feature-grid" style="margin-top:2rem">
-          <div class="feature-card glass">
-            <h3>Şimdi · İlk sürüm yayında</h3>
-            <p>Bedir korpusu üzerinde, dört dilde, kaynak gösteren asistan.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Sıradaki · Korpusu genişletmek</h3>
-            <p>Tüm Kur'ân ve Kütüb-i Sitte, konu bazlı erişim ve herkese açık bir kaynak-doğruluğu ölçüm seti.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Sonra · Uygulama ve API</h3>
-            <p>Mobil uygulama ve eğitim kurumları için atıflı cevap API'si.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <h2>Hakkımızda</h2>
-        <p class="lead">Bedir AI, Mevlana Yalçın tarafından Mart 2026’da Ankara’da başlatılan, kendi kaynaklarıyla geliştirilen tek kuruculu bir eğitim teknolojisi girişimidir. Bedir AI ürün ve marka adıdır. İlk sürüm Claude API ile çalışır; kapsam genişletme ve kaynak doğruluğu değerlendirmeleri yol haritamızdadır.</p>
-        <div class="feature-grid">
-          <div class="feature-card glass"><h3>Kurucu</h3><p>Mevlana Yalçın</p></div>
-          <div class="feature-card glass"><h3>Konum</h3><p>Ankara, Türkiye</p></div>
-          <div class="feature-card glass"><h3>Altyapı</h3><p>Claude API · Netlify</p></div>
-          <div class="feature-card glass"><h3>İletişim</h3><p><a href="mailto:merhaba@bedirsavasi.com" style="color:#c9a35c">merhaba@bedirsavasi.com</a></p></div>
-        </div>
+      <div class="container cta-box glass">
+        <h2>Gelişmelerden haberdar ol</h2>
+        <p>Koleksiyon büyüdükçe ve API açıldıkça haber veririz.</p>
+        <form id="waitlist-form" class="waitlist-form">
+          <input type="email" name="email" placeholder="e-posta adresin" aria-label="e-posta adresin" required />
+          <button class="btn-solid" type="submit">Listeye katıl</button>
+        </form>
+        <p class="waitlist-status" id="waitlist-status" aria-live="polite"></p>
+        <p class="metrics-note">Adresin tek satır halinde Cloudflare'da saklanır; merhaba@bedirsavasi.com ile sildirilebilir. Reklam postası yok.</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p class="footer-legal">Bedir AI · Ankara, Türkiye · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> ·
-        <a href="/privacy/">Gizlilik</a> · <a href="/terms/">Şartlar</a> · <a href="/data/corpus.json">Korpus</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="/company/">Kurumsal</a></p>
+      <p class="footer-legal">Bedir AI · Ankara, Türkiye · 2026 · işletme adı (tescilli tüzel kişilik değil) · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> · <a href="/company/">Kurumsal bilgi</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="https://www.linkedin.com/in/mevlanayalcin/">LinkedIn</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></p>
+      <div class="library-list">Koleksiyon: <a href="/ayet-i-kerimeler/">Âyetler</a> · <a href="/hadis-i-serifler/">Hadisler</a> · <a href="/ashabi-bedir/">Bedir Ashabı</a> · <a href="/savasin-hikayesi/">Savaşın hikâyesi</a> · <a href="/gazve-nedir/">Gazve nedir</a> · <a href="/gunumuzde-bedir/">Bedir bugün</a></div>
     </div>
   </footer>
-
-  <script>
-    document.getElementById("menuToggle")?.addEventListener("click", () => {
-      document.getElementById("navLinks")?.classList.toggle("active");
-    });
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => document.getElementById("navLinks")?.classList.remove("active"));
-    });
-  </script>
   <script src="/assets/demo.js" defer></script>
+  <script src="/assets/waitlist.js" defer></script>
 </body>
-
 </html>

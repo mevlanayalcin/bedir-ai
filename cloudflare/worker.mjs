@@ -219,11 +219,47 @@ async function allowed(env, ip) {
   return res.ok;
 }
 
+// ---------------------------------------------------------------- waitlist
+// Replaces Netlify Forms after the hosting move. One KV row per address, plus a running count
+// so the page can report a number that is actually stored somewhere.
+const EMAIL = /^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$/;
+
+async function handleWaitlist(request, env) {
+  if (!env.WAITLIST) return json({ error: "not_configured" }, 501);
+  const headers = { "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*" };
+
+  if (request.method === "GET") {
+    const count = Number((await env.WAITLIST.get("meta:count")) || 0);
+    return new Response(JSON.stringify({ count }), { headers });
+  }
+  if (request.method !== "POST") return new Response(JSON.stringify({ error: "method_not_allowed" }), { status: 405, headers });
+
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: "bad_request" }), { status: 400, headers });
+  }
+  const email = String(body.email || "").trim().toLowerCase();
+  if (!EMAIL.test(email) || email.length > 200) return new Response(JSON.stringify({ error: "bad_email" }), { status: 400, headers });
+  if (body._gotcha) return new Response(JSON.stringify({ created: false, hidden: true }), { headers });
+
+  const key = "e:" + email;
+  if (await env.WAITLIST.get(key)) return new Response(JSON.stringify({ duplicate: true }), { status: 200, headers });
+
+  const langs = ["tr", "en", "de", "ar"];
+  await env.WAITLIST.put(key, JSON.stringify({ email, lang: langs.includes(body.lang) ? body.lang : "en", source: String(body.source || "homepage").slice(0, 40), ts: Date.now() }));
+  const count = Number((await env.WAITLIST.get("meta:count")) || 0) + 1;
+  await env.WAITLIST.put("meta:count", String(count));
+  return new Response(JSON.stringify({ created: true, count }), { status: 201, headers });
+}
+
 // ---------------------------------------------------------------- handler
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/api/waitlist") return handleWaitlist(request, env);
     if (url.pathname !== "/api/ask") return env.ASSETS.fetch(request);
 
     if (request.method === "OPTIONS") {

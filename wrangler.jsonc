@@ -7,6 +7,7 @@
     "bindings": [{ "name": "ASK_LIMIT", "class_name": "AskLimit" }]
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["AskLimit"] }],
+  "kv_namespaces": [{ "binding": "WAITLIST", "id": "64a65c721f1944bd864b290958390293" }],
   "custom_domains": ["bedirsavasi.com", "www.bedirsavasi.com"],
   "observability": {
     "enabled": true

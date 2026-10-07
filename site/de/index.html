@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bedir AI • Der KI-Assistent für islamisches Wissen, der seine Quellen zeigt</title>
-  <meta name="description" content="Bedir AI hilft beim Erkunden von Koran- und Hadith-Quellen mit Zitaten und Quellenlinks. Stellen Sie Ihre Frage zur Schlacht von Badr." />
+  <title>Bedir AI • KI-Assistent für islamische Quellen mit Belegen</title>
+  <meta name="description" content="Ein KI-Assistent für Fragen zu Koran und Hadith, der zu jeder Antwort die belegte Stelle und den Link zum Herausgeber zeigt. Aufbau auf der Anthropic-Claude-API." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://bedirsavasi.com/de/" />
   <link rel="alternate" hreflang="tr" href="https://bedirsavasi.com/" />
@@ -14,233 +13,153 @@
   <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <meta property="og:title" content="Bedir AI • Der KI-Assistent, der seine Quellen zeigt" />
-  <meta property="og:description" content="Bedir AI hilft beim Erkunden von Koran- und Hadith-Quellen mit Zitaten und Quellenlinks. Stellen Sie Ihre Frage zur Schlacht von Badr." />
+  <link rel="stylesheet" href="/assets/product.css" />
+  <meta property="og:title" content="Bedir AI • KI-Assistent für islamische Quellen mit Belegen" />
+  <meta property="og:description" content="Ein KI-Assistent für Fragen zu Koran und Hadith, der zu jeder Antwort die belegte Stelle und den Link zum Herausgeber zeigt. Aufbau auf der Anthropic-Claude-API." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bedirsavasi.com/de/" />
   <meta property="og:image" content="https://bedirsavasi.com/epic-badr.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <style>body{background-color:#120d0a;color:#f5ebda;margin:0}</style>
-  <link rel="stylesheet" href="/assets/style-DgdjaNys.css">
-  <link rel="stylesheet" href="/assets/product.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PL31HZZM6P"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-PL31HZZM6P', { anonymize_ip: true });
-  </script>
+  <meta property="og:locale" content="de" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[
-    {"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],"founder":{"@type":"Person","name":"Mevlana Yalçın"},"address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}},
-    {"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Source-cited Islamic knowledge assistant built on Anthropic's Claude API."}
-  ]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"https://www.linkedin.com/in/mevlanayalcin/"},"sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],"description":"Ein KI-Assistent für Fragen zu Koran und Hadith, der zu jeder Antwort die belegte Stelle und den Link zum Herausgeber zeigt. Aufbau auf der Anthropic-Claude-API.","address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}},{"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/de/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Ein KI-Assistent für Fragen zu Koran und Hadith, der zu jeder Antwort die belegte Stelle und den Link zum Herausgeber zeigt. Aufbau auf der Anthropic-Claude-API."}]}
   </script>
 </head>
-
-<body>
+<body class="home">
   <nav class="navbar glass">
     <div class="container nav-content">
-      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menü">&#9776;</button>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
       <div class="nav-links" id="navLinks">
         <a href="/de/" class="btn-ghost active-link">Bedir AI</a>
-        <a href="#fragen" class="btn-ghost">Frage stellen</a>
-        <a href="/de/ayet-i-kerimeler/" class="btn-ghost">Verse</a>
-        <a href="/de/hadis-i-serifler/" class="btn-ghost">Hadithe</a>
-        <a href="/de/ashabi-bedir/" class="btn-ghost">Gefährten von Badr</a>
-        <a href="/de/savasin-hikayesi/" class="btn-ghost">Die Geschichte von Badr</a>
+        <a href="#product" class="btn-ghost">Produkt</a>
+        <a href="#how" class="btn-ghost">Funktionsweise</a>
+        <a href="#corpus" class="btn-ghost">Korpus</a>
+        <a href="#institutions" class="btn-ghost">Für Institutionen</a>
+        <a href="/de/company/" class="btn-ghost">Unternehmen</a>
         <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">Kontakt</a>
       </div>
       <div class="lang-switcher">
         <a href="/" class="lang-btn">TR</a>
         <a href="/en/" class="lang-btn">EN</a>
-        <a href="/de/" class="lang-btn active-lang">DE</a>
+        <a href="/de/" class="lang-btn active-link">DE</a>
         <a href="/ar/" class="lang-btn">AR</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <section class="hero-section product-hero">
-      <div class="container hero-content">
-        <span class="badge">FRÜHER ZUGANG · ERSTE VERSION ONLINE</span>
-        <p class="product-eyebrow">BEDIR AI · QUELLENBASIERTES LERNEN</p><h1 class="hero-title product-headline">Fragen stellen.<br><em>Quellen entdecken.</em></h1>
-        <p class="hero-sub">Ein KI-Assistent für Leser, die Koran- und Hadith-Quellen erkunden möchten, <strong>mit überprüfbaren Zitaten und Quellenlinks</strong>. Testen Sie die erste Version zur Schlacht von Badr und vergleichen Sie Antworten mit den zitierten Textstellen. Es sagt nichts, was die Quellen nicht hergeben; deckt die aktuelle Sammlung eine Frage nicht ab, weist es darauf hin.</p>
-        <div class="cta-row">
-          <a class="btn-solid" href="#fragen">Bedir AI nutzen</a>
-          <a class="btn-outline" href="/data/corpus.json">Korpus herunterladen (JSON)</a>
+    <section class="hero-section product-hero" id="product">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="badge">QUELLNGESTÜTZTE ANTWORTEN · CLAUDE-API</span>
+          <h1 class="hero-title product-headline">Die Antwort trägt<br><em>ihre Quelle bei sich.</em></h1>
+          <p class="hero-sub">Wir beantworten Fragen zu Koran und Hadith aus einer zusammengestellten Sammlung und öffnen die Stelle, auf der eine Antwort beruht, mit Link zum Herausgeber. Prüfbar, nicht editierbar.</p>
+          <div class="cta-row">
+            <a class="btn-solid" href="#ask">Frage stellen</a>
+            <a class="btn-outline" href="#institutions">API für Schulen und Plattformen</a>
+          </div>
+          <ul class="proof-strip"><li>111 Quellentexte in einer JSON-Datei</li><li>4 Sprachen: TR · EN · DE · AR</li><li>Serverseitige Zitate (Claude-API)</li><li>Code ist öffentlich: GitHub</li></ul>
         </div>
-      </div>
-    </section>
-
-<aside class="product-preview" aria-label="Beispielfrage und Quelle"><span class="preview-label">Beispielfrage und Quelle</span><p class="preview-question">Welcher Vers beschreibt die Hilfe bei Badr?</p><div class="preview-answer"><span class="preview-brand">Bedir AI</span><p>Koran 3:123 erwähnt die Hilfe bei Badr. <sup>[1]</sup></p><a href="https://quran.com/3/123" target="_blank" rel="noopener">[1] Quran 3:123 · Quelle öffnen ↗</a></div></aside>
-    <div class="trust-strip">
-      <span>Entwickelt mit der Claude API von Anthropic</span>
-      <span>Gründer: Mevlana Yalçın</span>
-      <span>Ankara · März 2026</span>
-      <span>Eigenfinanziert</span>
-    </div>
-
-    <section class="section product-audience"><div class="container"><div class="product-metrics"><div><strong>111</strong><span>Quelltexte</span></div><div><strong>4</strong><span>unterstützte Sprachen</span></div><div><strong>JSON</strong><span>offener Korpus</span></div></div><p class="metrics-note">Umfang der ersten Version: 41 Koran-Einträge und 70 Hadith-Einträge.</p><h2>Mit Neugier die Quellen erschließen.</h2><p class="lead">Die erste Version richtet sich an Lernende, Lehrende und Leser, die die Schlacht von Badr erkunden.</p><div class="feature-grid"><article class="feature-card glass"><h3>Selbstständig lernen</h3><p>Stellen Sie Ihre Frage und folgen Sie der Antwort zum Vers oder Hadith.</p></article><article class="feature-card glass"><h3>Unterricht vorbereiten</h3><p>Entdecken Sie Textstellen und prüfen Sie die Zitate im ursprünglichen Zusammenhang.</p></article><article class="feature-card glass"><h3>Recherche beginnen</h3><p>Finden Sie einen Einstieg in ein Thema und betrachten Sie Antwort, Zitat und Quelle gemeinsam.</p></article></div></div></section>
-<section class="section" id="fragen">
-      <div class="container">
-        <h2>Fragen Sie Bedir AI</h2>
-        <p class="lead">Die erste Version stützt sich auf eine Bibliothek aus 41 Versen und 70 authentischen Hadithen über die Schlacht von Badr. Jede
-          Nummer in der Antwort zeigt den genauen zitierten Text und seine Herkunft.</p>
-        <div class="demo-box glass">
+        <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
-            <input type="text" name="q" maxlength="400" placeholder="z. B. Wo steht, dass die Engel bei Badr halfen?" aria-label="Ihre Frage" required />
-            <button class="btn-solid" type="submit">Fragen</button>
+            <input type="text" name="q" maxlength="400" placeholder="z.B. Wo steht von der Hilfe der Engel?" aria-label="Ihre Frage" required />
+            <button class="btn-solid" type="submit">Frage</button>
           </form>
-          <div class="demo-examples">
-            <button type="button">Wie beschreibt der Koran die Hilfe bei Badr?</button>
-            <button type="button">Wie betete der Prophet am Tag von Badr?</button>
-            <button type="button">Was geschah mit Abu Jahl?</button>
-          </div>
+          <div class="demo-examples"><button type="button">Wie beschreibt der Koran die Hilfe bei Badr?</button><button type="button">Wie viele Muslime kämpften bei Badr?</button><button type="button">Was geschah mit Abu Dschalal?</button></div>
+          <p class="demo-disclosure">Sie sprechen mit einem KI-Assistenten, nicht mit einer Person. Antworten werden aus den zitierten Quellen erzeugt und können Fehler enthalten.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+          <p class="demo-note">Bedir AI ist ein Informationswerkzeug und erteilt keine Fatwas. Für ein verbindliches religiöses Urteil wenden Sie sich an einen qualifizierten Gelehrten.</p>
         </div>
-        <p class="demo-disclosure">Sie sprechen mit einem KI-Assistenten, nicht mit einer Person. Die Antworten werden aus den zitierten Quellen erzeugt und können Fehler enthalten.</p>
-        <p class="demo-note">Bedir AI ist ein Informationswerkzeug und erteilt keine Fatwas. Für ein verbindliches religiöses Urteil wenden Sie sich an einen qualifizierten Gelehrten.</p>
+      </div>
+    </section>
+
+    <section class="section" id="recorded">
+      <div class="container">
+        <h2>Einmal fragen, zweimal prüfen</h2>
+        <p class="lead">Jede nummerierte Markierung öffnet die belegte Stelle und den Link zum Herausgeber. Unten ein echter Datensatz, wörtlich zitiert.</p>
+        <div class="recorded glass">
+          <p class="preview-question">Wer tötete Abu Dschalal bei Badr?</p>
+          <p class="recorded-answer">Am Tag von Badr fragte der Prophet, wer nachsehen solle, was mit Abu Dschalal geschehen sei; Ibn Mas'ud fand ihn von den beiden Söhnen der 'Afra tödlich getroffen.</p>
+          <div class="demo-sources">
+            <div class="demo-source" id="src-demo">
+              <b>[1] Sahih al-Bukhari 3963</b> · <a href="https://sunnah.com/bukhari:3963" target="_blank" rel="noopener">Quelle öffnen ↗</a>
+              <blockquote>Narrated Anas: On the day of Badr, the Prophet (ﷺ) said, "Who will go and see what has happened to Abu Jahl?" Ibn Mas`ud went and found that the two sons of 'Afra had struck him fatally.</blockquote>
+            </div>
+          </div>
+          <p class="metrics-note">Ein Zitat garantiert nicht, dass die Antwort stimmt. Es garantiert, dass du nachsehen kannst.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <h2>Funktionsweise</h2>
+        <p class="lead">Eine überprüfbare Kette statt einer erfundenen Antwort.</p>
+        <div class="how-grid"><div class="how-card glass"><span class="how-num">1</span><h3>Die Sammlung</h3><p>Korantext nach der Tanzil-Uthmani-Ausgabe; türkisch Diyanet Vakfı, englisch Saheeh International, deutsch Bubenheim & Elyas; Hadithe aus offenen Datensätzen von Bukhari und Muslim, Nummerierung wie auf sunnah.com.</p></div><div class="how-card glass"><span class="how-num">2</span><h3>Als Dokumente an Claude</h3><p>Jeder Vers und Hadith geht als eigenes Dokument mit serverseitigen Zitaten an die Claude-API. Ein cache_control-Breakpoint lässt die Sammlung bei Wiederholungsfragen aus dem Prompt-Cache lesen.</p></div><div class="how-card glass"><span class="how-num">3</span><h3>Eine zitierte Antwort</h3><p>Claude darf nur aus diesen Dokumenten antworten, in der Sprache der Frage, und muss sagen, wenn die Sammlung eine Frage nicht deckt.</p></div><div class="how-card glass"><span class="how-num">4</span><h3>Das Zitat im Interface</h3><p>Die Oberfläche zeigt zu jedem Zitat den Text, den Titel der Quelle und den Link zu quran.com oder sunnah.com.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="audience">
+      <div class="container">
+        <h2>Für wen</h2>
+        <p class="lead">Die erste Veröffentlichung ist auf die Schlacht von Badr begrenzt. Uns interessiert der Schritt von der Idee zum Beleg im Unterricht.</p>
+        <div class="feature-grid"><article class="feature-card glass"><h3>Lehrende</h3><p>Belegstellen für ein Thema finden und das Zitat im Kontext lesen — prüfen per Klick, nicht per Vertrauen.</p></article><article class="feature-card glass"><h3>Lesende</h3><p>Natürlich fragen, sehen, worauf sich eine Antwort stützt, und dem Link folgen.</p></article><article class="feature-card glass"><h3>Frühe Recherche</h3><p>Einstiegspunkt finden, Antwort, Zitat und Quelle zusammen prüfen, Fehler melden.</p></article></div>
+        <div class="cta-box glass" id="institutions">
+          <h3>Für Schulen und Lernplattformen</h3>
+          <p>Mit wachsender Sammlung öffnen wir eine API für Produkte, die zitierte Antworten brauchen.</p>
+          <ul class="api-list"><li>Liefert Text plus Zitate und Herausgeber-URLs</li><li>Nennt Sprache und Korpusversion einer Antwort</li><li>Nicht abgedeckte Fragen werden markiert, nicht erfunden</li><li>Für einen Pilothof: merhaba@bedirsavasi.com</li></ul>
+          <a class="btn-solid" href="mailto:merhaba@bedirsavasi.com?subject=Bedir%20AI%20pilot">Pilothof anfragen</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="corpus">
+      <div class="container">
+        <h2>Die Badr-Sammlung</h2>
+        <p class="lead">Jeder Text, aus dem geantwortet wird, ist mit Quelle öffentlich.</p>
+        <table class="fact-table">
+          <tr><th scope="col">Quelle</th><th scope="col">Detail</th></tr>
+          <tr><th scope="row">Koran (Arabisch)</th><td>Tanzil-Uthmani-Text über api.alquran.cloud</td></tr><tr><th scope="row">Koran (Türkisch)</th><td>Diyanet-Vakfı-Meal (tr.vakfi)</td></tr><tr><th scope="row">Koran (Englisch)</th><td>Saheeh International (en.sahih)</td></tr><tr><th scope="row">Koran (Deutsch)</th><td>Bubenheim & Elyas (de.bubenheim)</td></tr><tr><th scope="row">Hadithe</th><td>Sahih al-Bukhari und Sahih Muslim über fawazahmed0/hadith-api; Nummerierung nach sunnah.com</td></tr>
+        </table>
+        <p class="metrics-note">Übersetzungsrechte bleiben bei den Verlagen. Wir veröffentlichen Auswahl, Sprachalignment und Zitier-Metadaten. Eine Datei: /data/corpus.json · <a href="/data/corpus.json">/data/corpus.json</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a></p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Warum Bedir AI?</h2>
-        <p class="lead">Die Suche nach der Quelle einer Antwort kann Zeit kosten. Bedir AI zeigt Antworten und zugehörige Zitate gemeinsam, damit Leser die Belege prüfen können.</p>
-        <div class="feature-grid">
-          <div class="feature-card glass">
-            <h3>Quellen prüfen</h3>
-            <p>Zitate und Quellenlinks aus der Citations-Funktion der Claude API werden neben der Antwort angezeigt. Ein Zitat garantiert nicht, dass die gesamte Antwort richtig ist.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Vier Sprachen</h3>
-            <p>Türkisch, Englisch, Deutsch und Arabisch. Der Korpus enthält jeden Vers im arabischen Original mit drei
-              Übersetzungen und jeden Hadith auf Arabisch, Türkisch und Englisch.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Offener Korpus</h3>
-            <p>Alle Texte, die Bedir AI verwendet, sind samt Quelle öffentlich in <a href="/data/corpus.json" style="color:#c9a35c">einer einzigen JSON-Datei</a> verfügbar.
-              Jeder Eintrag lässt sich über seinen quran.com- oder sunnah.com-Link prüfen.</p>
-          </div>
-        </div>
+        <h2>Roadmap mit Status</h2>
+        <p class="lead">Was fertig ist, was läuft, was nur entworfen wurde.</p>
+        <div class="roadmap"><div class="road-item"><span class="road-label">Fertig</span><p>Zitierte问答 über die Badr-Sammlung: 41 Koran-, 70 Haditheinträge, vier Sprachen.</p></div><div class="road-item"><span class="road-label">Läuft</span><p>Ausweitung auf den ganzen Koran und die sechs kanonischen Hadithsammlungen; Themenabruf.</p></div><div class="road-item"><span class="road-label">Entworfen, nicht gelaufen</span><p>Eine veröffentlichte Bewertung der Zitiergenauigkeit: Wörtlichkeit und Tragfähigkeit getrennt.</p></div><div class="road-item"><span class="road-label">Als Nächstes</span><p>Eine zitierte Antwort-API für islamische Schulen und Lernplattformen; eine App.</p></div></div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>So funktioniert es</h2>
-        <div class="feature-grid">
-          <div class="feature-card glass">
-            <span class="how-num">1</span>
-            <h3>Korpus</h3>
-            <p>Die Verse stammen aus dem arabischen Tanzil-Text, der türkischen Übersetzung der Diyanet Vakfı, Saheeh
-              International und der deutschen Übersetzung von Bubenheim &amp; Elyas; die Hadithe aus offenen Datensätzen von Bukhari und Muslim.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">2</span>
-            <h3>Als Dokumente an Claude</h3>
-            <p>Jeder Vers und jeder Hadith wird Claude als eigenes Dokument mit aktivierten Zitaten übergeben. Der
-              Korpus wird per Prompt Caching zwischengespeichert, um Kosten zu senken.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">3</span>
-            <h3>Eine belegte Antwort</h3>
-            <p>Claude erhält die Anweisung, anhand der bereitgestellten Dokumente zu antworten und Fragen außerhalb ihres Umfangs zu kennzeichnen. Antworten können Fehler enthalten; prüfen Sie die Zitate und ihren Kontext.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">4</span>
-            <h3>Das Zitat auf dem Bildschirm</h3>
-            <p>Die Oberfläche zeigt zu jedem Zitat den Text und die Quelle, sodass Sie den Vers oder Hadith mit einem
-              Klick prüfen können.</p>
-          </div>
-        </div>
+        <h2>Fragen</h2>
+        <div class="faq"><details class="faq-item" open><summary>Erteilt ihr Fatwas?</summary><p>Nein. Bedir AI ist ein Informationswerkzeug und verweist für verbindliche Urteile an einen qualifizierten Gelehrten.</p></details><details class="faq-item" open><summary>Welches Modell?</summary><p>Das Produkt baut auf der Claude-API. Ohne Guthaben im Console-Konto läuft die Demo mit einem gekennzeichneten Ausweichmodell über der Antwort; ein Ausweichsatz wird nie als Claude-Zitat ausgegeben.</p></details><details class="faq-item" open><summary>Können Antworten falsch sein?</summary><p>Ja. Ein Zitat macht messbar, dass die Stelle in der Quelle vorkommt; es garantiert nicht die Richtigkeit des Ganzen.</p></details><details class="faq-item" open><summary>Speichert ihr meine Daten?</summary><p>Kein Chatverlauf. In der Liste steht nur die E-Mail-Adresse.</p></details><details class="faq-item" open><summary>Warum nur Badr?</summary><p>Eine Sammlung ist nur dann vertrauenswürdig, wenn sie an einem engen Gegenstand nachprüfbar aufgebaut wurde.</p></details></div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <h2>Die Badr-Bibliothek</h2>
-        <p class="lead">Seiten zum Lesen über die Schlacht von Badr, das Thema der ersten Version.</p>
-        <div class="library-list">
-          <a class="glass" href="/de/ayet-i-kerimeler/"><span>Verse über Badr</span><span>Bubenheim &amp; Elyas</span></a>
-          <a class="glass" href="/de/hadis-i-serifler/"><span>Hadithe über Badr</span><span>Bukhari · Muslim</span></a>
-          <a class="glass" href="/de/ashabi-bedir/"><span>Die Gefährten von Badr</span><span>Namensliste</span></a>
-          <a class="glass" href="/de/savasin-hikayesi/"><span>Die Geschichte von Badr</span><span>Erzählung</span></a>
-          <a class="glass" href="/de/gunumuzde-bedir/"><span>Badr heute</span><span>Ort und Besuch</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-box glass">
-          <h2>Auf dem Laufenden bleiben</h2>
-          <p>Wir informieren Sie per E-Mail, sobald der Korpus den gesamten Koran und die sechs großen
-            Hadith-Sammlungen (Kutub as-Sitta) umfasst.</p>
-          <form name="beta-waitlist" method="POST" data-netlify="true" netlify-honeypot="_gotcha" class="waitlist-form">
-            <input type="hidden" name="form-name" value="beta-waitlist">
-            <input type="hidden" name="lang" value="de">
-            <p style="display:none"><input name="_gotcha"></p>
-            <input type="email" name="email" placeholder="sie@beispiel.de" aria-label="E-Mail" required>
-            <button class="btn-solid" type="submit">Eintragen</button>
-          </form>
-          <p class="foot-note">Mit dem Absenden stimmen Sie unserer <a href="/en/privacy/">Datenschutzerklärung</a> zu.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <h2>Roadmap</h2>
-        <div class="feature-grid" style="margin-top:2rem">
-          <div class="feature-card glass">
-            <h3>Jetzt · Erste Version online</h3>
-            <p>Ein quellenbelegender Assistent über den Badr-Korpus, in vier Sprachen.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Als Nächstes · Größerer Korpus</h3>
-            <p>Der gesamte Koran und die Kutub as-Sitta, themenbasierte Suche und ein öffentlicher Testsatz für
-              Quellengenauigkeit.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>Später · App und API</h3>
-            <p>Eine mobile App und eine API, die Bildungseinrichtungen belegte Antworten liefert.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <h2>Über uns</h2>
-        <p class="lead">Bedir AI ist ein eigenfinanziertes Bildungstechnologie-Projekt, das Mevlana Yalçın im März 2026 in Ankara als alleiniger Gründer gestartet hat. Bedir AI ist der Produkt- und Markenname. Die erste Version nutzt die Claude API; Korpuserweiterung und Auswertungen der Zitiergenauigkeit sind geplant.</p>
-        <div class="feature-grid">
-          <div class="feature-card glass"><h3>Gründer</h3><p>Mevlana Yalçın</p></div>
-          <div class="feature-card glass"><h3>Standort</h3><p>Ankara, Türkei</p></div>
-          <div class="feature-card glass"><h3>Infrastruktur</h3><p>Claude API · Netlify</p></div>
-          <div class="feature-card glass"><h3>Kontakt</h3><p><a href="mailto:merhaba@bedirsavasi.com" style="color:#c9a35c">merhaba@bedirsavasi.com</a></p></div>
-        </div>
+      <div class="container cta-box glass">
+        <h2>Bleib dran</h2>
+        <p>Wir schreiben, wenn die Sammlung wächst und die API öffnet.</p>
+        <form id="waitlist-form" class="waitlist-form">
+          <input type="email" name="email" placeholder="deine E-Mail" aria-label="deine E-Mail" required />
+          <button class="btn-solid" type="submit">In die Liste</button>
+        </form>
+        <p class="waitlist-status" id="waitlist-status" aria-live="polite"></p>
+        <p class="metrics-note">Die Adresse liegt als einzelne Zeile bei Cloudflare und ist über merhaba@bedirsavasi.com löschbar. Kein Werbemail.</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p class="footer-legal">Bedir AI · Ankara, Türkei · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> ·
-        <a href="/en/privacy/">Datenschutz</a> · <a href="/en/terms/">Nutzungsbedingungen</a> · <a href="/data/corpus.json">Korpus</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="/en/company/">Unternehmen</a></p>
+      <p class="footer-legal">Bedir AI · Ankara, Türkei · 2026 · Geschäftsname, keine eingetragene Gesellschaft · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> · <a href="/de/company/">Unternehmen</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="https://www.linkedin.com/in/mevlanayalcin/">LinkedIn</a> · <a href="/de/privacy/">Privacy</a> · <a href="/de/terms/">Terms</a></p>
+      <div class="library-list">Sammlung: <a href="/de/ayet-i-kerimeler/">Verse</a> · <a href="/de/hadis-i-serifler/">Hadithe</a> · <a href="/de/savasin-hikayesi/">Die Schlacht von Badr</a></div>
     </div>
   </footer>
-
-  <script>
-    document.getElementById("menuToggle")?.addEventListener("click", () => {
-      document.getElementById("navLinks")?.classList.toggle("active");
-    });
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => document.getElementById("navLinks")?.classList.remove("active"));
-    });
-  </script>
   <script src="/assets/demo.js" defer></script>
+  <script src="/assets/waitlist.js" defer></script>
 </body>
-
 </html>

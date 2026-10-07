@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bedir AI • مساعد ذكاء اصطناعي للمعرفة الإسلامية يُظهر مصادره</title>
-  <meta name="description" content="يساعد Bedir AI القراء على دراسة مصادر القرآن والحديث مع اقتباسات وروابط للمصادر. جرّب النسخة المتاحة عن غزوة بدر." />
+  <title>Bedir AI • مساعد معرفي بالقرآن والحديث يُظهر مصادره</title>
+  <meta name="description" content="مساعد بالذكاء الاصطناعي لأسئلة القرآن والحديث، يعرض الآية أو الحديث الذي يُبنى عليه الجواب مع رابط إلى الناشر. مبني على Claude API من Anthropic." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="tr" href="https://bedirsavasi.com/" />
@@ -14,233 +13,153 @@
   <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
-  <meta property="og:title" content="Bedir AI • مساعد ذكاء اصطناعي يُظهر مصادره" />
-  <meta property="og:description" content="يساعد Bedir AI القراء على دراسة مصادر القرآن والحديث مع اقتباسات وروابط للمصادر. جرّب النسخة المتاحة عن غزوة بدر." />
+  <link rel="stylesheet" href="/assets/product.css" />
+  <meta property="og:title" content="Bedir AI • مساعد معرفي بالقرآن والحديث يُظهر مصادره" />
+  <meta property="og:description" content="مساعد بالذكاء الاصطناعي لأسئلة القرآن والحديث، يعرض الآية أو الحديث الذي يُبنى عليه الجواب مع رابط إلى الناشر. مبني على Claude API من Anthropic." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bedirsavasi.com/ar/" />
   <meta property="og:image" content="https://bedirsavasi.com/epic-badr.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <style>body{background-color:#120d0a;color:#f5ebda;margin:0}[dir=rtl] .product-hero .hero-content{text-align:center}</style>
-  <link rel="stylesheet" href="/assets/style-DgdjaNys.css">
-  <link rel="stylesheet" href="/assets/product.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PL31HZZM6P"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-PL31HZZM6P', { anonymize_ip: true });
-  </script>
+  <meta property="og:locale" content="ar" />
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[
-    {"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],"founder":{"@type":"Person","name":"Mevlana Yalçın"},"address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}},
-    {"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Source-cited Islamic knowledge assistant built on Anthropic's Claude API."}
-  ]}
+  {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"https://www.linkedin.com/in/mevlanayalcin/"},"sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],"description":"مساعد بالذكاء الاصطناعي لأسئلة القرآن والحديث، يعرض الآية أو الحديث الذي يُبنى عليه الجواب مع رابط إلى الناشر. مبني على Claude API من Anthropic.","address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}},{"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/ar/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"مساعد بالذكاء الاصطناعي لأسئلة القرآن والحديث، يعرض الآية أو الحديث الذي يُبنى عليه الجواب مع رابط إلى الناشر. مبني على Claude API من Anthropic."}]}
   </script>
 </head>
-
-<body>
+<body class="home">
   <nav class="navbar glass">
     <div class="container nav-content">
-      <button class="mobile-menu-toggle" id="menuToggle" aria-label="القائمة">&#9776;</button>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
       <div class="nav-links" id="navLinks">
         <a href="/ar/" class="btn-ghost active-link">Bedir AI</a>
-        <a href="#ask" class="btn-ghost">اطرح سؤالًا</a>
-        <a href="/ar/ayet-i-kerimeler/" class="btn-ghost">الآيات</a>
-        <a href="/ar/hadis-i-serifler/" class="btn-ghost">الأحاديث</a>
-        <a href="/ar/ashabi-bedir/" class="btn-ghost">أصحاب بدر</a>
-        <a href="/ar/savasin-hikayesi/" class="btn-ghost">قصة بدر</a>
-        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">تواصل معنا</a>
+        <a href="#product" class="btn-ghost">المنتج</a>
+        <a href="#how" class="btn-ghost">كيف يعمل</a>
+        <a href="#corpus" class="btn-ghost">المجموعة</a>
+        <a href="#institutions" class="btn-ghost">للمؤسسات</a>
+        <a href="/ar/company/" class="btn-ghost">عن الشركة</a>
+        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">تواصل</a>
       </div>
       <div class="lang-switcher">
         <a href="/" class="lang-btn">TR</a>
         <a href="/en/" class="lang-btn">EN</a>
         <a href="/de/" class="lang-btn">DE</a>
-        <a href="/ar/" class="lang-btn active-lang">AR</a>
+        <a href="/ar/" class="lang-btn active-link">AR</a>
       </div>
     </div>
   </nav>
 
   <main>
-    <section class="hero-section product-hero">
-      <div class="container hero-content">
-        <span class="badge">وصول مبكر · الإصدار الأول متاح</span>
-        <p class="product-eyebrow">BEDIR AI · تعلّم يستند إلى المصادر</p><h1 class="hero-title product-headline">اسأل سؤالك.<br><em>واكتشف المصدر.</em></h1>
-        <p class="hero-sub">مساعد بالذكاء الاصطناعي للقراء الذين يدرسون مصادر القرآن والحديث، <strong>مع اقتباسات وروابط للمصادر يمكن مراجعتها</strong>. جرّب الإصدار الأول الذي يركّز على غزوة بدر وقارن الإجابات بالنصوص المستشهد بها. لا يقول ما لم تقُل به المصادر، وإذا لم تغطِّ المجموعة الحالية سؤالًا صرّح بذلك.</p>
-        <div class="cta-row">
-          <a class="btn-solid" href="#ask">جرّب النسخة المتاحة</a>
-          <a class="btn-outline" href="/data/corpus.json">حمّل مدوّنة النصوص (JSON)</a>
+    <section class="hero-section product-hero" id="product">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="badge">إجابات مستندة إلى المصدر · Claude API</span>
+          <h1 class="hero-title product-headline">الجواب يحمل<br><em>مصدره معه.</em></h1>
+          <p class="hero-sub">نجيب عن أسئلة القرآن والحديث من مجموعة مختارة، ونفتح النص الذي بُني عليه كل جواب مع رابط إلى الناشر. يمكن مراجعته، ولا يمكن تعديله.</p>
+          <div class="cta-row">
+            <a class="btn-solid" href="#ask">اسأل سؤالًا</a>
+            <a class="btn-outline" href="#institutions">واجهة برمجية للمدارس والمنصات</a>
+          </div>
+          <ul class="proof-strip"><li>١١١ نصًّا مصدريًّا في ملف JSON واحد</li><li>٤ لغات: TR · EN · DE · AR</li><li>اقتباسات من جهة الخادم (Claude API)</li><li>الكود عام: GitHub</li></ul>
         </div>
-      </div>
-    </section>
-
-<aside class="product-preview" aria-label="مثال على سؤال ومصدر"><span class="preview-label">مثال على سؤال ومصدر</span><p class="preview-question">أي آية تذكر النصر في بدر؟</p><div class="preview-answer"><span class="preview-brand">Bedir AI</span><p>تشير الآية 123 من سورة آل عمران إلى النصر في بدر. <sup>[1]</sup></p><a href="https://quran.com/3/123" target="_blank" rel="noopener">[1] Quran 3:123 · افتح المصدر ↗</a></div></aside>
-    <div class="trust-strip">
-      <span>يعمل عبر Claude API من Anthropic</span>
-      <span>المؤسس: مولانا يالتشين</span>
-      <span>أنقرة · مارس 2026</span>
-      <span>تمويل ذاتي</span>
-    </div>
-
-    <section class="section product-audience"><div class="container"><div class="product-metrics"><div><strong>111</strong><span>نصًا مصدريًا</span></div><div><strong>4</strong><span>لغات مدعومة</span></div><div><strong>JSON</strong><span>مدوّنة مفتوحة</span></div></div><p class="metrics-note">نطاق الإصدار الأول: 41 آية و70 حديثًا. يمكنك تصفح المدوّنة بنفسك.</p><h2>حوّل فضولك إلى تعلّم من المصادر.</h2><p class="lead">صُمّم الإصدار الأول للقراء والمعلمين والباحثين الذين يدرسون غزوة بدر.</p><div class="feature-grid"><article class="feature-card glass"><h3>التعلّم الذاتي</h3><p>اسأل بلغتك وانتقل من الإجابة إلى الآية أو الحديث ذي الصلة.</p></article><article class="feature-card glass"><h3>إعداد الدروس</h3><p>اكتشف نصوصًا لإعداد الدرس وراجع الاقتباسات في سياقها الأصلي.</p></article><article class="feature-card glass"><h3>بدء البحث</h3><p>اعثر على نقطة بداية لموضوعك واستعرض الإجابة والاقتباس والمصدر معًا.</p></article></div></div></section>
-<section class="section" id="ask">
-      <div class="container">
-        <h2>اسأل Bedir AI</h2>
-        <p class="lead">يعمل الإصدار الأول على مكتبة من 41 آية و70 حديثًا صحيحًا تتعلق بغزوة بدر. وكل رقم في الإجابة يُظهر النص المقتبس
-          نفسه ومصدره.</p>
-        <div class="demo-box glass">
+        <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
-            <input type="text" name="q" maxlength="400" placeholder="مثال: أين ورد أن المسلمين أُمِدّوا بالملائكة يوم بدر؟" aria-label="سؤالك" required />
+            <input type="text" name="q" maxlength="400" placeholder="مثال: أين وردت مساعدة الملائكة؟" aria-label="سؤالك" required />
             <button class="btn-solid" type="submit">اسأل</button>
           </form>
-          <div class="demo-examples">
-            <button type="button">كيف يصف القرآن المدد الإلهي يوم بدر؟</button>
-            <button type="button">كيف دعا النبي ﷺ يوم بدر؟</button>
-            <button type="button">كيف كانت نهاية أبي جهل؟</button>
-          </div>
+          <div class="demo-examples"><button type="button">كيف يصف القرآن النصر في بدر؟</button><button type="button">كم عدد المسلمين في بدر؟</button><button type="button">من قتل أبا جهل؟</button></div>
+          <p class="demo-disclosure">أنت تتحدث مع مساعد ذكاء اصطناعي وليس مع شخص. تُولَّد الإجابات من المصادر المقتبسة وقد تحتوي على أخطاء.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+          <p class="demo-note">Bedir AI أداة معرفية ولا يُصدر فتاوى. للحكم الشرعي المُلزِم استشر عالمًا مؤهَّلًا.</p>
         </div>
-        <p class="demo-disclosure">أنت تتحدّث مع مساعد ذكاء اصطناعي وليس مع شخص. تُنشأ الإجابات من المصادر المقتبسة المعروضة أدناه وقد تحتوي على أخطاء.</p>
-        <p class="demo-note">Bedir AI أداة معرفية ولا يُصدر فتاوى. للحكم الشرعي المُلزِم استشر عالمًا مؤهَّلًا.</p>
+      </div>
+    </section>
+
+    <section class="section" id="recorded">
+      <div class="container">
+        <h2>اسأل مرة، ودقّق مرتين</h2>
+        <p class="lead">كل علامة رقمية تفتح النص المقتبс ورابط الناشر. أدناه سجلّ حقيقي منقح حرفيًّا من المجموعة.</p>
+        <div class="recorded glass">
+          <p class="preview-question">من قتل أبا جهل في بدر؟</p>
+          <p class="recorded-answer">في يوم بدر سأل النبي عمّن ينظر ما فعل أبو جهل، فوجده ابن مسعود قد أصابه ابنا عفراء بجراح قاتلة.</p>
+          <div class="demo-sources">
+            <div class="demo-source" id="src-demo">
+              <b>[1] صحيح البخاري ٣٩٦٣</b> · <a href="https://sunnah.com/bukhari:3963" target="_blank" rel="noopener">افتح المصدر ↗</a>
+              <blockquote>Narrated Anas: On the day of Badr, the Prophet (ﷺ) said, "Who will go and see what has happened to Abu Jahl?" Ibn Mas`ud went and found that the two sons of 'Afra had struck him fatally.</blockquote>
+            </div>
+          </div>
+          <p class="metrics-note">الاقتباس لا يضمن صحة الجواب، بل يضمن وجود شيء يمكنك مراجعته.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <h2>كيف يعمل</h2>
+        <p class="lead">مسار قابل للتفتيش بدل جواب مُختلَق.</p>
+        <div class="how-grid"><div class="how-card glass"><span class="how-num">1</span><h3>المجموعة</h3><p>نص القرآن عن نسخة Tanzil العثماني؛ الترجمة التركية من ديانت والمه، والإنجليزية Saheeh International، والألمانية Bubenheim & Elyas؛ والأحاديث من مجموعات البخاري ومسلم المفتوحة بأرقام مطابقة لسنة.كوم.</p></div><div class="how-card glass"><span class="how-num">2</span><h3>وثائق إلى Claude</h3><p>كل آية وحديث تُرسل كوثيقة مستقلة مع تفعيل الاقتباس من جهة الخادم، ويُوضع cache_control على الوثيقة الأخيرة لتقرأ المجموعة من التخزين المؤقت في الأسئلة المتكررة.</p></div><div class="how-card glass"><span class="how-num">3</span><h3>جواب مُقتبَس</h3><p>يقتصر الجواب على هذه الوثائق، بلغة السؤال، وإن لم تغطِّ المجموعة سؤالًا صرحت بذلك بدل الرجوع إلى المعرفة المحفوظة.</p></div><div class="how-card glass"><span class="how-num">4</span><h3>الاقتباس على الشاشة</h3><p>يعرض الواجهة نص الاقتباس وعنوان المصدر ورابط quran.com أو sunnah.com لكل مرجع.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="audience">
+      <div class="container">
+        <h2>لمن هذا؟</h2>
+        <p class="lead">الإصدار الأول مقصور على غزوة بدر، والعمل الذي نهتم به هو وصول المعلّم إلى النص وتحققه في خطوة.</p>
+        <div class="feature-grid"><article class="feature-card glass"><h3>للمعلمين</h3><p>اعثر على آيات وأحاديث مناسبة للموضوع، ثم اقرأ الاقتباس في سياقه؛ تحقق بالنقر لا بالثقة.</p></article><article class="feature-card glass"><h3>للقارئ المستقل</h3><p>اسأل بلغتك، وانظر على أي نص يقوم الجواب، واتبع الرابط إلى قراءة أوسع.</p></article><article class="feature-card glass"><h3>للبدايات البحثية</h3><p>اعثر على نقطة بداية، وافحص الجواب والاقتباس والمصدر معًا، وأبلغ عن الخطأ.</p></article></div>
+        <div class="cta-box glass" id="institutions">
+          <h3>للمدارس ومنصات الدراسة</h3>
+          <p>مع توسع المجموعة سنفتح واجهة برمجية تُعيد إجابات مُقتبَسة للمنتجات التي تحتاجها.</p>
+          <ul class="api-list"><li>تعيد النص مع الاقتباسات وروابط الناشرين</li><li>تذكر اللغة وإصدار المجموعة التي جُيب منها</li><li>الأسئلة خارج المجموعة تُعلَّم ولا تُولَّد</li><li>للتجربة المؤسسية: merhaba@bedirsavasi.com</li></ul>
+          <a class="btn-solid" href="mailto:merhaba@bedirsavasi.com?subject=Bedir%20AI%20pilot">اطلب تجربة مؤسسة</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="corpus">
+      <div class="container">
+        <h2>مجموعة بدر</h2>
+        <p class="lead">كل نص نجيب منه منشور مع مصدره.</p>
+        <table class="fact-table">
+          <tr><th scope="col">المصدر</th><th scope="col">التفصيل</th></tr>
+          <tr><th scope="row">القرآن (عربي)</th><td>نص Tanzil العثماني عبر api.alquran.cloud</td></tr><tr><th scope="row">القرآن (تركي)</th><td>ترجمة ديانت Vakfı (tr.vakfi)</td></tr><tr><th scope="row">القرآن (إنجليزي)</th><td>Saheeh International (en.sahih)</td></tr><tr><th scope="row">القرآن (ألماني)</th><td>Bubenheim & Elyas (de.bubenheim)</td></tr><tr><th scope="row">الحديث</th><td>صحيح البخاري وصحيح مسلم عبر fawazahmed0/hadith-api؛ الأرقام مطابقة لسنة.كوم</td></tr>
+        </table>
+        <p class="metrics-note">حقوق التراجم لأصحابها. ما ننشره هو اختيارنا ومحاذااتنا بين أربع لغات وبيانات الاقتباس. ملف واحد: /data/corpus.json · <a href="/data/corpus.json">/data/corpus.json</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a></p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>لماذا Bedir AI؟</h2>
-        <p class="lead">قد يستغرق العثور على مصدر الإجابة وقتًا أثناء البحث في النصوص الدينية. يجمع Bedir AI الإجابة والاقتباسات في مكان واحد ليساعد القارئ على مراجعة المصادر.</p>
-        <div class="feature-grid">
-          <div class="feature-card glass">
-            <h3>راجع المصادر</h3>
-            <p>تُعرض الاقتباسات وروابط المصادر التي تعيدها ميزة الاستشهادات في Claude API بجانب الإجابة. وجود الاستشهاد لا يضمن صحة الإجابة كاملة.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>أربع لغات</h3>
-            <p>التركية والإنجليزية والألمانية والعربية. ترد الآيات في المدوّنة بنصها العربي الأصلي مع ثلاث ترجمات
-              لمعانيها، والأحاديث بنصوصها العربية والتركية والإنجليزية.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>مدوّنة مفتوحة</h3>
-            <p>جميع النصوص التي يستخدمها Bedir AI ومصادرها متاحة للجميع <a href="/data/corpus.json" style="color:#c9a35c">في ملف JSON واحد</a>،
-              ويمكن التحقق من كل مُدخل عبر رابطه على quran.com أو sunnah.com.</p>
-          </div>
-        </div>
+        <h2>خارطة الطريق بحالتها</h2>
+        <p class="lead">ما تم، وما يجري، وما صُمِّم فقط.</p>
+        <div class="roadmap"><div class="road-item"><span class="road-label">صدر</span><p>إجابات مُقتبَسة من مجموعة غزوة بدر: ٤١ آية و٧٠ حديثًا بأربع لغات.</p></div><div class="road-item"><span class="road-label">جارٍ</span><p>التوسع إلى القرآن كله وكتب الحديث الستة؛ الاسترجاع بحسب الموضوع.</p></div><div class="road-item"><span class="road-label">صُمِّم ولم يُنفَّذ</span><p>تقويم منشور لدقة الاقتباس يفيد بين ثبوت النص ودعمه للادعاء.</p></div><div class="road-item"><span class="road-label">قادم</span><p>واجهة إجابات مُقتبَسة للمدارس الإسلامية ومنصات الدراسة؛ تطبيق جوّال.</p></div></div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>كيف يعمل؟</h2>
-        <div class="feature-grid">
-          <div class="feature-card glass">
-            <span class="how-num">1</span>
-            <h3>المدوّنة</h3>
-            <p>الآيات مأخوذة من النص العربي في مشروع Tanzil، ومن الترجمة التركية لوقف الديانة (Diyanet Vakfı)، وترجمة
-              Saheeh International الإنجليزية، وترجمة Bubenheim &amp; Elyas الألمانية؛ والأحاديث من مجموعات البيانات
-              المفتوحة لصحيحَي البخاري ومسلم.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">2</span>
-            <h3>إلى Claude على هيئة وثائق</h3>
-            <p>تُرسَل كل آية وكل حديث إلى Claude وثيقةً مستقلة مع تفعيل ميزة الاستشهادات. وتُخزَّن المدوّنة تخزينًا
-              مؤقتًا عبر prompt caching لخفض التكلفة.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">3</span>
-            <h3>إجابة موثَّقة بالمصادر</h3>
-            <p>يُوجَّه Claude للإجابة من الوثائق المقدَّمة والإشارة إلى الأسئلة التي تقع خارج نطاقها. قد تتضمن الإجابات أخطاء؛ راجع الاقتباسات وسياقها.</p>
-          </div>
-          <div class="feature-card glass">
-            <span class="how-num">4</span>
-            <h3>عرض الاقتباس</h3>
-            <p>تعرض الواجهة لكل استشهاد النصَّ المقتبس ومصدره، فيستطيع المستخدم التحقق من الآية أو الحديث بنقرة
-              واحدة.</p>
-          </div>
-        </div>
+        <h2>أسئلة متكررة</h2>
+        <div class="faq"><details class="faq-item" open><summary>هل تُصدرون فتوى؟</summary><p>لا. Bedir AI أداة معرفية، وتحيل من يطلب حكمًا ملزمًا إلى عالم مؤهل.</p></details><details class="faq-item" open><summary>أي نموذج تستخدمون؟</summary><p>المنتج مبني على Claude API. وحين لا يكون في حساب Console رصيد، يعمل العرض التوضيحي بنموذج احتياطي موسوم فوق الجواب، ولا يُقدَّم جوابه كاقتباس من Claude.</p></details><details class="faq-item" open><summary>هل تحتمل الإجابات الخطأ؟</summary><p>نعم. الاقتباس يجعل من الممكن قياس ورود النص في مصدره، لكنه لا يضمن صحة الجملة كلها.</p></details><details class="faq-item" open><summary>هل تحفظون بياناتي؟</summary><p>لا نحفظ سجل المحادثة. وفي القائمة لا يُحفظ سوى بريدك.</p></details><details class="faq-item" open><summary>لماذا بدر وحدها؟</summary><p>لا تُبنى الثقة في مجموعة إلا إذا شُيِّدت على موضوع ضيق بشكل قابل للتحقق.</p></details></div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container">
-        <h2>مكتبة بدر</h2>
-        <p class="lead">صفحات للقراءة عن غزوة بدر، موضوع الإصدار الأول.</p>
-        <div class="library-list">
-          <a class="glass" href="/ar/ayet-i-kerimeler/"><span>الآيات المتعلقة ببدر</span><span>الرسم العثماني</span></a>
-          <a class="glass" href="/ar/hadis-i-serifler/"><span>الأحاديث المتعلقة ببدر</span><span>البخاري · مسلم</span></a>
-          <a class="glass" href="/ar/ashabi-bedir/"><span>قائمة أصحاب بدر</span><span>قائمة بالأسماء</span></a>
-          <a class="glass" href="/ar/savasin-hikayesi/"><span>قصة بدر</span><span>سرد</span></a>
-          <a class="glass" href="/ar/gunumuzde-bedir/"><span>بدر اليوم</span><span>الموقع والزيارة</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-box glass">
-          <h2>ابقَ على اطلاع</h2>
-          <p>نُعلمك بالبريد الإلكتروني كلما اتسعت المدوّنة (القرآن الكريم كاملًا والكتب الستة).</p>
-          <form name="beta-waitlist" method="POST" data-netlify="true" netlify-honeypot="_gotcha" class="waitlist-form">
-            <input type="hidden" name="form-name" value="beta-waitlist">
-            <input type="hidden" name="lang" value="ar">
-            <p style="display:none"><input name="_gotcha"></p>
-            <input type="email" name="email" dir="ltr" placeholder="name@example.com" aria-label="البريد الإلكتروني" required>
-            <button class="btn-solid" type="submit">انضم إلى القائمة</button>
-          </form>
-          <p class="foot-note">بالإرسال فإنك توافق على <a href="/en/privacy/" hreflang="en">سياسة الخصوصية</a> (بالإنجليزية).</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <h2>خارطة الطريق</h2>
-        <div class="feature-grid" style="margin-top:2rem">
-          <div class="feature-card glass">
-            <h3>الآن · الإصدار الأول متاح</h3>
-            <p>مساعد يُظهر مصادره، يعمل على مدوّنة بدر بأربع لغات.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>التالي · توسيع المدوّنة</h3>
-            <p>القرآن الكريم كاملًا والكتب الستة، والوصول إلى النصوص بحسب الموضوع، ومجموعة اختبار متاحة للجميع لقياس
-              دقة الاستشهاد بالمصادر.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>لاحقًا · تطبيق وواجهة برمجية</h3>
-            <p>تطبيق للهواتف المحمولة، وواجهة برمجية (API) تقدّم إجابات موثَّقة بالمصادر للمؤسسات التعليمية.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="container">
-        <h2>من نحن</h2>
-        <p class="lead">Bedir AI مشروع تقني تعليمي بتمويل ذاتي أطلقه المؤسس الوحيد مولانا يالتشين (Mevlana Yalçın) في أنقرة في مارس 2026. Bedir AI هو اسم المنتج والعلامة. يستخدم الإصدار الأول Claude API، وتشمل خطتنا توسيع المدوّنة وتقييم دقة الاستشهادات.</p>
-        <div class="feature-grid">
-          <div class="feature-card glass"><h3>المؤسس</h3><p>مولانا يالتشين (Mevlana Yalçın)</p></div>
-          <div class="feature-card glass"><h3>الموقع</h3><p>أنقرة، تركيا</p></div>
-          <div class="feature-card glass"><h3>البنية التقنية</h3><p>Claude API · Netlify</p></div>
-          <div class="feature-card glass"><h3>التواصل</h3><p><a href="mailto:merhaba@bedirsavasi.com" style="color:#c9a35c">merhaba@bedirsavasi.com</a></p></div>
-        </div>
+      <div class="container cta-box glass">
+        <h2>تابع التطورات</h2>
+        <p>نكتب إليك حين تكبر المجموعة وحين تفتح الواجهة البرمجية.</p>
+        <form id="waitlist-form" class="waitlist-form">
+          <input type="email" name="email" placeholder="بريدك الإلكتروني" aria-label="بريدك الإلكتروني" required />
+          <button class="btn-solid" type="submit">انضم إلى القائمة</button>
+        </form>
+        <p class="waitlist-status" id="waitlist-status" aria-live="polite"></p>
+        <p class="metrics-note">يُحفظ بريدك كسطر واحد لدى Cloudflare ويمكن حذفه بمراسلة merhaba@bedirsavasi.com. لا رسائل دعائية.</p>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p class="footer-legal">Bedir AI · أنقرة، تركيا · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> ·
-        <a href="/en/privacy/" hreflang="en">الخصوصية</a> · <a href="/en/terms/" hreflang="en">الشروط</a> · <a href="/data/corpus.json">المدوّنة</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="/en/company/">الشركة</a></p>
+      <p class="footer-legal">Bedir AI · أنقرة، تركيا · ٢٠٢٦ · اسم تشغيلي وليس كيانًا مسجلًا · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> · <a href="/ar/company/">عن الشركة</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="https://www.linkedin.com/in/mevlanayalcin/">LinkedIn</a> · <a href="/ar/privacy/">Privacy</a> · <a href="/ar/terms/">Terms</a></p>
+      <div class="library-list">المجموعة: <a href="/ar/ayet-i-kerimeler/">الآيات</a> · <a href="/ar/hadis-i-serifler/">الأحاديث</a> · <a href="/ar/savasin-hikayesi/">وقعة بدر</a></div>
     </div>
   </footer>
-
-  <script>
-    document.getElementById("menuToggle")?.addEventListener("click", () => {
-      document.getElementById("navLinks")?.classList.toggle("active");
-    });
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => document.getElementById("navLinks")?.classList.remove("active"));
-    });
-  </script>
   <script src="/assets/demo.js" defer></script>
+  <script src="/assets/waitlist.js" defer></script>
 </body>
-
 </html>
