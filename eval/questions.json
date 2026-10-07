@@ -1,0 +1,17 @@
+{"questions": [
+  {"id": "q01", "language": "tr", "question": "Bedir'de müminler kaç kişiydi?", "expect": "answer", "note": "corpus covers the small number of fighters"},
+  {"id": "q02", "language": "tr", "question": "Bedir'de yardım hangi ayette anlatılıyor?", "expect": "answer", "note": "Quran 3:123 / 8:9"},
+  {"id": "q03", "language": "tr", "question": "Ebû Cehil Bedir'de nasıl öldü?", "expect": "answer", "note": "two companions reported killing him"},
+  {"id": "q04", "language": "tr", "question": "Bedir esirlerine nasıl muamele edildi?", "expect": "answer", "note": "ransom and treatment passages"},
+  {"id": "q05", "language": "tr", "question": "Bedir'de yağmur yağdı mı?", "expect": "either", "note": "passages on rain at Badr exist in the collection"},
+  {"id": "q06", "language": "tr", "question": "Uhud savaşında kim şehit oldu?", "expect": "decline", "note": "out of scope: different battle"},
+  {"id": "q07", "language": "tr", "question": "Namaz kaç rekattır?", "expect": "decline", "note": "out of scope: fiqh question"},
+  {"id": "q08", "language": "en", "question": "How many Muslims fought at Badr?", "expect": "answer", "note": "313/three hundred and thirteen passages"},
+  {"id": "q09", "language": "en", "question": "What did the Prophet say about the dead of Badr?", "expect": "answer", "note": "were they listening; addressee of the cry"},
+  {"id": "q10", "language": "en", "question": "Who killed Abu Jahl?", "expect": "answer", "note": "two Ansaari boys, Ibn Masud finished him"},
+  {"id": "q11", "language": "en", "question": "What is the ruling on fasting in Ramadan?", "expect": "decline", "note": "out of scope"},
+  {"id": "q12", "language": "de", "question": "Wie vielen Muslime kämpften bei Badr?", "expect": "answer", "note": "German Quran text only; hadith have no German"},
+  {"id": "q13", "language": "de", "question": "Wie half Allah den Gläubigen bei Badr?", "expect": "answer", "note": "angels as aid"},
+  {"id": "q14", "language": "ar", "question": "كم عدد المسلمين في بدر؟", "expect": "answer", "note": "Arabic text of 3:123 and hadith"},
+  {"id": "q15", "language": "ar", "question": "من قتل أبا جهل؟", "expect": "answer", "note": "Abu Jahl passages"}
+]}
