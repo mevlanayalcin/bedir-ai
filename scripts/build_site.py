@@ -17,6 +17,7 @@ import hashlib
 import json
 import pathlib
 import sys
+from html import escape
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 GITHUB = "https://github.com/mevlanayalcin/bedir-ai"
@@ -132,7 +133,7 @@ T = {
         hero=dict(
             eyebrow="CLAUDE-API · ZITATE", h1a="Zitierte Antworten", h1b="auf Koran- und Hadith-Fragen.",
             sub="Ein Assistent und eine HTTP-API über einer kuratierten Sammlung. Jede Antwort öffnet die genaue Stelle samt Verlagslink. Prüfen ja, Editieren nein.",
-            ex_label="BEISPIELAUSWERTUNG", ex_apilink="API-Anfrage und Antwort ansehen", ex_q="Welcher Vers erwähnt die Hilfe bei Badr?", ex_a="Koran 3:123 sagt, dass bei Badr Hilfe gesandt wurde.", ex_title="Koran 3:123 (Āl ʿImrān)", ex_pub="Tanzil · Bubenheim &amp; Elyas",
+            ex_label="AUFGEZEICHNETES BEISPIEL", ex_apilink="API-Anfrage und Antwort ansehen", ex_q="Welcher Vers erwähnt die Hilfe bei Badr?", ex_a="Koran 3:123 sagt, dass bei Badr Hilfe gesandt wurde.", ex_title="Koran 3:123 (Āl ʿImrān)", ex_pub="Tanzil · Bubenheim &amp; Elyas",
             cta_demo="Beispielauswertung ansehen", cta_api="API-Dokumentation",
             preview_label="BEISPIELFRAGE UND QUELLE", preview_q="Welche Sure beschreibt die Hilfe bei Badr?",
             preview_ans="Koran 3:123 berichtet, dass bei Badr geholfen wurde. [1]", preview_src="[1] Koran 3:123 · Quelle öffnen ↗"),
@@ -183,12 +184,12 @@ T = {
         hero=dict(
             eyebrow="Claude API · اقتباس", h1a="إجابات موثَّقة بالمصدر", h1b="لأسئلة القرآن والحديث.",
             sub="مساعد أسئلة وأجوبة وواجهة HTTP فوق مجموعة مختارة. كل جواب يفتح الآية أو الحديث الذي استند إليه مع رابط الناشر. يمكنك المراجعة، لا التحرير.",
-            ex_label="مثال مسجَّل", ex_apilink="انظر طلب API واستجابته", ex_q="أي آية تتحدث عن النصر في بدر؟", ex_a="القرآن 3:123 يذكر أن الله نصر المؤمنين في بدر.", ex_title="القرآن 3:123 (آل عمران)", ex_pub="تنزيل (العثمانية) · Saheeh International",
+            ex_label="مثال مسجَّل", ex_apilink="انظر طلب API واستجابته", ex_q="أي آية تتحدث عن النصر في بدر؟", ex_a="القرآن 3:123 يذكر أن الله نصر المؤمنين في بدر.", ex_title="القرآن 3:123 (آل عمران)", ex_pub="تنزيل (الرسم العثماني)",
             cta_demo="مثال مسجَّل", cta_api="وثائق API",
             preview_label="مثال: سؤال ومصدر", preview_q="أي آية تتحدث عن النصر في بدر؟",
             preview_ans="القرآن ٣:١٢٣ يذكر أن النصر كان في بدر. [1]", preview_src="[1] القرآن ٣:١٢٣ · افتح المصدر ↗"),
         proof=["٤١ آية + ٧٠ حديثًا: مجموعة بدر", "التغطية: ar · en · tr كاملة، de ٤١/١١١"],
-        example=dict(h2="اسأل مرة، ودقّق مرتين", lead="كل علامة رقمية تفتح النص المقتبс ورابط الناشر. أدناه سجلّ حقيقي منقح حرفيًّا من المجموعة.",
+        example=dict(h2="اسأل مرة، ودقّق مرتين", lead="كل علامة رقمية تفتح النص المقتبس ورابط الناشر. أدناه سجلّ حقيقي منقول حرفيًّا من المجموعة.",
                      note="الاقتباس لا يضمن صحة الجواب، بل يضمن وجود شيء يمكنك مراجعته."),
         how=dict(h2="كيف يعمل", lead="مسار قابل للتفتيش بدل جواب مُختلَق.",
                  steps=[("المجموعة", "نص القرآن عن نسخة Tanzil العثماني؛ الترجمة التركية من ديانت والمه، والإنجليزية Saheeh International، والألمانية Bubenheim & Elyas؛ والأحاديث من مجموعات البخاري ومسلم المفتوحة بأرقام مطابقة لسنة.كوم."),
@@ -314,12 +315,7 @@ TPL = """<!DOCTYPE html>
         <div class="recorded glass">
           <p class="preview-question">{rec_q}</p>
           <p class="recorded-answer">{rec_ans}</p>
-          <div class="demo-sources">
-            <div class="demo-source" id="src-demo">
-              <b>[1] {rec_src_title}</b> · <a href="{rec_src_url}" target="_blank" rel="noopener">{rec_src_link}</a>
-              <blockquote>{rec_quote}</blockquote>
-            </div>
-          </div>
+          <div class="demo-sources">{rec_sources}</div>
           <p class="metrics-note">{ex_note}</p>
         </div>
       </div>
@@ -410,8 +406,8 @@ RECORDED = {
            "On the day of Badr the Prophet asked who would see what had become of Abu Jahl; Ibn Mas'ud found him struck fatally by the two sons of 'Afra and finished him.",
            "Sahih al-Bukhari 3963", "https://sunnah.com/bukhari:3963", "open the source ↗",
            "Narrated Anas: On the day of Badr, the Prophet (ﷺ) said, \"Who will go and see what has happened to Abu Jahl?\" Ibn Mas`ud went and found that the two sons of 'Afra had struck him fatally."),
-    "de": ("Wer tötete Abu Dschalal bei Badr?",
-           "Am Tag von Badr fragte der Prophet, wer nachsehen solle, was mit Abu Dschalal geschehen sei; Ibn Mas'ud fand ihn von den beiden Söhnen der 'Afra tödlich getroffen.",
+    "de": ("Wer tötete Abu Dschahl bei Badr?",
+           "Am Tag von Badr fragte der Prophet, wer nachsehen solle, was mit Abu Dschahl geschehen sei; Ibn Mas'ud fand ihn von den beiden Söhnen der 'Afra tödlich getroffen.",
            "Sahih al-Bukhari 3963", "https://sunnah.com/bukhari:3963", "Quelle öffnen ↗",
            "Narrated Anas: On the day of Badr, the Prophet (ﷺ) said, \"Who will go and see what has happened to Abu Jahl?\" Ibn Mas`ud went and found that the two sons of 'Afra had struck him fatally."),
     "ar": ("من قتل أبا جهل في بدر؟",
@@ -423,7 +419,7 @@ RECORDED = {
 CHIP_QS = {
     "tr": ["Bedir'de yardım hangi ayette geçiyor?", "Bedir'e kaç kişiyle gidildi?", "Bedir esirlerine nasıl muamele edildi?"],
     "en": ["How does the Qur'an describe the help at Badr?", "How many Muslims fought at Badr?", "What happened to Abu Jahl?"],
-    "de": ["Wie beschreibt der Koran die Hilfe bei Badr?", "Wie viele Muslime kämpften bei Badr?", "Was geschah mit Abu Dschalal?"],
+    "de": ["Wie beschreibt der Koran die Hilfe bei Badr?", "Wie viele Muslime kämpften bei Badr?", "Was geschah mit Abu Dschahl?"],
     "ar": ["كيف يصف القرآن النصر في بدر؟", "كم عدد المسلمين في بدر؟", "من قتل أبا جهل؟"],
 }
 DEMO_UI = {
@@ -446,6 +442,32 @@ KAYIT_DOSYASI = KOK / "data" / "recorded_examples.json"
 # hand-written copy: a sample nobody can reproduce is how the hero and the API docs ended
 # up quoting different verses for the same question.
 KAYITLAR = json.loads(KAYIT_DOSYASI.read_text(encoding="utf-8")) if KAYIT_DOSYASI.exists() else {}
+# The worked example further down the page is a second captured response, so it does not
+# repeat the hero. It keeps every answer block and every citation the endpoint returned.
+CALISMA_DOSYASI = KOK / "data" / "recorded_worked.json"
+CALISMALAR = json.loads(CALISMA_DOSYASI.read_text(encoding="utf-8")) if CALISMA_DOSYASI.exists() else {}
+
+
+def kayit_html(kayit, ac):
+    """Returns (question, answer, sources) HTML for a captured /api/ask response."""
+    kaynaklar, anahtarlar, parcalar = [], [], []
+    for blok in kayit.get("answer") or []:
+        isaretler = ""
+        for atif in blok.get("cites") or []:
+            anahtar = (atif.get("id"), atif.get("quote"))
+            if anahtar not in anahtarlar:
+                anahtarlar.append(anahtar)
+                kaynaklar.append(atif)
+            isaretler += " <sup>[%d]</sup>" % (anahtarlar.index(anahtar) + 1)
+        parcalar.append(escape(blok.get("text") or "", quote=False) + isaretler)
+    cevap = " ".join("".join(parcalar).split())
+    kaynak = "".join(
+        '<div class="demo-source" id="src-demo-%d"><b>[%d] %s</b> · <a href="%s" target="_blank" rel="noopener">%s</a>'
+        "<blockquote>%s</blockquote></div>"
+        % (i + 1, i + 1, escape(k.get("title") or ""), escape(k.get("url") or ""), ac,
+           escape(" ".join((k.get("quote") or "").split()), quote=False))
+        for i, k in enumerate(kaynaklar))
+    return escape(kayit.get("q") or "", quote=False), cevap, kaynak
 
 
 def korpus_aliintisi(lang, kim="Q3:123", uzunluk=230):
@@ -490,6 +512,12 @@ def build(lang):
         rec_url = atif.get("url") or rec_url
         rec_link = (atif.get("title") or rec_title) + " ↗"
         rec_quote = " ".join((atif.get("quote") or "").split()) or rec_quote
+    if lang in CALISMALAR:
+        calisma_q, calisma_ans, calisma_src = kayit_html(CALISMALAR[lang], RECORDED[lang][4])
+    else:
+        calisma_q, calisma_ans = rec_q, rec_ans
+        calisma_src = ('<div class="demo-source" id="src-demo-1"><b>[1] %s</b> · <a href="%s" target="_blank" rel="noopener">%s</a>'
+                       "<blockquote>%s</blockquote></div>" % (rec_title, rec_url, rec_link, rec_quote))
     alternates = "\n  ".join(
         '<link rel="alternate" hreflang="%s" href="https://bedirsavasi.com%s" />' % (l, "/" if l == "tr" else "/%s/" % l)
         for l in ("tr", "en", "de", "ar")
@@ -515,8 +543,7 @@ def build(lang):
         ex_title=rec_title, ex_pub=t["hero"]["ex_pub"], ex_url=rec_url,
         ex_quote=rec_quote or korpus_aliintisi(lang), ex_apilink=t["hero"]["ex_apilink"],
         ex_h2=t["example"]["h2"], ex_lead=t["example"]["lead"], ex_note=t["example"]["note"],
-        rec_q=rec_q, rec_ans=rec_ans, rec_src_title=rec_title, rec_src_url=rec_url,
-        rec_src_link=rec_link, rec_quote=rec_quote,
+        rec_q=calisma_q, rec_ans=calisma_ans, rec_sources=calisma_src,
         how_h2=t["how"]["h2"], how_lead=t["how"]["lead"],
         how_steps="".join(
             '<div class="how-card glass"><span class="how-num">%d</span><h3>%s</h3><p>%s</p></div>' % (i + 1, a, b)

@@ -73,8 +73,8 @@
         <p>All inference runs against the first-party Claude API through the Claude Console — not AWS Bedrock or
           Google Vertex AI. Anthropic is currently the only model provider in the product.</p>
 
-        <h2>Backup engine, stated plainly</h2>
-        Answers are produced by <code>claude-haiku-4-5-20251001</code> through the Claude Messages API: the collection is passed as document blocks with server-side citations and prompt caching enabled. Measured: a cold question writes a 64,610-token cache block and later questions read it back for roughly 130 fresh input tokens. The endpoint carries a daily token budget; when it is spent or Claude is unreachable, the answer comes from a labelled backup engine and both the <code>provider</code> field and the on-screen label say so - a backup answer is never presented as a Claude citation.
+        <h2>Engine and demo limits</h2>
+        <p>Answers are produced by <code>claude-haiku-4-5-20251001</code> through the Claude Messages API: the collection is passed as document blocks with server-side citations and prompt caching enabled. Measured: a cold question writes the cached collection once (30,000 to 65,000 tokens depending on the language) and later questions read it back for roughly 130 fresh input tokens. The public demo has a daily token budget; once it is spent, the endpoint stops calling Claude until the next UTC day and the page shows a labelled recorded example instead. No other model answers.</p>
         <h2>Policy posture</h2>
         <ul>
           <li><strong>AI disclosure.</strong> The answer interface states that users are talking to an AI assistant and

@@ -234,14 +234,15 @@ pre.code { background: #0a0908; border: 1px solid rgba(255,255,255,.11); border-
 .hero-demo .demo-evidence { order: -3; }
 
 /* The endpoint-evidence row wrapped into three lines on phones and pushed the
-   quoted passage past the fold; the header gap was then widened too far. One
-   scrollable line, tighter hero spacing, and the passage is on screen again. */
+   quoted passage past the fold; the header gap was then widened too far. The row
+   may wrap to two lines but never scrolls: a hidden scroll cut off the provider. */
 @media (max-width: 800px) {
   .product-hero { padding-top: 4.6rem; }
   .hero-copy .hero-sub { margin-top: 10px; }
   .proof-strip { margin-top: 10px; }
-  .demo-evidence { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-bottom: 8px; }
-  .demo-evidence::-webkit-scrollbar { display: none; }
-  .demo-evidence span { flex: 0 0 auto; }
+  .demo-evidence { gap: 4px 6px; margin-bottom: 8px; }
   .hero-demo { padding: 16px; }
+}
+@media (max-width: 480px) {
+  .demo-evidence span:first-child { display: none; }
 }

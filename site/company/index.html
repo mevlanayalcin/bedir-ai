@@ -72,8 +72,8 @@
         <p>Tüm çıkarım, Claude Console üzerinden birinci taraf Claude API'siyle yapılır — AWS Bedrock veya Google
           Vertex AI kullanılmaz. Üründe şu anki tek model sağlayıcısı Anthropic'tir.</p>
 
-        <h2>Yedek motor, açıkça</h2>
-        Yanıtlar <code>claude-haiku-4-5-20251001</code> ile, Claude Messages API&#39;si üzerinden üretiliyor: koleksiyon belge blokları olarak geçiyor, sunucu taraflı atıflar ve prompt cache açık. Ölçüldü: bir soru soğukken 64.610 token&#39;luk önbellek bloğunu yazıyor, sonraki sorular aynı bloğu okuyup ~130 taze token harcıyor. Uç noktada günlük bir token bütçesi var; bütçe bittiğinde ya da Claude&#39;a ulaşılamadığında yanıt etiketli bir yedek moturdan gelir ve bunu yanıttaki <code>provider</code> alanı ile arayüzdeki etiket söyler — yedek yanıt hiçbir zaman Claude atfı olarak sunulmaz.
+        <h2>Motor ve demo sınırları</h2>
+        <p>Yanıtlar <code>claude-haiku-4-5-20251001</code> ile, Claude Messages API&#39;si üzerinden üretiliyor: koleksiyon belge blokları olarak geçiyor, sunucu taraflı atıflar ve prompt cache açık. Ölçüldü: soğuk bir soru önbelleğe alınan koleksiyonu bir kez yazıyor (dile göre 30.000 ile 65.000 token arası), sonraki sorular aynı bloğu okuyup ~130 taze token harcıyor. Herkese açık demonun günlük bir token bütçesi var; bütçe bittiğinde uç nokta bir sonraki UTC gününe kadar Claude&#39;u çağırmıyor ve sayfa bunun yerine etiketli bir kayıtlı örnek gösteriyor. Başka bir model yanıt vermiyor.</p>
         <h2>Politikaya uyum</h2>
         <ul>
           <li><strong>Yapay zekâ ifşası.</strong> Yanıt arayüzü, bir yapay zekâ asistanıyla konuşulduğunu ve yanıtların

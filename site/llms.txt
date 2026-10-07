@@ -22,8 +22,8 @@ Status: early access, one person, no customers claimed
 Response: `answer[].text` with `[n]` markers, `answer[].cites[]` carrying `id`, `title`,
 `url` and the verbatim `quote`; `provider` names the engine that answered; `usage` and
 `retrieval` are returned. Rate limit: 8 requests per 60 seconds per IP. No auth, no SLA.
-Answers are produced by `claude-haiku-4-5-20251001`; if the daily budget is exhausted the
-endpoint falls back to a labelled non-Claude engine and says so in `provider`.
+Answers are produced by `claude-haiku-4-5-20251001`; no other model answers. Past the daily
+budget the endpoint returns `{"error": "daily_budget"}` (HTTP 503) until the next UTC day.
 
 ## Source data
 

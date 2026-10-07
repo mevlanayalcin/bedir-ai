@@ -10,7 +10,7 @@ language; the answer comes back with the exact verse or hadith it was drawn from
 - Infrastructure: Cloudflare Workers + Assets (site and answer endpoint), Cloudflare KV (waitlist), Cloudflare DNS
 
 
-> **Engine, honestly.** Answers are produced by `claude-haiku-4-5-20251001` on the Claude Messages API, with server-side citations and prompt caching. The endpoint has a daily token budget; past it the demo answers from a labelled backup engine and the `provider` field says so. Backup answers are never presented as Claude citations.
+> **Engine, honestly.** Answers are produced by `claude-haiku-4-5-20251001` on the Claude Messages API, with server-side citations and prompt caching. The endpoint has a daily token budget; past it the endpoint stops calling Claude and returns `daily_budget` until the next UTC day, and the demo shows a labelled recorded example. No other model answers.
 
 ## What Claude does in this product
 

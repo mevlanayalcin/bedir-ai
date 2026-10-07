@@ -1,7 +1,7 @@
 // Cloudflare Worker: static Bedir AI site + POST /api/ask.
-// The answer endpoint passes the corpus to the Claude API as documents with server-side citations,
-// pre-filtered to the passages that lexically match the question so a cold request does not ship the
-// whole collection every time. Static requests fall through to Workers assets.
+// The answer endpoint passes the whole corpus to the Claude API as documents with server-side
+// citations behind one cached prefix; lexical retrieval only orders a hint inside the question.
+// Static requests fall through to Workers assets.
 import corpus from "../data/corpus.json";
 
 // Answers are produced by the model in MODEL_UCUZ; the balance is funded, and the daily
@@ -13,8 +13,8 @@ const MODEL_UCUZ = "claude-haiku-4-5-20251001";
 
 const LANGS = ["tr", "en", "de", "ar"];
 const MAX_QUESTION = 400;
-// A public demo on a $5 balance needs a ceiling. Daily Claude tokens are counted in KV; past
-// the cap the endpoint stops spending and answers on the labelled backup engine instead.
+// A public demo on a $5 balance needs a ceiling. Daily Claude usage is counted in KV; past
+// the cap the endpoint stops calling Claude and answers daily_budget until the next UTC day.
 // Cost proxy rather than a token count: a cache read costs about a tenth of a fresh input token
 // and a cache write a quarter more, so counting raw tokens would have cut the demo off after
 // ~40 warm questions that cost fractions of a cent together.
@@ -146,79 +146,6 @@ function toDocuments(keep, lang) {
   return docs;
 }
 
-// ---------------------------------------------------------------- fallback engine
-// Claude is the product engine. If the daily budget is spent or Claude is unreachable, the
-// Worker answers from a labelled backup model instead of returning a bare error. The backup
-// is never presented as a Claude citation: sources shown for it are the retrieved passages that
-// match the question, marked provider:"fallback" so the UI can say so out loud.
-async function fallbackAnswer(env, question, lang, keep) {
-  if (!env.FALLBACK_API_KEY) return null;
-  const base = env.FALLBACK_BASE_URL || "https://api.deepseek.com/v1";
-  const model = env.FALLBACK_MODEL || "deepseek-chat";
-
-  const passages = keep.slice(0, 12).map((idx, n) => {
-    const item = corpus.items[idx];
-    const body = (item.text[lang] || item.text.en || "").replace(/\s+/g, " ").slice(0, 600);
-    return `[${n + 1}] ${(item.title[lang] || item.title.en)}\n${body}`;
-  });
-  const names = { tr: "Türkçe", en: "English", de: "German", ar: "Arabic" };
-
-  try {
-    const res = await fetch(`${base}/chat/completions`, {
-      method: "POST",
-      headers: { "content-type": "application/json", authorization: `Bearer ${env.FALLBACK_API_KEY}` },
-      body: JSON.stringify({
-        model,
-        max_tokens: 400,
-        temperature: 0.2,
-        messages: [
-          {
-            role: "system",
-            content: `You answer only from the numbered sources given by the user. Reply in ${names[lang] || "English"} in 2-5 short sentences, ending each factual sentence with the [n] marker of the source it comes from. If the sources do not cover the question, say so in one sentence and cite nothing. Do not add rulings or outside knowledge.`,
-          },
-          { role: "user", content: `Sources:\n${passages.join("\n\n")}\n\nQuestion: ${question}` },
-        ],
-      }),
-    });
-    if (!res.ok) {
-      console.error(`fallback error ${res.status}: ${(await res.text()).slice(0, 200)}`);
-      return null;
-    }
-    const data = await res.json();
-    const text = (data.choices?.[0]?.message?.content || "").trim();
-    if (!text) return null;
-
-    const markers = [...new Set((text.match(/\[\d+\]/g) || []).map((m) => Number(m.replace(/\D/g, ""))))]
-      .filter((n) => n >= 1 && n <= keep.length);
-    const cites = markers.map((n) => {
-      const item = corpus.items[keep[n - 1]];
-      const src = item.text[lang] || item.text.en || "";
-      return {
-        id: item.id,
-        title: item.title[lang] || item.title.en,
-        url: item.url,
-        // verbatim excerpt of the cited passage, so fidelity checks stay meaningful
-        quote: src.replace(/\s+/g, " ").slice(0, 200).trim(),
-      };
-    });
-    return {
-      answer: [{ text, cites }],
-      model: data.model || model,
-      provider: "fallback",
-      usage: {
-        input: data.usage?.prompt_tokens,
-        cache_read: 0,
-        cache_write: 0,
-        output: data.usage?.completion_tokens,
-      },
-    };
-  } catch (e) {
-    console.error("fallback fetch failed", String(e));
-    return null;
-  }
-}
-
-
 // Models that accept the server-side fallback and effort extensions.
 function genisletme_govdesi(model) {
   if (/(opus|sonnet)-5/.test(model)) return { fallbacks: "default", output_config: { effort: "low" } };
@@ -292,7 +219,7 @@ async function handleWaitlist(request, env) {
 // ---------------------------------------------------------------- handler
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === "/api/waitlist") return handleWaitlist(request, env);
     if (url.pathname !== "/api/ask") return env.ASSETS.fetch(request);
@@ -322,7 +249,7 @@ export default {
     const ip = request.headers.get("cf-connecting-ip") || "unknown";
     if (!(await allowed(env, ip))) return json({ error: "busy" }, 429);
     if (!env.ANTHROPIC_API_KEY) return json({ error: "not_configured" }, 500);
-
+    if ((await gunlukHarcama(env)) >= BUTCE_TOKEN) return json({ error: "daily_budget" }, 503);
 
     const { keep, mode, terms } = retrieve(q, lang);
     // Retrieval used to select which documents were sent, and that defeated prompt caching
@@ -332,14 +259,6 @@ export default {
     // retrieval only orders the hint inside the question. Warm questions pay cache reads instead.
     const docs = toDocuments(corpus.items.map((_, i) => i), lang);
     const isaret = keep.slice(0, TOP_K).map((i) => corpus.items[i].id).join(", ");
-
-    // The budget check has to run after retrieval: it reports documents_sent and hands
-    // `keep` to the backup engine, and both are only defined below the retrieval call.
-    if ((await gunlukHarcama(env)) >= BUTCE_TOKEN) {
-      const fb = await fallbackAnswer(env, q, lang, keep);
-      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms }, budget: { exhausted: true, cap: BUTCE_TOKEN } }, 200)
-        : json({ error: "upstream" }, 502);
-    }
     const payload = docs.map(({ _idx, ...rest }) => rest);
 
     let upstream;
@@ -362,15 +281,13 @@ export default {
       });
     } catch (e) {
       console.error("claude fetch failed", String(e));
-      const fb = await fallbackAnswer(env, q, lang, keep);
-      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms } }, 200) : json({ error: "upstream" }, 502);
+      return json({ error: "upstream" }, 502);
     }
 
     if (upstream.status === 429) return json({ error: "busy" }, 429);
     if (!upstream.ok) {
       console.error(`Claude API error ${upstream.status}: ${(await upstream.text()).slice(0, 300)}`);
-      const fb = await fallbackAnswer(env, q, lang, keep);
-      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms } }, 200) : json({ error: "upstream" }, 502);
+      return json({ error: "upstream" }, 502);
     }
 
     const response = await upstream.json();
@@ -388,7 +305,8 @@ export default {
         }),
       }));
 
-    await harcamayiEkle(env, response.usage);
+    // KV allows one write per second per key; a failed counter write must not fail a paid answer.
+    ctx.waitUntil(harcamayiEkle(env, response.usage).catch((e) => console.error("budget counter write failed", String(e))));
     return json({
       answer,
       model: response.model,
