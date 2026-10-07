@@ -13,6 +13,7 @@
   <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css" />
   <link rel="stylesheet" href="/assets/product.css" />
   <meta property="og:title" content="Bedir AI • KI-Assistent für islamische Quellen mit Belegen" />
   <meta property="og:description" content="Ein KI-Assistent für Fragen zu Koran und Hadith, der zu jeder Antwort die belegte Stelle und den Link zum Herausgeber zeigt. Aufbau auf der Anthropic-Claude-API." />
@@ -51,13 +52,13 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="badge">QUELLNGESTÜTZTE ANTWORTEN · CLAUDE-API</span>
-          <h1 class="hero-title product-headline">Die Antwort trägt<br><em>ihre Quelle bei sich.</em></h1>
-          <p class="hero-sub">Wir beantworten Fragen zu Koran und Hadith aus einer zusammengestellten Sammlung und öffnen die Stelle, auf der eine Antwort beruht, mit Link zum Herausgeber. Prüfbar, nicht editierbar.</p>
+          <h1 class="hero-title product-headline">Zitierte Antworten<br><em>auf Koran- und Hadith-Fragen.</em></h1>
+          <p class="hero-sub">Ein Assistent und eine HTTP-API über einer kuratierten Sammlung. Jede Antwort öffnet die genaue Stelle samt Verlagslink. Prüfen ja, Editieren nein.</p>
           <div class="cta-row">
-            <a class="btn-solid" href="#ask">Frage stellen</a>
+            <a class="btn-solid" href="#recorded">Beispielauswertung ansehen</a>
             <a class="btn-outline" href="#institutions">API für Schulen und Plattformen</a>
           </div>
-          <ul class="proof-strip"><li>111 Quellentexte in einer JSON-Datei</li><li>4 Sprachen: TR · EN · DE · AR</li><li>Serverseitige Zitate (Claude-API)</li><li>Code ist öffentlich: GitHub</li></ul>
+          <ul class="proof-strip"><li>111 Quellentexte in einer JSON-Datei</li><li>4 Sprachen: TR · EN · DE · AR</li><li>Serverseitige Zitate (Claude-API)</li></ul>
         </div>
         <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
@@ -67,6 +68,12 @@
           <div class="demo-examples"><button type="button">Wie beschreibt der Koran die Hilfe bei Badr?</button><button type="button">Wie viele Muslime kämpften bei Badr?</button><button type="button">Was geschah mit Abu Dschalal?</button></div>
           <p class="demo-disclosure">Sie sprechen mit einem KI-Assistenten, nicht mit einer Person. Antworten werden aus den zitierten Quellen erzeugt und können Fehler enthalten.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <div class="demo-answer demo-example-answer" id="demo-example">
+              <span class="demo-example-label">BEISPIELAUSWERTUNG</span>
+              <p class="preview-question">Welcher Vers erwähnt die Hilfe bei Badr?</p>
+              <p class="recorded-answer">Koran 3:123 sagt, dass bei Badr Hilfe gesandt wurde. <sup>[1]</sup></p>
+              <p class="demo-source demo-source-example"><b>[1]</b> <a href="https://quran.com/3/123" target="_blank" rel="noopener">Koran 3:123 (Āl ʿImrān)</a> <span class="src-publisher">· Tanzil · Bubenheim & Elyas</span></p>
+            </div>
           <p class="demo-note">Bedir AI ist ein Informationswerkzeug und erteilt keine Fatwas. Für ein verbindliches religiöses Urteil wenden Sie sich an einen qualifizierten Gelehrten.</p>
         </div>
       </div>
@@ -159,6 +166,7 @@
       <div class="library-list">Sammlung: <a href="/de/ayet-i-kerimeler/">Verse</a> · <a href="/de/hadis-i-serifler/">Hadithe</a> · <a href="/de/savasin-hikayesi/">Die Schlacht von Badr</a></div>
     </div>
   </footer>
+  <script src="/assets/nav.js" defer></script>
   <script src="/assets/demo.js" defer></script>
   <script src="/assets/waitlist.js" defer></script>
 </body>

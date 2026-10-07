@@ -13,6 +13,7 @@
   <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css" />
   <link rel="stylesheet" href="/assets/product.css" />
   <meta property="og:title" content="Bedir AI • The AI Islamic Knowledge Assistant That Shows Its Sources" />
   <meta property="og:description" content="An AI assistant for Qur'an and hadith questions that shows the verse or hadith behind every answer, with a link to the publisher. Built on Anthropic's Claude API." />
@@ -51,13 +52,13 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="badge">SOURCE-GROUNDED ANSWERS · CLAUDE API</span>
-          <h1 class="hero-title product-headline">The answer carries<br><em>its source with it.</em></h1>
-          <p class="hero-sub">We answer questions about the Qur'an and hadith from a curated collection, and open up the exact verse or hadith each answer rests on, with a link to the publisher. You can audit it. You cannot edit it.</p>
+          <h1 class="hero-title product-headline">Cited answers for<br><em>Qur'an and hadith questions.</em></h1>
+          <p class="hero-sub">A question-answering assistant and an HTTP API over a curated collection. Every answer opens the exact verse or hadith it rests on, with a link to the publisher. You can audit it; you cannot edit it.</p>
           <div class="cta-row">
-            <a class="btn-solid" href="#ask">Ask a question</a>
+            <a class="btn-solid" href="#recorded">See a worked example</a>
             <a class="btn-outline" href="#institutions">API for schools and platforms</a>
           </div>
-          <ul class="proof-strip"><li>111 source texts, all in one JSON file</li><li>4 languages: TR · EN · DE · AR</li><li>Server-side citations (Claude API)</li><li>Code is public: GitHub</li></ul>
+          <ul class="proof-strip"><li>111 source texts in one published JSON file</li><li>4 languages: TR · EN · DE · AR</li><li>Server-side citations (Claude API)</li></ul>
         </div>
         <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
@@ -67,6 +68,12 @@
           <div class="demo-examples"><button type="button">How does the Qur'an describe the help at Badr?</button><button type="button">How many Muslims fought at Badr?</button><button type="button">What happened to Abu Jahl?</button></div>
           <p class="demo-disclosure">You are talking to an AI assistant, not a person. Answers are generated from the cited sources and may contain errors.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <div class="demo-answer demo-example-answer" id="demo-example">
+              <span class="demo-example-label">RECORDED EXAMPLE</span>
+              <p class="preview-question">Which verse describes the help given at Badr?</p>
+              <p class="recorded-answer">Qur'an 3:123 states that help was given at Badr. <sup>[1]</sup></p>
+              <p class="demo-source demo-source-example"><b>[1]</b> <a href="https://quran.com/3/123" target="_blank" rel="noopener">Qur'an 3:123 (Āl ʿImrān)</a> <span class="src-publisher">· Tanzil · Saheeh International</span></p>
+            </div>
           <p class="demo-note">Bedir AI is an information tool and does not issue fatwas. For a binding religious ruling, consult a qualified scholar.</p>
         </div>
       </div>
@@ -159,6 +166,7 @@
       <div class="library-list">Collection: <a href="/en/ayet-i-kerimeler/">Verses</a> · <a href="/en/hadis-i-serifler/">Hadith</a> · <a href="/en/ashabi-bedir/">Companions of Badr</a> · <a href="/en/savasin-hikayesi/">The story of Badr</a> · <a href="/en/gunumuzde-bedir/">Badr today</a></div>
     </div>
   </footer>
+  <script src="/assets/nav.js" defer></script>
   <script src="/assets/demo.js" defer></script>
   <script src="/assets/waitlist.js" defer></script>
 </body>

@@ -28,12 +28,13 @@ T = {
         desc="Kur'an ve hadis sorularına, her cümlenin dayandığı âyeti veya hadisi ve kaynağa bağlantıyı göstererek yanıt veren yapay zekâ asistanı. Anthropic Claude API üzerinde kurulu.",
         nav=dict(product="Ürün", how="Nasıl çalışır", corpus="Koleksiyon", api="Kurumsal", company="Kurumsal bilgi", contact="İletişim"),
         hero=dict(
-            eyebrow="KAYNAK-GROUNDED YANIT · CLAUDE API", h1a="Cevabı taşıyan kaynak,", h1b="kaynağı taşıyan cevaba.",
-            sub="Kur'an ve hadis sorularını seçilmiş bir koleksiyon üzerinden yanıtlarız ve her yanıtın hangi âyeti veya hadisi gösterdiğini, yayıncıya bağlantısıyla birlikte açarsın. Şüphe edersen kontrol edebilirsin; edit edemezsin.",
-            cta_ask="Soru sor", cta_api="Okullar ve platformlar için API",
+            eyebrow="KAYNAK-GROUNDED YANIT · CLAUDE API", h1a="Kaynak atıflı yanıtlar:", h1b="Kur'an ve hadis soruları için.",
+            sub="Kurgulanmış bir koleksiyon üzerinde çalışan soru-cevap asistanı ve HTTP API'si. Her yanıt, dayandığı âyeti veya hadisi yayıncı bağlantısıyla açar. Denetleyebilirsin; değiştiremezsin.",
+            ex_label="KAYDEDİLMİŞ ÖRNEK", ex_q="Bedir'de yardım hangi âyette geçiyor?", ex_a="Kur'an 3:123, Bedir'de yardım olunduğunu söylüyor.", ex_title="Kur'an 3:123 (Âl-i İmrân)", ex_pub="Tanzil · Diyanet Vakfı meali",
+            cta_demo="Örnek kaydı gör", cta_api="Geliştiriciler için API",
             preview_label="ÖRNEK SORU VE KAYNAK", preview_q="Bedir'deki yardımı hangi âyet anlatır?",
             preview_ans="Âl-i İmrân 3:123, Bedir'de yardım edildiğini anlatır. [1]", preview_src="[1] Âl-i İmrân 3:123 · Kaynağı aç ↗"),
-        proof=["111 kaynak metin, hepsi tek JSON dosyasında", "4 dil: TR · EN · DE · AR", "Sunucu taraflı atıflar (Claude API)", "Kod açık: GitHub"],
+        proof=["111 kaynak metnin tamamı tek JSON dosyasında", "4 dil: TR · EN · DE · AR", "Sunucu taraflı atıflar (Claude API)"],
         example=dict(h2="Bir kere sor, iki kere denetle", lead="Numaralı her im, cevabın dayandığı metni ve yayıncıya bağlantısını açar. Aşağıdaki, koleksiyondan birebir alıntılanmış gerçek bir kayıt.",
                      note="Atıf, cevabın doğru olduğunu garanti etmez — kontrol edebileceğin bir şeyi garanti eder."),
         how=dict(h2="Nasıl çalışır", lead="Uydurma bir cevap yerine, ne olduğunu gösteren bir hat.",
@@ -78,12 +79,13 @@ T = {
         desc="An AI assistant for Qur'an and hadith questions that shows the verse or hadith behind every answer, with a link to the publisher. Built on Anthropic's Claude API.",
         nav=dict(product="Product", how="How it works", corpus="Corpus", api="For institutions", company="Company", contact="Contact"),
         hero=dict(
-            eyebrow="SOURCE-GROUNDED ANSWERS · CLAUDE API", h1a="The answer carries", h1b="its source with it.",
-            sub="We answer questions about the Qur'an and hadith from a curated collection, and open up the exact verse or hadith each answer rests on, with a link to the publisher. You can audit it. You cannot edit it.",
-            cta_ask="Ask a question", cta_api="API for schools and platforms",
+            eyebrow="SOURCE-GROUNDED ANSWERS · CLAUDE API", h1a="Cited answers for", h1b="Qur'an and hadith questions.",
+            sub="A question-answering assistant and an HTTP API over a curated collection. Every answer opens the exact verse or hadith it rests on, with a link to the publisher. You can audit it; you cannot edit it.",
+            ex_label="RECORDED EXAMPLE", ex_q="Which verse describes the help given at Badr?", ex_a="Qur'an 3:123 states that help was given at Badr.", ex_title="Qur'an 3:123 (Āl ʿImrān)", ex_pub="Tanzil · Saheeh International",
+            cta_demo="See a worked example", cta_api="API for schools and platforms",
             preview_label="EXAMPLE QUESTION AND SOURCE", preview_q="Which verse describes the help given at Badr?",
             preview_ans="Qur'an 3:123 states that help was given at Badr. [1]", preview_src="[1] Qur'an 3:123 · Open the source ↗"),
-        proof=["111 source texts, all in one JSON file", "4 languages: TR · EN · DE · AR", "Server-side citations (Claude API)", "Code is public: GitHub"],
+        proof=["111 source texts in one published JSON file", "4 languages: TR · EN · DE · AR", "Server-side citations (Claude API)"],
         example=dict(h2="Ask once, audit twice", lead="Every numbered marker opens the text the answer was drawn from and its publisher link. Below is a real record quoted verbatim from the collection.",
                      note="A citation does not guarantee the answer is correct. It guarantees something you can check."),
         how=dict(h2="How it works", lead="A pipeline you can inspect, instead of an invented answer.",
@@ -128,12 +130,13 @@ T = {
         desc="Ein KI-Assistent für Fragen zu Koran und Hadith, der zu jeder Antwort die belegte Stelle und den Link zum Herausgeber zeigt. Aufbau auf der Anthropic-Claude-API.",
         nav=dict(product="Produkt", how="Funktionsweise", corpus="Korpus", api="Für Institutionen", company="Unternehmen", contact="Kontakt"),
         hero=dict(
-            eyebrow="QUELLNGESTÜTZTE ANTWORTEN · CLAUDE-API", h1a="Die Antwort trägt", h1b="ihre Quelle bei sich.",
-            sub="Wir beantworten Fragen zu Koran und Hadith aus einer zusammengestellten Sammlung und öffnen die Stelle, auf der eine Antwort beruht, mit Link zum Herausgeber. Prüfbar, nicht editierbar.",
-            cta_ask="Frage stellen", cta_api="API für Schulen und Plattformen",
+            eyebrow="QUELLNGESTÜTZTE ANTWORTEN · CLAUDE-API", h1a="Zitierte Antworten", h1b="auf Koran- und Hadith-Fragen.",
+            sub="Ein Assistent und eine HTTP-API über einer kuratierten Sammlung. Jede Antwort öffnet die genaue Stelle samt Verlagslink. Prüfen ja, Editieren nein.",
+            ex_label="BEISPIELAUSWERTUNG", ex_q="Welcher Vers erwähnt die Hilfe bei Badr?", ex_a="Koran 3:123 sagt, dass bei Badr Hilfe gesandt wurde.", ex_title="Koran 3:123 (Āl ʿImrān)", ex_pub="Tanzil · Bubenheim & Elyas",
+            cta_demo="Beispielauswertung ansehen", cta_api="API für Schulen und Plattformen",
             preview_label="BEISPIELFRAGE UND QUELLE", preview_q="Welche Sure beschreibt die Hilfe bei Badr?",
             preview_ans="Koran 3:123 berichtet, dass bei Badr geholfen wurde. [1]", preview_src="[1] Koran 3:123 · Quelle öffnen ↗"),
-        proof=["111 Quellentexte in einer JSON-Datei", "4 Sprachen: TR · EN · DE · AR", "Serverseitige Zitate (Claude-API)", "Code ist öffentlich: GitHub"],
+        proof=["111 Quellentexte in einer JSON-Datei", "4 Sprachen: TR · EN · DE · AR", "Serverseitige Zitate (Claude-API)"],
         example=dict(h2="Einmal fragen, zweimal prüfen", lead="Jede nummerierte Markierung öffnet die belegte Stelle und den Link zum Herausgeber. Unten ein echter Datensatz, wörtlich zitiert.",
                      note="Ein Zitat garantiert nicht, dass die Antwort stimmt. Es garantiert, dass du nachsehen kannst."),
         how=dict(h2="Funktionsweise", lead="Eine überprüfbare Kette statt einer erfundenen Antwort.",
@@ -178,12 +181,13 @@ T = {
         desc="مساعد بالذكاء الاصطناعي لأسئلة القرآن والحديث، يعرض الآية أو الحديث الذي يُبنى عليه الجواب مع رابط إلى الناشر. مبني على Claude API من Anthropic.",
         nav=dict(product="المنتج", how="كيف يعمل", corpus="المجموعة", api="للمؤسسات", company="عن الشركة", contact="تواصل"),
         hero=dict(
-            eyebrow="إجابات مستندة إلى المصدر · Claude API", h1a="الجواب يحمل", h1b="مصدره معه.",
-            sub="نجيب عن أسئلة القرآن والحديث من مجموعة مختارة، ونفتح النص الذي بُني عليه كل جواب مع رابط إلى الناشر. يمكن مراجعته، ولا يمكن تعديله.",
-            cta_ask="اسأل سؤالًا", cta_api="واجهة برمجية للمدارس والمنصات",
+            eyebrow="إجابات مستندة إلى المصدر · Claude API", h1a="إجابات موثَّقة بالمصدر", h1b="لأسئلة القرآن والحديث.",
+            sub="مساعد أسئلة وأجوبة وواجهة HTTP فوق مجموعة مختارة. كل جواب يفتح الآية أو الحديث الذي استند إليه مع رابط الناشر. يمكنك المراجعة، لا التحرير.",
+            ex_label="مثال مسجَّل", ex_q="أي آية تتحدث عن النصر في بدر؟", ex_a="القرآن 3:123 يذكر أن الله نصر المؤمنين في بدر.", ex_title="القرآن 3:123 (آل عمران)", ex_pub="تنزيل · السعيد الدولية",
+            cta_demo="مثال مسجَّل", cta_api="واجهة برمجية للمدارس والمنصات",
             preview_label="مثال: سؤال ومصدر", preview_q="أي آية تتحدث عن النصر في بدر؟",
             preview_ans="القرآن ٣:١٢٣ يذكر أن النصر كان في بدر. [1]", preview_src="[1] القرآن ٣:١٢٣ · افتح المصدر ↗"),
-        proof=["١١١ نصًّا مصدريًّا في ملف JSON واحد", "٤ لغات: TR · EN · DE · AR", "اقتباسات من جهة الخادم (Claude API)", "الكود عام: GitHub"],
+        proof=["١١١ نصًّا في ملف JSON واحد", "٤ لغات: TR · EN · DE · AR", "اقتباسات من جهة الخادم (Claude API)"],
         example=dict(h2="اسأل مرة، ودقّق مرتين", lead="كل علامة رقمية تفتح النص المقتبс ورابط الناشر. أدناه سجلّ حقيقي منقح حرفيًّا من المجموعة.",
                      note="الاقتباس لا يضمن صحة الجواب، بل يضمن وجود شيء يمكنك مراجعته."),
         how=dict(h2="كيف يعمل", lead="مسار قابل للتفتيش بدل جواب مُختلَق.",
@@ -236,6 +240,7 @@ TPL = """<!DOCTYPE html>
   <link rel="canonical" href="{canonical}" />
   {alternates}
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css" />
   <link rel="stylesheet" href="/assets/product.css" />
   <meta property="og:title" content="{title}" />
   <meta property="og:description" content="{desc}" />
@@ -277,7 +282,7 @@ TPL = """<!DOCTYPE html>
           <h1 class="hero-title product-headline">{h1a}<br><em>{h1b}</em></h1>
           <p class="hero-sub">{sub}</p>
           <div class="cta-row">
-            <a class="btn-solid" href="#ask">{cta_ask}</a>
+            <a class="btn-solid" href="#recorded">{cta_demo}</a>
             <a class="btn-outline" href="#institutions">{cta_api}</a>
           </div>
           <ul class="proof-strip">{proof_items}</ul>
@@ -290,6 +295,12 @@ TPL = """<!DOCTYPE html>
           <div class="demo-examples">{chips}</div>
           <p class="demo-disclosure">{disclosure}</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <div class="demo-answer demo-example-answer" id="demo-example">
+              <span class="demo-example-label">{ex_label}</span>
+              <p class="preview-question">{ex_q}</p>
+              <p class="recorded-answer">{ex_a} <sup>[1]</sup></p>
+              <p class="demo-source demo-source-example"><b>[1]</b> <a href="{ex_url}" target="_blank" rel="noopener">{ex_title}</a> <span class="src-publisher">· {ex_pub}</span></p>
+            </div>
           <p class="demo-note">{fatwa_note}</p>
         </div>
       </div>
@@ -382,6 +393,7 @@ TPL = """<!DOCTYPE html>
       <div class="library-list">{library}</div>
     </div>
   </footer>
+  <script src="/assets/nav.js" defer></script>
   <script src="/assets/demo.js" defer></script>
   <script src="/assets/waitlist.js" defer></script>
 </body>
@@ -460,14 +472,16 @@ def build(lang):
         root=BASE[lang], base=BASE[lang], github=GITHUB,
         nav_product=t["nav"]["product"], nav_how=t["nav"]["how"], nav_corpus=t["nav"]["corpus"],
         nav_api=t["nav"]["api"], nav_company=t["nav"]["company"], nav_contact=t["nav"]["contact"],
-        tr_active=" active-link" if lang == "tr" else "", en_active=" active-link" if lang == "en" else "",
-        de_active=" active-link" if lang == "de" else "", ar_active=" active-link" if lang == "ar" else "",
+        tr_active=" active-link" if lang == "tr" else "",  en_active=" active-link" if lang == "en" else "", 
+        de_active=" active-link" if lang == "de" else "",  ar_active=" active-link" if lang == "ar" else "", 
         eyebrow=t["hero"]["eyebrow"], h1a=t["hero"]["h1a"], h1b=t["hero"]["h1b"], sub=t["hero"]["sub"],
-        cta_ask=t["hero"]["cta_ask"], cta_api=t["hero"]["cta_api"],
+        cta_demo=t["hero"]["cta_demo"], cta_api=t["hero"]["cta_api"],
         proof_items="".join("<li>%s</li>" % p for p in t["proof"]),
         demo_placeholder=ui["ph"], demo_aria=ui["aria"], demo_btn=ui["btn"],
         chips="".join('<button type="button">%s</button>' % q for q in CHIP_QS[lang]),
         disclosure=t["disclosure"], fatwa_note=t["fatwa_note"],
+        ex_label=t["hero"]["ex_label"], ex_q=t["hero"]["ex_q"], ex_a=t["hero"]["ex_a"],
+        ex_title=t["hero"]["ex_title"], ex_pub=t["hero"]["ex_pub"], ex_url="https://quran.com/3/123",
         ex_h2=t["example"]["h2"], ex_lead=t["example"]["lead"], ex_note=t["example"]["note"],
         rec_q=rec_q, rec_ans=rec_ans, rec_src_title=rec_title, rec_src_url=rec_url,
         rec_src_link=rec_link, rec_quote=rec_quote,

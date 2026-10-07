@@ -13,6 +13,7 @@
   <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css" />
   <link rel="stylesheet" href="/assets/product.css" />
   <meta property="og:title" content="Bedir AI • مساعد معرفي بالقرآن والحديث يُظهر مصادره" />
   <meta property="og:description" content="مساعد بالذكاء الاصطناعي لأسئلة القرآن والحديث، يعرض الآية أو الحديث الذي يُبنى عليه الجواب مع رابط إلى الناشر. مبني على Claude API من Anthropic." />
@@ -51,13 +52,13 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="badge">إجابات مستندة إلى المصدر · Claude API</span>
-          <h1 class="hero-title product-headline">الجواب يحمل<br><em>مصدره معه.</em></h1>
-          <p class="hero-sub">نجيب عن أسئلة القرآن والحديث من مجموعة مختارة، ونفتح النص الذي بُني عليه كل جواب مع رابط إلى الناشر. يمكن مراجعته، ولا يمكن تعديله.</p>
+          <h1 class="hero-title product-headline">إجابات موثَّقة بالمصدر<br><em>لأسئلة القرآن والحديث.</em></h1>
+          <p class="hero-sub">مساعد أسئلة وأجوبة وواجهة HTTP فوق مجموعة مختارة. كل جواب يفتح الآية أو الحديث الذي استند إليه مع رابط الناشر. يمكنك المراجعة، لا التحرير.</p>
           <div class="cta-row">
-            <a class="btn-solid" href="#ask">اسأل سؤالًا</a>
+            <a class="btn-solid" href="#recorded">مثال مسجَّل</a>
             <a class="btn-outline" href="#institutions">واجهة برمجية للمدارس والمنصات</a>
           </div>
-          <ul class="proof-strip"><li>١١١ نصًّا مصدريًّا في ملف JSON واحد</li><li>٤ لغات: TR · EN · DE · AR</li><li>اقتباسات من جهة الخادم (Claude API)</li><li>الكود عام: GitHub</li></ul>
+          <ul class="proof-strip"><li>١١١ نصًّا في ملف JSON واحد</li><li>٤ لغات: TR · EN · DE · AR</li><li>اقتباسات من جهة الخادم (Claude API)</li></ul>
         </div>
         <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
@@ -67,6 +68,12 @@
           <div class="demo-examples"><button type="button">كيف يصف القرآن النصر في بدر؟</button><button type="button">كم عدد المسلمين في بدر؟</button><button type="button">من قتل أبا جهل؟</button></div>
           <p class="demo-disclosure">أنت تتحدث مع مساعد ذكاء اصطناعي وليس مع شخص. تُولَّد الإجابات من المصادر المقتبسة وقد تحتوي على أخطاء.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <div class="demo-answer demo-example-answer" id="demo-example">
+              <span class="demo-example-label">مثال مسجَّل</span>
+              <p class="preview-question">أي آية تتحدث عن النصر في بدر؟</p>
+              <p class="recorded-answer">القرآن 3:123 يذكر أن الله نصر المؤمنين في بدر. <sup>[1]</sup></p>
+              <p class="demo-source demo-source-example"><b>[1]</b> <a href="https://quran.com/3/123" target="_blank" rel="noopener">القرآن 3:123 (آل عمران)</a> <span class="src-publisher">· تنزيل · السعيد الدولية</span></p>
+            </div>
           <p class="demo-note">Bedir AI أداة معرفية ولا يُصدر فتاوى. للحكم الشرعي المُلزِم استشر عالمًا مؤهَّلًا.</p>
         </div>
       </div>
@@ -159,6 +166,7 @@
       <div class="library-list">المجموعة: <a href="/ar/ayet-i-kerimeler/">الآيات</a> · <a href="/ar/hadis-i-serifler/">الأحاديث</a> · <a href="/ar/savasin-hikayesi/">وقعة بدر</a></div>
     </div>
   </footer>
+  <script src="/assets/nav.js" defer></script>
   <script src="/assets/demo.js" defer></script>
   <script src="/assets/waitlist.js" defer></script>
 </body>

@@ -13,6 +13,7 @@
   <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css" />
   <link rel="stylesheet" href="/assets/product.css" />
   <meta property="og:title" content="Bedir AI • Kaynağını Gösteren Yapay Zekâ İslami Bilgi Asistanı" />
   <meta property="og:description" content="Kur'an ve hadis sorularına, her cümlenin dayandığı âyeti veya hadisi ve kaynağa bağlantıyı göstererek yanıt veren yapay zekâ asistanı. Anthropic Claude API üzerinde kurulu." />
@@ -51,13 +52,13 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="badge">KAYNAK-GROUNDED YANIT · CLAUDE API</span>
-          <h1 class="hero-title product-headline">Cevabı taşıyan kaynak,<br><em>kaynağı taşıyan cevaba.</em></h1>
-          <p class="hero-sub">Kur'an ve hadis sorularını seçilmiş bir koleksiyon üzerinden yanıtlarız ve her yanıtın hangi âyeti veya hadisi gösterdiğini, yayıncıya bağlantısıyla birlikte açarsın. Şüphe edersen kontrol edebilirsin; edit edemezsin.</p>
+          <h1 class="hero-title product-headline">Kaynak atıflı yanıtlar:<br><em>Kur'an ve hadis soruları için.</em></h1>
+          <p class="hero-sub">Kurgulanmış bir koleksiyon üzerinde çalışan soru-cevap asistanı ve HTTP API'si. Her yanıt, dayandığı âyeti veya hadisi yayıncı bağlantısıyla açar. Denetleyebilirsin; değiştiremezsin.</p>
           <div class="cta-row">
-            <a class="btn-solid" href="#ask">Soru sor</a>
-            <a class="btn-outline" href="#institutions">Okullar ve platformlar için API</a>
+            <a class="btn-solid" href="#recorded">Örnek kaydı gör</a>
+            <a class="btn-outline" href="#institutions">Geliştiriciler için API</a>
           </div>
-          <ul class="proof-strip"><li>111 kaynak metin, hepsi tek JSON dosyasında</li><li>4 dil: TR · EN · DE · AR</li><li>Sunucu taraflı atıflar (Claude API)</li><li>Kod açık: GitHub</li></ul>
+          <ul class="proof-strip"><li>111 kaynak metnin tamamı tek JSON dosyasında</li><li>4 dil: TR · EN · DE · AR</li><li>Sunucu taraflı atıflar (Claude API)</li></ul>
         </div>
         <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
@@ -67,6 +68,12 @@
           <div class="demo-examples"><button type="button">Bedir'de yardım hangi ayette geçiyor?</button><button type="button">Bedir'e kaç kişiyle gidildi?</button><button type="button">Bedir esirlerine nasıl muamele edildi?</button></div>
           <p class="demo-disclosure">Bir kişiyle değil, yapay zekâ asistanıyla konuşuyorsunuz. Yanıtlar atıf gösterilen kaynaklardan üretilir ve hata içerebilir.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <div class="demo-answer demo-example-answer" id="demo-example">
+              <span class="demo-example-label">KAYDEDİLMİŞ ÖRNEK</span>
+              <p class="preview-question">Bedir'de yardım hangi âyette geçiyor?</p>
+              <p class="recorded-answer">Kur'an 3:123, Bedir'de yardım olunduğunu söylüyor. <sup>[1]</sup></p>
+              <p class="demo-source demo-source-example"><b>[1]</b> <a href="https://quran.com/3/123" target="_blank" rel="noopener">Kur'an 3:123 (Âl-i İmrân)</a> <span class="src-publisher">· Tanzil · Diyanet Vakfı meali</span></p>
+            </div>
           <p class="demo-note">Bedir AI bir bilgi aracıdır, fetva vermez. Bağlayıcı dinî hüküm için yetkin bir âlime danışın.</p>
         </div>
       </div>
@@ -159,6 +166,7 @@
       <div class="library-list">Koleksiyon: <a href="/ayet-i-kerimeler/">Âyetler</a> · <a href="/hadis-i-serifler/">Hadisler</a> · <a href="/ashabi-bedir/">Bedir Ashabı</a> · <a href="/savasin-hikayesi/">Savaşın hikâyesi</a> · <a href="/gazve-nedir/">Gazve nedir</a> · <a href="/gunumuzde-bedir/">Bedir bugün</a></div>
     </div>
   </footer>
+  <script src="/assets/nav.js" defer></script>
   <script src="/assets/demo.js" defer></script>
   <script src="/assets/waitlist.js" defer></script>
 </body>

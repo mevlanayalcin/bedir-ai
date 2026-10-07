@@ -105,3 +105,35 @@ body.home { background: radial-gradient(1100px 560px at 85% -12%, rgba(201,163,9
 .faq-item p { margin: 10px 0 0; opacity: .86; line-height: 1.7; font-size: .94rem; }
 .waitlist-status { font-size: .9rem; color: #c9a35c; min-height: 1.3em; margin: 10px 0 0; }
 [dir="rtl"] .road-item, [dir="rtl"] .faq-item { text-align: right; }
+
+/* ── First-screen polish ────────────────────────────────────────────────────
+   Measured at 1440px: the headline rendered at 76.8px and three lines, so the
+   sentence naming the product fell below the fold, and tap targets sat under
+   44px on phones. The hero glow was decoration only. */
+.hero-title, .product-headline { font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.13; }
+.product-hero { background: none; }
+.hero-copy, .proof-strip { text-align: start; }
+.cta-row { justify-content: flex-start; }
+.proof-strip { margin-top: 18px; }
+.proof-strip li { border-color: rgba(255,255,255,.14); background: none; color: #cdbfa6; }
+
+/* A completed interaction, visible before anyone types: the first screen used to
+   hold nothing but an empty input, which reads as "no product yet". */
+.demo-example-answer { border-top: 1px solid rgba(255,255,255,.1); margin-top: 14px; padding-top: 14px; }
+.demo-example-label { display: block; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: #a99b83; margin-bottom: 6px; }
+.demo-example-answer .preview-question { font-weight: 600; margin: 0 0 8px; }
+.demo-example-answer .recorded-answer { margin: 0 0 10px; font-size: .98rem; line-height: 1.6; }
+.demo-source-example { border: 0; padding: 0; font-size: .82rem; }
+.src-publisher { color: #a99b83; }
+
+@media (max-width: 1180px) {
+  .nav-links a.btn-ghost { color: #f0e2cd; text-align: start; }
+}
+@media (max-width: 800px) {
+  .hero-grid { padding-inline: 20px; }
+  .cta-row .btn-solid, .cta-row .btn-outline, .demo-form button, .demo-examples button { min-height: 44px; }
+  .demo-form { flex-direction: column; }
+  .demo-form input { flex: 1 1 auto; width: 100%; }
+  .demo-examples button { padding: .55rem .9rem; }
+  .demo-disclosure, .demo-note { text-align: start; opacity: 1; color: #cdbfa6; font-size: .88rem; }
+}
