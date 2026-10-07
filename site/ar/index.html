@@ -1,300 +1,237 @@
 <!DOCTYPE html>
-<html lang="ar"> dir="rtl"
+<html lang="ar" dir="rtl">
 
 <head>
-  <style>
-    body {
-      background-color: #120d0a;
-      color: #f5ebda;
-      margin: 0;
-    }
-  </style>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedir AI • مساعد ذكاء اصطناعي للمعرفة الإسلامية يُظهر مصادره</title>
+  <meta name="description" content="Bedir AI: مساعد بالذكاء الاصطناعي يجيب من القرآن الكريم ومصادر الحديث الصحيح، ويُظهر الآية أو الحديث الذي تستند إليه كل جملة في إجابته. يعمل عبر Claude API من Anthropic." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://bedirsavasi.com/ar/" />
+  <link rel="alternate" hreflang="tr" href="https://bedirsavasi.com/" />
+  <link rel="alternate" hreflang="en" href="https://bedirsavasi.com/en/" />
+  <link rel="alternate" hreflang="de" href="https://bedirsavasi.com/de/" />
+  <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
+  <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta property="og:title" content="Bedir AI • مساعد ذكاء اصطناعي يُظهر مصادره" />
+  <meta property="og:description" content="مساعد ذكاء اصطناعي يُظهر الآية أو الحديث الذي تستند إليه كل جملة. عرض مباشر يعمل عبر Claude API." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bedirsavasi.com/ar/" />
+  <meta property="og:image" content="https://bedirsavasi.com/epic-badr.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>body{background-color:#120d0a;color:#f5ebda;margin:0}[dir=rtl] .product-hero .hero-content{text-align:center}</style>
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css">
+  <link rel="stylesheet" href="/assets/product.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PL31HZZM6P"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-PL31HZZM6P');
+    gtag('config', 'G-PL31HZZM6P', { anonymize_ip: true });
   </script>
-
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <link rel="canonical" href="https://bedirsavasi.com/" />
-  <link rel="alternate" hreflang="tr" href="https://bedirsavasi.com/" />
-  <link rel="alternate" hreflang="en" href="https://bedirsavasi.com/en/" />
-  <link rel="alternate" hreflang="de" href="https://bedirsavasi.com/de/" />
-  <link rel="alternate" hreflang="ar" href="https://bedirsavasi.com/ar/" />
-  <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/" />
-  <meta name="description"
-    content="Bedir AI: Kur'ân ve Sünnet'i kaynak alan, her cevabın atfını gösteren yapay zekâ destekli İslami bilgi asistanı. Türkçe, İngilizce, Almanca ve Arapça." />
-  <meta name="keywords"
-    content="Bedir AI, yapay zeka Kur'an asistanı, hadis asistanı, Islamic AI assistant, RAG, kaynıklı cevap" />
-  <meta name="author" content="Bedir AI" />
-  <meta property="og:title" content="Bedir AI • Kaynağını gösteren yapay zekâ İslam asistanı" />
-  <meta property="og:description"
-    content="Kur'ân ve Sünnet corpus üzerinde çalışan, her cevabı ayet ve hadis referansıyla sunan çok dilli yapay zekâ asistanı." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="/epic-badr.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Bedir AI • Kaynağını gösteren İslam asistanı" />
-  <meta name="twitter:description" content="Çok dilli, kaynak atıflı, RAG tabanlı yapay zekâ İslam asistanı." />
-  <title>Bedir AI — المساعد الذي يذكر مصادره</title>
-  <link rel="stylesheet" crossorigin href="/assets/style-DgdjaNys.css">
-  <style>
-    .product-hero { padding: 5rem 0 3rem; }
-    .hero-sub { font-size: 1.25rem; line-height: 1.7; color: #e8d9be; max-width: 640px; margin: 1.25rem auto 2rem; }
-    .badge { display: inline-block; border: 1px solid rgba(245,235,218,.35); border-radius: 999px; padding: .35rem 1rem; font-size: .8rem; letter-spacing: .06em; color: #ffebcc; margin-bottom: 1.5rem; }
-    .cta-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
-    .btn-solid { display: inline-block; background: #c9a35c; color: #1c130b; border-radius: .6rem; padding: .8rem 1.6rem; font-weight: 600; text-decoration: none; }
-    .btn-solid:hover { background: #dbb671; }
-    .btn-outline { display: inline-block; border: 1px solid rgba(245,235,218,.4); border-radius: .6rem; padding: .8rem 1.6rem; color: #f5ebda; text-decoration: none; }
-    .btn-outline:hover { border-color: #f5ebda; }
-    .section { padding: 4rem 0; }
-    .section h2 { font-size: 2rem; text-align: center; margin-bottom: .5rem; }
-    .section .lead { text-align: center; color: #d9c8a9; max-width: 620px; margin: 0 auto 3rem; line-height: 1.7; }
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; max-width: 980px; margin: 0 auto; }
-    .feature-card { padding: 1.75rem; border-radius: 1rem; }
-    .feature-card h3 { margin-top: 0; font-size: 1.1rem; color: #ffebcc; }
-    .feature-card p { margin: .6rem 0 0; font-size: .92rem; line-height: 1.65; color: #e3d5ba; }
-    .library-list { max-width: 760px; margin: 0 auto; display: grid; gap: .6rem; }
-    .library-list a { display: flex; justify-content: space-between; padding: 1rem 1.25rem; border-radius: .6rem; color: #f5ebda; text-decoration: none; font-size: .95rem; }
-    .library-list a span:last-child { color: #c9a35c; }
-    .library-list a:hover { border-color: #c9a35c; }
-    .cta-box { text-align: center; padding: 3rem 1.5rem; border-radius: 1.25rem; max-width: 720px; margin: 0 auto; }
-    .cta-box p { color: #e3d5ba; line-height: 1.7; }
-    .footer-legal { font-style: normal !important; font-size: .8rem !important; color: #b7a888 !important; margin-top: 1rem; }
-    .how-num { display: inline-flex; width: 2rem; height: 2rem; border-radius: 50%; background: #c9a35c; color: #1c130b; font-weight: 700; align-items: center; justify-content: center; margin-bottom: .75rem; }
-    .trust-strip { display: flex; flex-wrap: wrap; gap: .75rem 1.5rem; justify-content: center; padding: 1.1rem 1rem; border-top: 1px solid rgba(245,235,218,.14); border-bottom: 1px solid rgba(245,235,218,.14); color: #d9c8a9; font-size: .9rem; text-align: center; }
-    .demo-card { max-width: 720px; margin: 0 auto 1rem; padding: 1.75rem; border-radius: 1rem; display: grid; gap: 1rem; }
-    .demo-q { justify-self: end; background: #c9a35c; color: #1c130b; padding: .75rem 1rem; border-radius: 1rem 1rem .25rem 1rem; max-width: 80%; font-weight: 600; }
-    .demo-a { justify-self: start; background: rgba(245,235,218,.08); padding: .9rem 1.1rem; border-radius: 1rem 1rem 1rem .25rem; max-width: 88%; line-height: 1.75; color: #f5ebda; }
-    .chip-row { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .chip { border: 1px solid rgba(201,163,92,.65); color: #ffebcc; border-radius: 999px; padding: .2rem .8rem; font-size: .75rem; }
-    .demo-note { text-align: center; color: #b7a888; font-size: .8rem; margin: 0 0 2rem; }
-    .waitlist-form { display: flex; gap: .75rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1.5rem; }
-    .waitlist-form input[type=email] { min-width: 260px; padding: .8rem 1rem; border-radius: .6rem; border: 1px solid rgba(245,235,218,.4); background: rgba(18,13,10,.65); color: #f5ebda; font-size: 1rem; }
-    .waitlist-form button { border: none; cursor: pointer; font-size: 1rem; }
-    .foot-note { font-size: .78rem; color: #b7a888; margin-top: 1rem; }
-
-  </style>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"Bedir AI","url":"https://bedirsavasi.com","email":"merhaba@bedirsavasi.com","foundingDate":"2026","logo":"https://bedirsavasi.com/favicon.png","numberOfEmployees":{"@type":"QuantitativeValue","value":1},"founder":{"@type":"Person","name":"Mevlana Yalcin"},"address":{"@type":"PostalAddress","addressLocality":"Istanbul","addressCountry":"TR"},"sameAs":["https://bedirsavasi.com"]}
-{"@context":"https://schema.org","@type":"WebApplication","name":"Bedir AI","applicationCategory":"EducationalApplication","url":"https://bedirsavasi.com","inLanguage":["tr","en","de","ar"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Source-cited Islamic knowledge assistant."}
-</script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın"},"address":{"@type":"PostalAddress","addressLocality":"İstanbul","addressCountry":"TR"}},
+    {"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Source-cited Islamic knowledge assistant built on Anthropic's Claude API."}
+  ]}
+  </script>
 </head>
 
 <body>
-
-  <!-- Fixed Navbar -->
   <nav class="navbar glass">
     <div class="container nav-content">
-<button class="mobile-menu-toggle" id="menuToggle">&#9776;</button>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="القائمة">&#9776;</button>
       <div class="nav-links" id="navLinks">
-        <a href="/" class="btn-ghost active-link">Bedir AI</a>
-        <a href="/ayet-i-kerimeler/" class="btn-ghost">نصوص الآيات</a>
-        <a href="/hadis-i-serifler/" class="btn-ghost">نصوص الأحاديث</a>
-        <a href="/ashabi-bedir/" class="btn-ghost">Ashab-ı Bedir</a>
-        <a href="/savasin-hikayesi/" class="btn-ghost">دراسة الحالة</a>
-        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">اتصل بنا</a>
+        <a href="/ar/" class="btn-ghost active-link">Bedir AI</a>
+        <a href="#demo" class="btn-ghost">العرض المباشر</a>
+        <a href="/ar/ayet-i-kerimeler/" class="btn-ghost">الآيات</a>
+        <a href="/ar/hadis-i-serifler/" class="btn-ghost">الأحاديث</a>
+        <a href="/ar/ashabi-bedir/" class="btn-ghost">أصحاب بدر</a>
+        <a href="/ar/savasin-hikayesi/" class="btn-ghost">قصة بدر</a>
+        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">تواصل معنا</a>
       </div>
-
-                  <div class="lang-switcher">
-                <a href="/" class="lang-btn active-lang">TR</a>
-                <a href="/en/" class="lang-btn">EN</a>
-                <a href="/de/" class="lang-btn">DE</a>
-                <a href="/ar/" class="lang-btn">AR</a>
-            </div>
+      <div class="lang-switcher">
+        <a href="/" class="lang-btn">TR</a>
+        <a href="/en/" class="lang-btn">EN</a>
+        <a href="/de/" class="lang-btn">DE</a>
+        <a href="/ar/" class="lang-btn active-lang">AR</a>
+      </div>
     </div>
   </nav>
 
   <main>
-    <!-- Hero Section -->
     <section class="hero-section product-hero">
       <div class="container hero-content">
-        <span class="badge">بيتا مغلقة</span>
-        <h1 class="hero-title fade-up delay-1">Bedir AI</h1>
-
-        <p class="hero-sub fade-up delay-2">
-          Kur'ân ve Sünnet corpus'u üzerinde çalışan, <strong>her cevabın ayet ve hadis
-          atfını gösteren</strong> yapay zekâ asistanı. Uydurmayan, kaynağını saklamayan,
-          dört dilde düşünen bir İslami bilgi motoru.
+        <span class="badge">وصول مبكر · عرض مباشر</span>
+        <h1 class="hero-title">Bedir AI</h1>
+        <p class="hero-sub">
+          مساعد بالذكاء الاصطناعي يجيب عن أسئلتك من القرآن الكريم ومصادر الحديث الصحيح، <strong>ويُظهر الآية أو الحديث
+          الذي تستند إليه كل جملة</strong>. لا يقول ما ليس في المصدر، وإذا لم يجد الجواب صرّح بأنه لم يجده.
         </p>
-
-        <div class="cta-row fade-up delay-2">
-          <a class="btn-solid" href="mailto:merhaba@bedirsavasi.com?subject=Beta%20Ba%C5%9Fvurusu">انضم للتجربة</a>
-          <a class="btn-outline" href="/ayet-i-kerimeler/">استكشف النصوص</a>
+        <div class="cta-row">
+          <a class="btn-solid" href="#demo">جرّب العرض</a>
+          <a class="btn-outline" href="/data/corpus.json">حمّل مدوّنة النصوص (JSON)</a>
         </div>
       </div>
     </section>
 
-    <div class="trust-strip">بيتا مغلقة &middot; مشروع بتمويل ذاتي في إسطنبول &middot; الإجابات مولَّدة بـ Anthropic Claude</div>
+    <div class="trust-strip">
+      <span>يعمل عبر Claude API من Anthropic</span>
+      <span>المؤسس: مولانا يالتشين</span>
+      <span>إسطنبول · مارس 2026</span>
+      <span>تمويل ذاتي</span>
+    </div>
 
-    $1
+    <section class="section" id="demo">
+      <div class="container">
+        <h2>العرض المباشر</h2>
+        <p class="lead">يعمل العرض على 41 آية و70 حديثًا صحيحًا تتعلق بغزوة بدر. وكل رقم في الإجابة يُظهر النص المقتبس
+          نفسه ومصدره.</p>
+        <div class="demo-box glass">
+          <form id="demo-form" class="demo-form">
+            <input type="text" name="q" maxlength="400" placeholder="مثال: أين ورد أن المسلمين أُمِدّوا بالملائكة يوم بدر؟" aria-label="سؤالك" required />
+            <button class="btn-solid" type="submit">اسأل</button>
+          </form>
+          <div class="demo-examples">
+            <button type="button">كيف يصف القرآن المدد الإلهي يوم بدر؟</button>
+            <button type="button">كيف دعا النبي ﷺ يوم بدر؟</button>
+            <button type="button">كيف كانت نهاية أبي جهل؟</button>
+          </div>
+          <div id="demo-out" class="demo-out" aria-live="polite"></div>
+        </div>
+        <p class="demo-note">Bedir AI أداة معرفية ولا يُصدر فتاوى. للحكم الشرعي المُلزِم استشر عالمًا مؤهَّلًا.</p>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <h2>لماذا Bedir AI؟</h2>
-        <p class="lead">Genel amaçlı sohbet botları dinî metinlerde cömertçe uyduruyor.
-          Biz mimariyi tam tersine kurduk: cevap, atıfından sonra gelir.</p>
-
+        <p class="lead">قد تختلق روبوتات المحادثة العامة المصادر بسهولة حين يتعلق الأمر بالنصوص الدينية. أما في Bedir AI
+          فتُكتب الإجابة من النصوص المصدرية المقدَّمة إلى النموذج وحدها، ويُربط كل ادّعاء فيها باقتباس.</p>
         <div class="feature-grid">
           <div class="feature-card glass">
-            <h3>المصدر أولاً ثم الجواب</h3>
-            <p>Her yanıt, dayandığı ayet ve hadis referanslarıyla birlikte üretilir.
-              Kaynak göstermeyen cümle, ürünümüzde cümle sayılmaz.</p>
+            <h3>الاستشهاد إلزامي</h3>
+            <p>تربط ميزة الاستشهادات (citations) في Claude API كل عبارة في الإجابة بالمقطع المطابق حرفيًا في الوثيقة
+              المصدر. فالنص المقتبس ليس من صياغة النموذج، بل هو النص الأصلي كما ورد في المدوّنة.</p>
           </div>
           <div class="feature-card glass">
-            <h3>عقل واحد بأربع لغات</h3>
-            <p>Türkçe, İngilizce, Almanca ve Arapça. Soru hangi dilde sorulursa sorulsun,
-              kaynak metne sadık, çeviri dengeli bir yanıt döner.</p>
+            <h3>أربع لغات</h3>
+            <p>التركية والإنجليزية والألمانية والعربية. ترد الآيات في المدوّنة بنصها العربي الأصلي مع ثلاث ترجمات
+              لمعانيها، والأحاديث بنصوصها العربية والتركية والإنجليزية.</p>
           </div>
           <div class="feature-card glass">
-            <h3>نصوص محققة</h3>
-            <p>RAG katmanı, geleneksel tahkik ve istinbat metodolojisine göre
-              doğrulanmış ayet ve hadis koleksiyonları üzerinde çalışır.</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>حسب مستوى القارئ</h3>
-            <p>Çocuk, yeni mühtedi ve araştırmacı modları: aynı kaynak,
-              muhatabın seviyesine göre farklı derinlikte anlatım.</p>
+            <h3>مدوّنة مفتوحة</h3>
+            <p>جميع النصوص التي يستخدمها العرض ومصادرها متاحة للجميع <a href="/data/corpus.json" style="color:#c9a35c">في ملف JSON واحد</a>،
+              ويمكن التحقق من كل مُدخل عبر رابطه على quran.com أو sunnah.com.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Knowledge library -->
     <section class="section">
       <div class="container">
-        <h2>العمود الفقري: مكتبة المعرفة المفتوحة</h2>
-        <p class="lead">Asistanımızı besleyen kurpusun bir bölümü bugün yayında —
-          modelimiz, insanların gerçekten okuduğu metinler üzerinde eğitiliyor ve değerlendiriliyor.</p>
-
-        <div class="library-list">
-          <a class="glass" href="/ayet-i-kerimeler/"><span>Ayet-i Kerimeler Korpusu</span><span>TR · EN · DE · AR</span></a>
-          <a class="glass" href="/hadis-i-serifler/"><span>Bedir Hadisleri Külliyatı</span><span>Tahkikli</span></a>
-          <a class="glass" href="/ashabi-bedir/"><span>Ashab-ı Bedir Kaydı (313 Sahabe)</span><span>Structured dataset</span></a>
-          <a class="glass" href="/savasin-hikayesi/"><span>Bedir Vakası Analizi</span><span>Narrative corpus</span></a>
-          <a class="glass" href="/gunumuzde-bedir/"><span>Bedir Bugün</span><span>Geo &amp; travel</span></a>
-        </div>
-      </div>
-    </section>
-
-    
-    <!-- How it works -->
-    <section class="section">
-      <div class="container">
-        <h2>كيف تعمل؟</h2>
-        <p class="lead">أربع مراحل: من المصادر الموثَّقة إلى الإجابات بالمصادر. تُقاس الجودة بمجموعة تقييم من 313 سؤالاً.</p>
+        <h2>كيف يعمل؟</h2>
         <div class="feature-grid">
           <div class="feature-card glass">
             <span class="how-num">1</span>
-            <h3>نص مُحقَّق</h3>
-            <p>تُنقَّى الآيات والأحاديث وفق منهجية التحقيق التقليدية ثم تُضاف إلى القاعدة المتجهة بإصدارات موثَّقة.</p>
+            <h3>المدوّنة</h3>
+            <p>الآيات مأخوذة من النص العربي في مشروع Tanzil، ومن الترجمة التركية لوقف الديانة (Diyanet Vakfı)، وترجمة
+              Saheeh International الإنجليزية، وترجمة Bubenheim &amp; Elyas الألمانية؛ والأحاديث من مجموعات البيانات
+              المفتوحة لصحيحَي البخاري ومسلم.</p>
           </div>
           <div class="feature-card glass">
             <span class="how-num">2</span>
-            <h3>الاسترجاع الدلالي (RAG)</h3>
-            <p>تُحوَّل الأسئلة إلى متجهات، ولا يدخل سياق النموذج إلا أقرب المقتطفات من النص.</p>
+            <h3>إلى Claude على هيئة وثائق</h3>
+            <p>تُرسَل كل آية وكل حديث إلى Claude وثيقةً مستقلة مع تفعيل ميزة الاستشهادات. وتُخزَّن المدوّنة تخزينًا
+              مؤقتًا عبر prompt caching لخفض التكلفة.</p>
           </div>
           <div class="feature-card glass">
             <span class="how-num">3</span>
-            <h3>التوليد المقيَّد بالنص</h3>
-            <p>تُولَّد الإجابات بنماذج Claude من Anthropic مستندةً حصراً إلى المصادر المسترجَعة؛ ولا يُسمح بإكمال خارج النص.</p>
+            <h3>إجابة موثَّقة بالمصادر</h3>
+            <p>يجيب Claude استنادًا إلى هذه الوثائق وحدها، وإذا لم تشمل المدوّنة السؤال صرّح بذلك.</p>
           </div>
           <div class="feature-card glass">
             <span class="how-num">4</span>
-            <h3>تدقيق التوثيق</h3>
-            <p>تُراجَع كل إحالة مع النص قبل النشر؛ فلا تُنشر جملة بلا مصدر.</p>
+            <h3>عرض الاقتباس</h3>
+            <p>تعرض الواجهة لكل استشهاد النصَّ المقتبس ومصدره، فيستطيع المستخدم التحقق من الآية أو الحديث بنقرة
+              واحدة.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Product demo -->
-    <section class="section" style="padding-top:0">
+    <section class="section">
       <div class="container">
-        <div class="demo-card glass">
-          <div class="demo-q">هل ذكر القرآن النصر في بدر؟</div>
-          <div class="demo-a">نعم: «وَلَقَدْ نَصَرَكُمُ اللَّهُ بِبَدْرٍ وَأَنتُمْ أَذِلَّةٌ» (آل عمران 123).</div>
-          <div class="chip-row"><span class="chip">آل عمران 123</span><span class="chip">الأنفال 9</span><span class="chip">البخاري: المغازي 3</span></div>
+        <h2>مكتبة بدر</h2>
+        <p class="lead">صفحات للقراءة عن غزوة بدر، موضوع هذا العرض.</p>
+        <div class="library-list">
+          <a class="glass" href="/ar/ayet-i-kerimeler/"><span>الآيات المتعلقة ببدر</span><span>الرسم العثماني</span></a>
+          <a class="glass" href="/ar/hadis-i-serifler/"><span>الأحاديث المتعلقة ببدر</span><span>البخاري · مسلم</span></a>
+          <a class="glass" href="/ar/ashabi-bedir/"><span>قائمة أصحاب بدر</span><span>قائمة بالأسماء</span></a>
+          <a class="glass" href="/ar/savasin-hikayesi/"><span>قصة بدر</span><span>سرد</span></a>
+          <a class="glass" href="/ar/gunumuzde-bedir/"><span>بدر اليوم</span><span>الموقع والزيارة</span></a>
         </div>
-        <p class="demo-note">مثبت ساكن من استعلام حقيقي على النص؛ العرض الحي يُطلق في البيتا</p>
       </div>
     </section>
 
-    <!-- Beta waitlist -->
     <section class="section">
       <div class="container">
         <div class="cta-box glass">
-          <h2>كن من أوائل 313 مستخدماً</h2>
-          <p>تُرسل دعوات البيتا بالبريد؛ وتتسع السعة مع نمو بنيتنا التحتية.</p>
+          <h2>ابقَ على اطلاع</h2>
+          <p>نُعلمك بالبريد الإلكتروني كلما اتسعت المدوّنة (القرآن الكريم كاملًا والكتب الستة).</p>
           <form name="beta-waitlist" method="POST" data-netlify="true" netlify-honeypot="_gotcha" class="waitlist-form">
             <input type="hidden" name="form-name" value="beta-waitlist">
             <input type="hidden" name="lang" value="ar">
             <p style="display:none"><input name="_gotcha"></p>
-            <input type="email" name="email" placeholder="بريدك@example.com" required>
+            <input type="email" name="email" dir="ltr" placeholder="name@example.com" aria-label="البريد الإلكتروني" required>
             <button class="btn-solid" type="submit">انضم إلى القائمة</button>
           </form>
-          <p class="foot-note">بالإرسال فإنك توافق على <a href="/privacy/" style="color:#c9a35c">سياسة الخصوصية</a>. رسالة واحدة فقط: دعوة البيتا.</p>
+          <p class="foot-note">بالإرسال فإنك توافق على <a href="/en/privacy/" hreflang="en">سياسة الخصوصية</a> (بالإنجليزية).</p>
         </div>
       </div>
     </section>
 
-    <!-- Roadmap -->
     <section class="section" style="padding-top:0">
       <div class="container">
         <h2>خارطة الطريق</h2>
         <div class="feature-grid" style="margin-top:2rem">
           <div class="feature-card glass">
-            <h3>الربع الثاني 2026 · بيتا مغلقة</h3>
-            <p>النص ومحرك التوثيق والمساعد الرباعي اللغات انطلق في البيتا المغلقة &check;.</p>
+            <h3>الآن · عرض مباشر</h3>
+            <p>مساعد يُظهر مصادره، يعمل على مدوّنة بدر بأربع لغات.</p>
           </div>
           <div class="feature-card glass">
-            <h3>الربع الرابع 2026 · بيتا عامة + API</h3>
-            <p>تسجيل مفتوح، بنية الإنتاج الحية، ونشر مقاييس دقة التوثيق &mdash; التركيز الحالي.</p>
+            <h3>التالي · توسيع المدوّنة</h3>
+            <p>القرآن الكريم كاملًا والكتب الستة، والوصول إلى النصوص بحسب الموضوع، ومجموعة اختبار متاحة للجميع لقياس
+              دقة الاستشهاد بالمصادر.</p>
           </div>
           <div class="feature-card glass">
-            <h3>2027 · وضع المؤسسات</h3>
-            <p>وضع الباحث، خطط الفرق للمكتبات والكليات، وAPI متعدد المستأجرين.</p>
+            <h3>لاحقًا · تطبيق وواجهة برمجية</h3>
+            <p>تطبيق للهواتف المحمولة، وواجهة برمجية (API) تقدّم إجابات موثَّقة بالمصادر للمؤسسات التعليمية.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Company -->
     <section class="section" style="padding-top:0">
       <div class="container">
-        <h2>الشركة</h2>
-        <p class="lead">Bedir AI — المساعد الذي يذكر مصادره. المؤسس: ميفلانا يالتشين — مهندس برمجيات، إسطنبول.</p>
+        <h2>من نحن</h2>
+        <p class="lead">Bedir AI مشروع ناشئ بمؤسس واحد، أطلقه مولانا يالتشين (Mevlana Yalçın) في إسطنبول في مارس 2026،
+          ولم يتلقَّ أي استثمار خارجي (تمويل ذاتي). والمنتج مبني على Claude API من Anthropic.</p>
         <div class="feature-grid">
-          <div class="feature-card glass">
-            <h3>التأسيس</h3>
-            <p>مارس 2026</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>الموقع</h3>
-            <p>إسطنبول، تركيا</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>البنية</h3>
-            <p>تمويل ذاتي، مؤسس منفرد</p>
-          </div>
-          <div class="feature-card glass">
-            <h3>تواصل</h3>
-            <p>merhaba@bedirsavasi.com</p>
-          </div>
+          <div class="feature-card glass"><h3>المؤسس</h3><p>مولانا يالتشين (Mevlana Yalçın)</p></div>
+          <div class="feature-card glass"><h3>الموقع</h3><p>إسطنبول، تركيا</p></div>
+          <div class="feature-card glass"><h3>البنية التقنية</h3><p>Claude API · Netlify</p></div>
+          <div class="feature-card glass"><h3>التواصل</h3><p><a href="mailto:merhaba@bedirsavasi.com" style="color:#c9a35c">merhaba@bedirsavasi.com</a></p></div>
         </div>
       </div>
     </section>
-</main>
+  </main>
 
   <footer class="footer">
     <div class="container">
-      <p style="font-style: italic; font-size: 0.85rem; color: #ffebcc;">"Ya Rabbi! Bedir ashabının sarsılmaz imanını,
-        eşsiz sadakatini ve kutlu davasını kalplerimize nakşeyle. O şanlı sahabeler hürmetine bizleri de sırat-ı
-        müstakimden ayırma. Amin."</p>
-      <p class="footer-legal">Bedir AI · İstanbul, Türkiye · 2026 · <a href="mailto:merhaba@bedirsavasi.com" style="color:#c9a35c">merhaba@bedirsavasi.com</a> · <a href="/privacy/" style="color:#c9a35c">الخصوصية</a> · <a href="/terms/" style="color:#c9a35c">الشروط</a></p>
+      <p class="footer-legal">Bedir AI · إسطنبول، تركيا · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> ·
+        <a href="/en/privacy/" hreflang="en">الخصوصية</a> · <a href="/en/terms/" hreflang="en">الشروط</a> · <a href="/data/corpus.json">المدوّنة</a></p>
     </div>
   </footer>
 
@@ -303,11 +240,10 @@
       document.getElementById("navLinks")?.classList.toggle("active");
     });
     document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => {
-        document.getElementById("navLinks")?.classList.remove("active");
-      });
+      link.addEventListener("click", () => document.getElementById("navLinks")?.classList.remove("active"));
     });
   </script>
+  <script src="/assets/demo.js" defer></script>
 </body>
 
 </html>
