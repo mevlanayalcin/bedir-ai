@@ -3,6 +3,11 @@
   "name": "bedir-ai",
   "compatibility_date": "2026-10-06",
   "main": "build/worker.js",
+  "durable_objects": {
+    "bindings": [{ "name": "ASK_LIMIT", "class_name": "AskLimit" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["AskLimit"] }],
+  "custom_domains": ["bedirsavasi.com", "www.bedirsavasi.com"],
   "observability": {
     "enabled": true
   },
