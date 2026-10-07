@@ -74,3 +74,8 @@ body:before{background:radial-gradient(ellipse at 70% 0%,#b28a3920,transparent 5
 .fact-table { width: 100%; border-collapse: collapse; margin: 14px 0 26px; font-size: .95rem; }
 .fact-table th, .fact-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid rgba(127,127,127,.25); vertical-align: top; }
 .fact-table th { width: 26%; font-weight: 600; opacity: .8; white-space: nowrap; }
+
+/* Recorded-sample fallback in the Ask box (shown when the model is unavailable) */
+.demo-sample-label { font-size: .72rem; letter-spacing: .12em; opacity: .72; margin: 0 0 6px; }
+.demo-sample-note { font-size: .84rem; line-height: 1.5; opacity: .8; margin: 0 0 12px; }
+.demo-sample-q { font-size: .95rem; margin: 0 0 10px; }

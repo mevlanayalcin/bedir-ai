@@ -1,14 +1,16 @@
-// Cloudflare Pages "advanced mode" worker (built to dist/_worker.js).
-// POST /api/ask {q, lang} -> answer grounded in the Bedir corpus via Claude citations.
-// Static pages fall through to Pages assets.
+// Cloudflare Worker: static Bedir AI site + POST /api/ask.
+// The answer endpoint passes the corpus to the Claude API as documents with server-side citations,
+// pre-filtered to the passages that lexically match the question so a cold request does not ship the
+// whole collection every time. Static requests fall through to Workers assets.
 import corpus from "../data/corpus.json";
 
 const API = "https://api.anthropic.com/v1/beta/messages";
 const MODEL = "claude-opus-5-5";
 const LANGS = ["tr", "en", "de", "ar"];
 const MAX_QUESTION = 400;
+const TOP_K = Number(globalThis.__BEDIR_TOP_K__ || 24); // documents kept after retrieval
 const WINDOW_SECONDS = 60;
-const WINDOW_LIMIT = 8; // mirrors the Netlify function's rateLimit: 8 requests / 60s per IP
+const WINDOW_LIMIT = 8; // mirrors the old Netlify function's rateLimit: 8 requests / 60s per IP
 
 const SYSTEM = `You are Bedir AI, an assistant that answers questions about the Battle of Badr strictly from the provided source documents: Qur'an verses and hadith from Sahih al-Bukhari and Sahih Muslim.
 Rules:
@@ -24,19 +26,116 @@ const json = (body, status = 200) =>
     headers: { "content-type": "application/json; charset=utf-8", "access-control-allow-origin": "*" },
   });
 
-function documents(lang) {
-  const docs = corpus.items.map((item) => ({
-    type: "document",
-    source: { type: "text", media_type: "text/plain", data: item.text[lang] || item.text.en },
-    title: item.title[lang] || item.title.en,
-    citations: { enabled: true },
-  }));
+// ---------------------------------------------------------------- retrieval
+
+const STOP = new Set(
+  `the a an and or of to in on at is are was were be been it its this that which who whom what how when where why
+   bir bu o ve ile de da ki ne kim neden nerede nasıl hangi için gibi daha çok değil mi
+   der die das den dem des ein eine und oder von zu im in am auf wie was wer wo wann warum welcher welche
+   من إلى في على و أو هل ما متى أين كيف أي هذا هذه الذي التي
+  `.split(/\s+/).filter(Boolean)
+);
+
+// Folds diacritics so a Turkish, English, German or Arabic query can match the same text.
+function norm(s) {
+  return (s || "")
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[֑-۝ᵃ-ᵗ]/g, "") // Arabic harakat and small marks
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ı|İ/g, "i")
+    .replace(/ş/g, "s")
+    .replace(/ğ/g, "g")
+    .replace(/ç/g, "c")
+    .replace(/ö/g, "o")
+    .replace(/ü/g, "u")
+    .replace(/ß/g, "ss")
+    .replace(/([اأإآ])/g, "ا")
+    .replace(/([ىي])/g, "ي")
+    .replace(/([ةه])/g, "ه")
+    .replace(/[^a-z0-9\u0600-\u06ff ]+/g, " ");
+}
+
+function tokens(text) {
+  return norm(text)
+    .split(" ")
+    .map((t) => t.trim())
+    .filter((t) => t.length >= 3 && !STOP.has(t));
+}
+
+// One index over the corpus, built at module load. Document frequency lets us drop terms that
+// every Badr passage contains (like "bedir" itself), which carry no signal for filtering.
+const INDEX = corpus.items.map((item, i) => {
+  const perLang = {};
+  for (const lang of LANGS) {
+    const t = norm(item.text?.[lang] || item.text?.en || "");
+    const title = norm(Object.values(item.title || {}).join(" "));
+    perLang[lang] = { t, title };
+  }
+  return { i, perLang };
+});
+
+const DOC_FREQ = (() => {
+  const df = new Map();
+  for (const doc of INDEX) {
+    const seen = new Set();
+    for (const lang of LANGS) {
+      for (const tok of `${doc.perLang[lang].t} ${doc.perLang[lang].title}`.split(" ")) if (tok) seen.add(tok);
+    }
+    for (const tok of seen) df.set(tok, (df.get(tok) || 0) + 1);
+  }
+  return df;
+})();
+
+const corpusSize = INDEX.length;
+
+function isInformative(tok) {
+  const df = DOC_FREQ.get(tok) || 0;
+  return df > 0 && df <= corpusSize * 0.6;
+}
+
+// Returns { keep: [indices], mode } — mode is "full" when nothing matched, so the assistant still
+// sees the whole collection and can honestly say it does not cover the question.
+function retrieve(question, lang) {
+  const q = tokens(question).filter(isInformative);
+  if (!q.length) return { keep: INDEX.map((d) => d.i), mode: "full", terms: 0 };
+
+  const scored = INDEX.map((doc) => {
+    let score = 0;
+    // Match against the answering language, plus English as the shared fallback text.
+    for (const variant of [doc.perLang[lang], doc.perLang.en]) {
+      for (const tok of q) {
+        if (!variant) continue;
+        if (variant.title.includes(tok)) score += 3;
+        const hits = variant.t.split(tok).length - 1;
+        if (hits > 0) score += Math.min(3, hits);
+      }
+    }
+    return { i: doc.i, score };
+  }).sort((a, b) => b.score - a.score || a.i - b.i);
+
+  const best = scored[0]?.score || 0;
+  if (best <= 0) return { keep: INDEX.map((d) => d.i), mode: "full", terms: q.length };
+  return { keep: scored.slice(0, TOP_K).map((s) => s.i), mode: "filtered", terms: q.length };
+}
+
+function toDocuments(keep, lang) {
+  const docs = keep.map((idx) => {
+    const item = corpus.items[idx];
+    return {
+      type: "document",
+      source: { type: "text", media_type: "text/plain", data: item.text[lang] || item.text.en },
+      title: item.title[lang] || item.title.en,
+      citations: { enabled: true },
+      _idx: idx,
+    };
+  });
   docs[docs.length - 1].cache_control = { type: "ephemeral" };
   return docs;
 }
 
-// Best-effort per-IP throttle. Enabled when the AskLimit Durable Object is bound; otherwise
-// the endpoint still works, just without the throttle.
+// ---------------------------------------------------------------- throttling
+
 async function allowed(env, ip) {
   if (!env.ASK_LIMIT) return true;
   const id = env.ASK_LIMIT.idFromName(ip);
@@ -47,8 +146,10 @@ async function allowed(env, ip) {
   return res.ok;
 }
 
+// ---------------------------------------------------------------- handler
+
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     const url = new URL(request.url);
     if (url.pathname !== "/api/ask") return env.ASSETS.fetch(request);
 
@@ -76,8 +177,11 @@ export default {
 
     const ip = request.headers.get("cf-connecting-ip") || "unknown";
     if (!(await allowed(env, ip))) return json({ error: "busy" }, 429);
-
     if (!env.ANTHROPIC_API_KEY) return json({ error: "not_configured" }, 500);
+
+    const { keep, mode, terms } = retrieve(q, lang);
+    const docs = toDocuments(keep, lang);
+    const payload = docs.map(({ _idx, ...rest }) => rest);
 
     let upstream;
     try {
@@ -95,7 +199,7 @@ export default {
           fallbacks: "default",
           output_config: { effort: "low" },
           system: SYSTEM,
-          messages: [{ role: "user", content: [...documents(lang), { type: "text", text: q }] }],
+          messages: [{ role: "user", content: [...payload, { type: "text", text: q }] }],
         }),
       });
     } catch {
@@ -116,7 +220,8 @@ export default {
       .map((block) => ({
         text: block.text,
         cites: (block.citations || []).map((c) => {
-          const item = corpus.items[c.document_index];
+          const idx = docs[c.document_index]?. _idx;
+          const item = idx === undefined ? null : corpus.items[idx];
           if (!item) return { id: null, title: null, url: null, quote: c.cited_text };
           return { id: item.id, title: item.title[lang] || item.title.en, url: item.url, quote: c.cited_text };
         }),
@@ -131,6 +236,7 @@ export default {
         cache_write: response.usage?.cache_creation_input_tokens,
         output: response.usage?.output_tokens,
       },
+      retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms },
     });
   },
 };
