@@ -59,7 +59,7 @@
           <tr><th scope="row">Funding</th><td>Bootstrapped. No institutional investor, no accelerator, no outside round.</td></tr>
           <tr><th scope="row">Contact</th><td><a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a></td></tr>
           <tr><th scope="row">Product</th><td><a href="https://bedirsavasi.com/en/">https://bedirsavasi.com/en/</a> (live, early access)</td></tr>
-          <tr><th scope="row">Infrastructure</th><td>Netlify (static site + serverless answer endpoint) · Cloudflare (DNS, email routing)</td></tr>
+          <tr><th scope="row">Infrastructure</th><td>Cloudflare Workers + Assets (site and answer endpoint) · Cloudflare KV (waitlist) · Cloudflare DNS and email routing</td></tr>
         </table>
 
         <h2>How the Claude API is used</h2>
@@ -74,7 +74,7 @@
           Google Vertex AI. Anthropic is currently the only model provider in the product.</p>
 
         <h2>Backup engine, stated plainly</h2>
-        <p>While this Claude Console account carries no credit balance (as of 7 October 2026), the public demo answers from a labelled backup model and prints that label above the answer; the backup is never presented as a Claude citation. The Claude path &mdash; the corpus passed as documents with server-side citations and prompt caching &mdash; is what the endpoint uses whenever the account has balance, and the response carries the engine in its <code>provider</code> field.</p>
+        Answers are produced by <code>claude-haiku-4-5-20251001</code> through the Claude Messages API: the collection is passed as document blocks with server-side citations and prompt caching enabled. Measured: a cold question writes a 64,610-token cache block and later questions read it back for roughly 130 fresh input tokens. The endpoint carries a daily token budget; when it is spent or Claude is unreachable, the answer comes from a labelled backup engine and both the <code>provider</code> field and the on-screen label say so - a backup answer is never presented as a Claude citation.
         <h2>Policy posture</h2>
         <ul>
           <li><strong>AI disclosure.</strong> The answer interface states that users are talking to an AI assistant and

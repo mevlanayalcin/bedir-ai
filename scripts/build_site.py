@@ -132,7 +132,7 @@ T = {
         hero=dict(
             eyebrow="CLAUDE-API · ZITATE", h1a="Zitierte Antworten", h1b="auf Koran- und Hadith-Fragen.",
             sub="Ein Assistent und eine HTTP-API über einer kuratierten Sammlung. Jede Antwort öffnet die genaue Stelle samt Verlagslink. Prüfen ja, Editieren nein.",
-            ex_label="BEISPIELAUSWERTUNG", ex_apilink="API-Anfrage und Antwort ansehen", ex_q="Welcher Vers erwähnt die Hilfe bei Badr?", ex_a="Koran 3:123 sagt, dass bei Badr Hilfe gesandt wurde.", ex_title="Koran 3:123 (Āl ʿImrān)", ex_pub="Tanzil · Bubenheim & Elyas",
+            ex_label="BEISPIELAUSWERTUNG", ex_apilink="API-Anfrage und Antwort ansehen", ex_q="Welcher Vers erwähnt die Hilfe bei Badr?", ex_a="Koran 3:123 sagt, dass bei Badr Hilfe gesandt wurde.", ex_title="Koran 3:123 (Āl ʿImrān)", ex_pub="Tanzil · Bubenheim &amp; Elyas",
             cta_demo="Beispielauswertung ansehen", cta_api="API-Dokumentation",
             preview_label="BEISPIELFRAGE UND QUELLE", preview_q="Welche Sure beschreibt die Hilfe bei Badr?",
             preview_ans="Koran 3:123 berichtet, dass bei Badr geholfen wurde. [1]", preview_src="[1] Koran 3:123 · Quelle öffnen ↗"),
@@ -183,7 +183,7 @@ T = {
         hero=dict(
             eyebrow="Claude API · اقتباس", h1a="إجابات موثَّقة بالمصدر", h1b="لأسئلة القرآن والحديث.",
             sub="مساعد أسئلة وأجوبة وواجهة HTTP فوق مجموعة مختارة. كل جواب يفتح الآية أو الحديث الذي استند إليه مع رابط الناشر. يمكنك المراجعة، لا التحرير.",
-            ex_label="مثال مسجَّل", ex_apilink="انظر طلب API واستجابته", ex_q="أي آية تتحدث عن النصر في بدر؟", ex_a="القرآن 3:123 يذكر أن الله نصر المؤمنين في بدر.", ex_title="القرآن 3:123 (آل عمران)", ex_pub="تنزيل · السعيد الدولية",
+            ex_label="مثال مسجَّل", ex_apilink="انظر طلب API واستجابته", ex_q="أي آية تتحدث عن النصر في بدر؟", ex_a="القرآن 3:123 يذكر أن الله نصر المؤمنين في بدر.", ex_title="القرآن 3:123 (آل عمران)", ex_pub="تنزيل (العثمانية) · Saheeh International",
             cta_demo="مثال مسجَّل", cta_api="وثائق API",
             preview_label="مثال: سؤال ومصدر", preview_q="أي آية تتحدث عن النصر في بدر؟",
             preview_ans="القرآن ٣:١٢٣ يذكر أن النصر كان في بدر. [1]", preview_src="[1] القرآن ٣:١٢٣ · افتح المصدر ↗"),
@@ -441,6 +441,12 @@ LIBRARY = {
 
 KOK = pathlib.Path(__file__).resolve().parent.parent
 
+KAYIT_DOSYASI = KOK / "data" / "recorded_examples.json"
+# The examples on the homepage are captured responses from the running endpoint, not
+# hand-written copy: a sample nobody can reproduce is how the hero and the API docs ended
+# up quoting different verses for the same question.
+KAYITLAR = json.loads(KAYIT_DOSYASI.read_text(encoding="utf-8")) if KAYIT_DOSYASI.exists() else {}
+
 
 def korpus_aliintisi(lang, kim="Q3:123", uzunluk=230):
     """Hero ornegindeki alinti, sunulan korpusun kendisinden okunur; elle yazilmaz."""
@@ -475,6 +481,15 @@ def jsonld_for(lang, t):
 def build(lang):
     t = T[lang]
     rec_q, rec_ans, rec_title, rec_url, rec_link, rec_quote = RECORDED[lang]
+    kayit = KAYITLAR.get(lang) or {}
+    if kayit:
+        atif = (kayit.get("cites") or [{}])[0]
+        rec_q = kayit.get("q") or rec_q
+        rec_ans = " ".join((kayit.get("text") or "").split()) or rec_ans
+        rec_title = atif.get("title") or rec_title
+        rec_url = atif.get("url") or rec_url
+        rec_link = (atif.get("title") or rec_title) + " ↗"
+        rec_quote = " ".join((atif.get("quote") or "").split()) or rec_quote
     alternates = "\n  ".join(
         '<link rel="alternate" hreflang="%s" href="https://bedirsavasi.com%s" />' % (l, "/" if l == "tr" else "/%s/" % l)
         for l in ("tr", "en", "de", "ar")
@@ -495,10 +510,10 @@ def build(lang):
         demo_placeholder=ui["ph"], demo_aria=ui["aria"], demo_btn=ui["btn"],
         chips="".join('<button type="button">%s</button>' % q for q in CHIP_QS[lang]),
         disclosure=t["disclosure"], fatwa_note=t["fatwa_note"],
-        ex_label=t["hero"]["ex_label"], ex_q=t["hero"]["ex_q"], ex_a=t["hero"]["ex_a"],
+        ex_label=t["hero"]["ex_label"], ex_q=rec_q, ex_a=rec_ans,
         legal_base=(BASE[lang] if lang in ("tr", "en") else "/en/"),
-        ex_title=t["hero"]["ex_title"], ex_pub=t["hero"]["ex_pub"], ex_url="https://quran.com/3/123",
-        ex_quote=korpus_aliintisi(lang), ex_apilink=t["hero"]["ex_apilink"],
+        ex_title=rec_title, ex_pub=t["hero"]["ex_pub"], ex_url=rec_url,
+        ex_quote=rec_quote or korpus_aliintisi(lang), ex_apilink=t["hero"]["ex_apilink"],
         ex_h2=t["example"]["h2"], ex_lead=t["example"]["lead"], ex_note=t["example"]["note"],
         rec_q=rec_q, rec_ans=rec_ans, rec_src_title=rec_title, rec_src_url=rec_url,
         rec_src_link=rec_link, rec_quote=rec_quote,

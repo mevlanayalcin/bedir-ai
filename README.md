@@ -7,10 +7,10 @@ language; the answer comes back with the exact verse or hadith it was drawn from
   [Deutsch](https://bedirsavasi.com/de/) · [العربية](https://bedirsavasi.com/ar/)
 - Company: **Bedir AI** — operating and brand name · founded **March 2026** · Ankara, Türkiye · bootstrapped
 - Founder: Mevlana Yalçın · <merhaba@bedirsavasi.com>
-- Infrastructure: Netlify (static site + serverless answer endpoint), Cloudflare (DNS, email routing)
+- Infrastructure: Cloudflare Workers + Assets (site and answer endpoint), Cloudflare KV (waitlist), Cloudflare DNS
 
 
-> **Engine, honestly.** The product runs on the Claude API. While the Console account has no credit balance (as of 7 October 2026) the public demo falls back to a labelled backup model and says so on screen; every response carries the engine in its `provider` field. Backup answers are never presented as Claude citations.
+> **Engine, honestly.** Answers are produced by `claude-haiku-4-5-20251001` on the Claude Messages API, with server-side citations and prompt caching. The endpoint has a daily token budget; past it the demo answers from a labelled backup engine and the `provider` field says so. Backup answers are never presented as Claude citations.
 
 ## What Claude does in this product
 

@@ -225,3 +225,23 @@ pre.code { background: #0a0908; border: 1px solid rgba(255,255,255,.11); border-
   .proof-strip { flex-direction: column; gap: 3px; }
   .proof-strip li + li::before { content: none; margin: 0; }
 }
+
+/* The card was only a flex container on phones, so the evidence-first order
+   applied there and not at desktop; and the endpoint-evidence line, left at
+   default order, fell below the fold. Both are ordered explicitly now. */
+.hero-demo { display: flex; flex-direction: column; }
+.hero-demo .demo-example-answer { order: -2; }
+.hero-demo .demo-evidence { order: -3; }
+
+/* The endpoint-evidence row wrapped into three lines on phones and pushed the
+   quoted passage past the fold; the header gap was then widened too far. One
+   scrollable line, tighter hero spacing, and the passage is on screen again. */
+@media (max-width: 800px) {
+  .product-hero { padding-top: 4.6rem; }
+  .hero-copy .hero-sub { margin-top: 10px; }
+  .proof-strip { margin-top: 10px; }
+  .demo-evidence { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-bottom: 8px; }
+  .demo-evidence::-webkit-scrollbar { display: none; }
+  .demo-evidence span { flex: 0 0 auto; }
+  .hero-demo { padding: 16px; }
+}

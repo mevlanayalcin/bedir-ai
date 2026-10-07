@@ -59,7 +59,7 @@
           <tr><th scope="row">Finansman</th><td>Özkaynakla (bootstrapped). Kurumsal yatırımcı, hızlandırıcı veya dış tur yok.</td></tr>
           <tr><th scope="row">İletişim</th><td><a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a></td></tr>
           <tr><th scope="row">Ürün</th><td><a href="https://bedirsavasi.com/">https://bedirsavasi.com/</a> (yaygın, erken erişim)</td></tr>
-          <tr><th scope="row">Altyapı</th><td>Netlify (statik site + sunucusuz yanıt uç noktası) · Cloudflare (DNS, e-posta yönlendirme)</td></tr>
+          <tr><th scope="row">Altyapı</th><td>Cloudflare Workers + Assets (site ve yanıt uç noktası) · Cloudflare KV (bekleme listesi) · Cloudflare DNS ve e-posta yönlendirme</td></tr>
         </table>
 
         <h2>Claude API nasıl kullanılıyor</h2>
@@ -73,7 +73,7 @@
           Vertex AI kullanılmaz. Üründe şu anki tek model sağlayıcısı Anthropic'tir.</p>
 
         <h2>Yedek motor, açıkça</h2>
-        <p>Bu Claude Console hesabında kredi bakiyesi olmadigindan (7 Ekim 2026 itibariyla) herkese acik demo, etiketli bir yedek modelle yanit verir ve bu etiketi yanitin ustunde gosterir; yedek yanit hicbir zaman Claude atfi olarak sunulmaz. Uc nokta, hesapta bakiye oldugunda Claude yolunu kullanir (koleksiyonun belge olarak gecirilmesi, sunucu tarafi atiflar ve prompt cache) ve yanitlarindaki <code>provider</code> alani kullanilan motoru tasir.</p>
+        Yanıtlar <code>claude-haiku-4-5-20251001</code> ile, Claude Messages API&#39;si üzerinden üretiliyor: koleksiyon belge blokları olarak geçiyor, sunucu taraflı atıflar ve prompt cache açık. Ölçüldü: bir soru soğukken 64.610 token&#39;luk önbellek bloğunu yazıyor, sonraki sorular aynı bloğu okuyup ~130 taze token harcıyor. Uç noktada günlük bir token bütçesi var; bütçe bittiğinde ya da Claude&#39;a ulaşılamadığında yanıt etiketli bir yedek moturdan gelir ve bunu yanıttaki <code>provider</code> alanı ile arayüzdeki etiket söyler — yedek yanıt hiçbir zaman Claude atfı olarak sunulmaz.
         <h2>Politikaya uyum</h2>
         <ul>
           <li><strong>Yapay zekâ ifşası.</strong> Yanıt arayüzü, bir yapay zekâ asistanıyla konuşulduğunu ve yanıtların

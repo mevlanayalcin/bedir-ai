@@ -4,7 +4,8 @@
 // whole collection every time. Static requests fall through to Workers assets.
 import corpus from "../data/corpus.json";
 
-// The SDK's beta.messages namespace posts to the same REST path plus an anthropic-beta header.
+// Answers are produced by the model in MODEL_UCUZ; the balance is funded, and the daily
+// budget in BUTCE_TOKEN is what keeps a public demo from emptying it.
 const API = "https://api.anthropic.com/v1/messages";
 const MODEL_UCUZ = "claude-haiku-4-5-20251001";
 // fallbacks and output_config are accepted by the Opus/Sonnet 5 family only; sending them to
@@ -146,8 +147,8 @@ function toDocuments(keep, lang) {
 }
 
 // ---------------------------------------------------------------- fallback engine
-// Claude is the product's engine. While the Console account has no credit balance the demo would
-// otherwise return a bare error, so the Worker can answer from a labelled backup model. The backup
+// Claude is the product engine. If the daily budget is spent or Claude is unreachable, the
+// Worker answers from a labelled backup model instead of returning a bare error. The backup
 // is never presented as a Claude citation: sources shown for it are the retrieved passages that
 // match the question, marked provider:"fallback" so the UI can say so out loud.
 async function fallbackAnswer(env, question, lang, keep) {
@@ -227,13 +228,13 @@ function genisletme_govdesi(model) {
 async function gunlukHarcama(env) {
   if (!env.WAITLIST) return 0;
   const bugun = new Date().toISOString().slice(0, 10);
-  return Number((await env.WAITLIST.get("claude:tokens:" + bugun)) || 0);
+  return Number((await env.WAITLIST.get("claude:units:" + bugun)) || 0);
 }
 
 async function harcamayiEkle(env, kullanim) {
   if (!env.WAITLIST) return;
   const bugun = new Date().toISOString().slice(0, 10);
-  const anahtar = "claude:tokens:" + bugun;
+  const anahtar = "claude:units:" + bugun;
   const u = kullanim || {};
   const birim = (Number(u.input_tokens || 0) * BIRIM.taze + Number(u.cache_creation_input_tokens || 0) * BIRIM.yazma
     + Number(u.cache_read_input_tokens || 0) * BIRIM.okuma + Number(u.output_tokens || 0) * BIRIM.cikti) / 1_000_000;
@@ -322,14 +323,6 @@ export default {
     if (!(await allowed(env, ip))) return json({ error: "busy" }, 429);
     if (!env.ANTHROPIC_API_KEY) return json({ error: "not_configured" }, 500);
 
-    // Budget first: over the daily cap we do not spend Claude tokens at all, and the backup
-    // engine answers with the same citations, labelled as such in the interface.
-    const bittiMi = (await gunlukHarcama(env)) >= BUTCE_TOKEN;
-    if (bittiMi) {
-      const fb = await fallbackAnswer(env, q, lang, keep);
-      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms }, budget: { exhausted: true, cap: BUTCE_TOKEN } }, 200)
-        : json({ error: "upstream" }, 502);
-    }
 
     const { keep, mode, terms } = retrieve(q, lang);
     // Retrieval used to select which documents were sent, and that defeated prompt caching
@@ -339,6 +332,14 @@ export default {
     // retrieval only orders the hint inside the question. Warm questions pay cache reads instead.
     const docs = toDocuments(corpus.items.map((_, i) => i), lang);
     const isaret = keep.slice(0, TOP_K).map((i) => corpus.items[i].id).join(", ");
+
+    // The budget check has to run after retrieval: it reports documents_sent and hands
+    // `keep` to the backup engine, and both are only defined below the retrieval call.
+    if ((await gunlukHarcama(env)) >= BUTCE_TOKEN) {
+      const fb = await fallbackAnswer(env, q, lang, keep);
+      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms }, budget: { exhausted: true, cap: BUTCE_TOKEN } }, 200)
+        : json({ error: "upstream" }, 502);
+    }
     const payload = docs.map(({ _idx, ...rest }) => rest);
 
     let upstream;

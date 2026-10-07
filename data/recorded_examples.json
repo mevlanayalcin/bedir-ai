@@ -1,0 +1,110 @@
+{
+ "tr": {
+  "q": "Bedir'de yardım hangi ayette geçiyor?",
+  "text": "Bedir'de yardım Al-i İmran 3:123 ayetinde geçmektedir. Ayette şöyle buyurulmaktadır: \"Andolsun, sizler güçsüz olduğunuz halde Allah, Bedir'de de size yardım etmişti.\"",
+  "cites": [
+   {
+    "id": "Q3:123",
+    "title": "Âl-i İmrân 3:123",
+    "url": "https://quran.com/3/123",
+    "quote": "Andolsun, sizler güçsüz olduğunuz halde Allah, Bedir'de de size yardım etmişti. "
+   }
+  ],
+  "model": "claude-haiku-4-5-20251001",
+  "provider": "claude",
+  "usage": {
+   "input": 142,
+   "cache_read": 0,
+   "cache_write": 64610,
+   "output": 212
+  },
+  "retrieval": {
+   "mode": "filtered",
+   "documents_sent": 111,
+   "corpus_size": 111,
+   "matched_terms": 1
+  },
+  "kayitTarihi": "2026-10-07"
+ },
+ "en": {
+  "q": "Which verse describes the help given at Badr?",
+  "text": "Allah made the angels as a sign of good tidings and to reassure the believers' hearts, and victory is from Allah, the Exalted in Might, the Wise.",
+  "cites": [
+   {
+    "id": "Q3:126",
+    "title": "Qur'an 3:126 (Āl ʿImrān)",
+    "url": "https://quran.com/3/126",
+    "quote": "And Allah made it not except as [a sign of] good tidings for you and to reassure your hearts thereby. And victory is not except from Allah, the Exalted in Might, the Wise -"
+   }
+  ],
+  "model": "claude-haiku-4-5-20251001",
+  "provider": "claude",
+  "usage": {
+   "input": 127,
+   "cache_read": 0,
+   "cache_write": 30071,
+   "output": 113
+  },
+  "retrieval": {
+   "mode": "filtered",
+   "documents_sent": 111,
+   "corpus_size": 111,
+   "matched_terms": 3
+  },
+  "kayitTarihi": "2026-10-07"
+ },
+ "de": {
+  "q": "Welcher Vers erwähnt die Hilfe bei Badr?",
+  "text": "Der Qur'an-Vers 3:123 erwähnt die Hilfe bei Badr: \"Allah hat euch doch schon in Badr geholfen, als ihr verächtlich erschient.\"",
+  "cites": [
+   {
+    "id": "Q3:123",
+    "title": "Koran 3:123 (Āl ʿImrān)",
+    "url": "https://quran.com/3/123",
+    "quote": "Allah hat euch doch schon in Badr geholfen, als ihr verächtlich erschient. "
+   }
+  ],
+  "model": "claude-haiku-4-5-20251001",
+  "provider": "claude",
+  "usage": {
+   "input": 144,
+   "cache_read": 0,
+   "cache_write": 31141,
+   "output": 72
+  },
+  "retrieval": {
+   "mode": "filtered",
+   "documents_sent": 111,
+   "corpus_size": 111,
+   "matched_terms": 2
+  },
+  "kayitTarihi": "2026-10-07"
+ },
+ "ar": {
+  "q": "أي آية تذكر النصر في بدر؟",
+  "text": "آية سورة آل عمران 3:123 تذكر النصر في بدر، حيث يقول الله تعالى: \"وَلَقَدْ نَصَرَكُمُ ٱللَّهُ بِبَدْرٍۢ وَأَنتُمْ أَذِلَّةٌۭ\"",
+  "cites": [
+   {
+    "id": "Q3:123",
+    "title": "آل عمران 3:123",
+    "url": "https://quran.com/3/123",
+    "quote": "وَلَقَدْ نَصَرَكُمُ ٱللَّهُ بِبَدْرٍۢ وَأَنتُمْ أَذِلَّةٌۭ ۖ فَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تَشْكُرُونَ"
+   }
+  ],
+  "model": "claude-haiku-4-5-20251001",
+  "provider": "claude",
+  "usage": {
+   "input": 147,
+   "cache_read": 0,
+   "cache_write": 62920,
+   "output": 126
+  },
+  "retrieval": {
+   "mode": "full",
+   "documents_sent": 111,
+   "corpus_size": 111,
+   "matched_terms": 0
+  },
+  "kayitTarihi": "2026-10-07"
+ }
+}
