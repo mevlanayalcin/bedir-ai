@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedir AI • Kurumsal bilgiler</title>
+  <meta name="description" content="Bedir AI kurumsal bilgileri: işletme adı, kurucu, başlangıç tarihi, konum, finansman durumu, Claude API'sinin kullanım biçimi ve doğrulanabilir bağlantılar." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bedirsavasi.com/company/" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/product.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization",
+   "@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/",
+   "email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png",
+   "foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"https://www.linkedin.com/in/mevlanayalcin/"},
+   "sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],
+   "description":"Kur'an ve hadis kaynaklarından atıflı yanıt üreten eğitim ürünü; Anthropic Claude API üzerine kuruludur.",
+   "address":{"@type":"PostalAddress","addressLocality":"İstanbul","addressCountry":"TR"}}
+  </script>
+</head>
+<body>
+  <nav class="navbar glass">
+    <div class="container nav-content">
+      <div class="nav-links">
+        <a href="/" class="btn-ghost">Bedir AI</a>
+        <a href="/#ask" class="btn-ghost">Soru Sor</a>
+        <a href="/company/" class="btn-ghost active-link">Kurumsal</a>
+        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">İletişim</a>
+      </div>
+      <div class="lang-switcher"><a href="/company/" class="lang-btn active-link">TR</a><a href="/en/company/" class="lang-btn">EN</a></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <span class="badge">KURUMSAL BİLGİLER</span>
+        <h1 class="hero-title">Bedir AI</h1>
+        <p class="lead">Bedir AI, İslamî birincil kaynaklar üzerine kurulu eğitim amaçlı bir yanıt ürünüdür. Doğal
+          dilde sorulan soru, seçilmiş Kur'an âyeti ve hadis koleksiyonundan yanıtlanır; arayüz, yanıtın dayandığı
+          metni ve kaynağa bağlantıyı gösterir.</p>
+
+        <h2>Kurumsal künye</h2>
+        <table class="fact-table">
+          <tr><th scope="row">Ad</th><td>Bedir AI — işletme ve marka adı</td></tr>
+          <tr><th scope="row">Hukuki durum</th><td>Kurucusu tarafından yürütülen girişim; henüz şirket tescili yok. Tescilli tüzel kişilik iddia edilmez.</td></tr>
+          <tr><th scope="row">Başlangıç</th><td>Mart 2026 (alan adı kaydı ve ilk sürüm çalışması; bu proje başlangıcıdır, tescil tarihi değil)</td></tr>
+          <tr><th scope="row">Kurucu</th><td>Mevlana Yalçın — tek kurucu</td></tr>
+          <tr><th scope="row">Konum</th><td>İstanbul, Türkiye</td></tr>
+          <tr><th scope="row">Ekip</th><td>1 kişi</td></tr>
+          <tr><th scope="row">Finansman</th><td>Özkaynakla (bootstrapped). Kurumsal yatırımcı, hızlandırıcı veya dış tur yok.</td></tr>
+          <tr><th scope="row">İletişim</th><td><a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a></td></tr>
+          <tr><th scope="row">Ürün</th><td><a href="https://bedirsavasi.com/">https://bedirsavasi.com/</a> (yaygın, erken erişim)</td></tr>
+          <tr><th scope="row">Altyapı</th><td>Netlify (statik site + sunucusuz yanıt uç noktası) · Cloudflare (DNS, e-posta yönlendirme)</td></tr>
+        </table>
+
+        <h2>Claude API nasıl kullanılıyor</h2>
+        <p>Yanıt uç noktası, koleksiyonu <strong>sunucu taraflı atıflar (citations) etkin</strong> şekilde Claude API'sine
+          metin belgesi olarak geçirir: her âyet veya hadis ayrı bir belgedir ve son belgeye <code>cache_control</code>
+          eklenerek yinelenen sorularda koleksiyon prompt cache'ten okunur. Claude'a yalnızca bu belgelerden yanıtlaması,
+          sorunun dilinde yazması ve mevcut koleksiyon bir soruyu kapsamıyorsa bunu söylemesi talimatı verilir. Sunucu,
+          dönen <code>document_index</code> değerlerini koleksiyon kayıtlarına eşler ve alıntılanan metin ile
+          quran.com / sunnah.com bağlantısını arayüzde gösterir.</p>
+        <p>Tüm çıkarım, Claude Console üzerinden birinci taraf Claude API'siyle yapılır — AWS Bedrock veya Google
+          Vertex AI kullanılmaz. Üründe şu anki tek model sağlayıcısı Anthropic'tir.</p>
+
+        <h2>Politikaya uyum</h2>
+        <ul>
+          <li><strong>Yapay zekâ ifşası.</strong> Yanıt arayüzü, bir yapay zekâ asistanıyla konuşulduğunu ve yanıtların
+            atıf gösterilen kaynaklardan üretildiğini belirtir.</li>
+          <li><strong>Hüküm vermez.</strong> Bedir AI bir bilgi aracıdır; fetva vermez ve yetkin âlime yönlendirir.</li>
+          <li><strong>Denetlenebilir kaynak.</strong> Ürünün kullandığı tüm metinler, yayıncıya bağlantısıyla açıkça yayımlanır.</li>
+        </ul>
+
+        <h2>Bağımsız doğrulama</h2>
+        <ul>
+          <li>Açık depo, koleksiyon ve değerlendirme taslağı:
+            <a href="https://github.com/mevlanayalcin/bedir-ai">github.com/mevlanayalcin/bedir-ai</a></li>
+          <li>Kurucu profili: <a href="https://www.linkedin.com/in/mevlanayalcin/">linkedin.com/in/mevlanayalcin</a></li>
+          <li>Makine-okuyabilir koleksiyon: <a href="/data/corpus.json">/data/corpus.json</a></li>
+          <li>Alan adı kaydı: <code>bedirsavasi.com</code>, creation 2026-03-08 (Verisign RDAP)</li>
+        </ul>
+
+        <h2>Yol haritası (durumuyla)</h2>
+        <table class="fact-table">
+          <tr><th scope="row">Yayında</th><td>Bedir Gazvesi koleksiyonu üzerinde atıflı yanıt: 41 Kur'an, 70 hadis kaydı; Türkçe, İngilizce, Almanca, Arapça</td></tr>
+          <tr><th scope="row">Sürmekte</th><td>Tüm Kur'an ve altı hadis koleksiyonuna genişleme; konu bazlı geri getirme (retrieval)</td></tr>
+          <tr><th scope="row">Tasarlandı, henüz koşmadı</th><td>Yayımlanacak atıf doğruluğu değerlendirmesi: alıntı sadakati ile atfın iddiayı desteklemesi ayrı ölçülür (<a href="https://github.com/mevlanayalcin/bedir-ai/tree/main/eval">taslak</a>)</td></tr>
+          <tr><th scope="row">Sırada</th><td>İslam okulları ve çalışma platformları için atıflı yanıt API'si; mobil uygulama</td></tr>
+        </table>
+        <p class="demo-note">Bu sayıdaki rakamlar koleksiyonu ve ürünü anlatır, kitle büyüklüğünü değil. Denetlenmiş
+          kullanıcı, trafik veya gelir rakamımız olmadığı için yayımlamıyoruz.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-legal">Bedir AI · İstanbul, Türkiye · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> ·
+        <a href="/privacy/">Gizlilik</a> · <a href="/terms/">Koşullar</a> ·
+        <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="/data/corpus.json">Koleksiyon</a></p>
+    </div>
+  </footer>
+</body>
+</html>

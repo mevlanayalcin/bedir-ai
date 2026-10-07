@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedir AI • Company information</title>
+  <meta name="description" content="Company information for Bedir AI: operating name, founder, founding date, location, funding status, how the Claude API is used, and public verification links." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://bedirsavasi.com/en/company/" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/product.css" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization",
+   "@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/",
+   "email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png",
+   "foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"https://www.linkedin.com/in/mevlanayalcin/"},
+   "sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],
+   "description":"Cited answers over Qur'an and hadith sources, built on Anthropic's Claude API.",
+   "address":{"@type":"PostalAddress","addressLocality":"Istanbul","addressCountry":"TR"}}
+  </script>
+</head>
+<body>
+  <nav class="navbar glass">
+    <div class="container nav-content">
+      <div class="nav-links">
+        <a href="/en/" class="btn-ghost">Bedir AI</a>
+        <a href="/en/#ask" class="btn-ghost">Ask a Question</a>
+        <a href="/en/company/" class="btn-ghost active-link">Company</a>
+        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">Contact</a>
+      </div>
+      <div class="lang-switcher"><a href="/company/" class="lang-btn">TR</a><a href="/en/company/" class="lang-btn active-link">EN</a></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <span class="badge">COMPANY INFORMATION</span>
+        <h1 class="hero-title">Bedir AI</h1>
+        <p class="lead">Bedir AI is an educational answer product over Islamic primary sources. A question asked in
+          natural language is answered from a curated collection of Qur'an verses and hadith, and the interface shows
+          the exact passage each answer was drawn from, with a link to the source.</p>
+
+        <h2>Company facts</h2>
+        <table class="fact-table">
+          <tr><th scope="row">Name</th><td>Bedir AI — operating and brand name</td></tr>
+          <tr><th scope="row">Legal status</th><td>Founder-operated venture, not yet incorporated. We do not claim a registered legal entity.</td></tr>
+          <tr><th scope="row">Started</th><td>March 2026 (domain registration and first release work; this is the project start date, not an incorporation date)</td></tr>
+          <tr><th scope="row">Founder</th><td>Mevlana Yalçın — sole founder</td></tr>
+          <tr><th scope="row">Based in</th><td>Istanbul, Türkiye</td></tr>
+          <tr><th scope="row">Team</th><td>1</td></tr>
+          <tr><th scope="row">Funding</th><td>Bootstrapped. No institutional investor, no accelerator, no outside round.</td></tr>
+          <tr><th scope="row">Contact</th><td><a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a></td></tr>
+          <tr><th scope="row">Product</th><td><a href="https://bedirsavasi.com/en/">https://bedirsavasi.com/en/</a> (live, early access)</td></tr>
+          <tr><th scope="row">Infrastructure</th><td>Netlify (static site + serverless answer endpoint) · Cloudflare (DNS, email routing)</td></tr>
+        </table>
+
+        <h2>How the Claude API is used</h2>
+        <p>The answer endpoint passes the corpus to the Claude API as text documents with <strong>server-side
+          citations enabled</strong>, one document per verse or hadith, with a <code>cache_control</code> breakpoint on
+          the last document so the collection is read from prompt cache on repeat questions. Claude is instructed to
+          answer only from those documents, to reply in the language of the question, and to state when the current
+          collection does not cover a topic rather than fall back on parametric knowledge. The server maps the returned
+          <code>document_index</code> values back onto corpus entries and renders the quoted text plus a link to
+          quran.com or sunnah.com.</p>
+        <p>All inference runs against the first-party Claude API through the Claude Console — not AWS Bedrock or
+          Google Vertex AI. Anthropic is currently the only model provider in the product.</p>
+
+        <h2>Policy posture</h2>
+        <ul>
+          <li><strong>AI disclosure.</strong> The answer interface states that users are talking to an AI assistant and
+            that answers are generated from cited sources and may contain errors.</li>
+          <li><strong>No religious rulings.</strong> Bedir AI is an information tool. It does not issue fatwas and refers
+            users to a qualified scholar when asked for one.</li>
+          <li><strong>Inspectable sources.</strong> Every source text the product uses is published openly, with its own
+            link to the publisher.</li>
+        </ul>
+
+        <h2>Verify this independently</h2>
+        <ul>
+          <li>Public repository, corpus and evaluation spec:
+            <a href="https://github.com/mevlanayalcin/bedir-ai">github.com/mevlanayalcin/bedir-ai</a></li>
+          <li>Founder profile: <a href="https://www.linkedin.com/in/mevlanayalcin/">linkedin.com/in/mevlanayalcin</a></li>
+          <li>Machine-readable source collection: <a href="/data/corpus.json">/data/corpus.json</a></li>
+          <li>Domain registration record: <code>bedirsavasi.com</code>, created 2026-03-08 (Verisign RDAP)</li>
+        </ul>
+
+        <h2>Roadmap, with status</h2>
+        <table class="fact-table">
+          <tr><th scope="row">Shipped</th><td>Cited question answering over the Battle of Badr collection: 41 Qur'an entries, 70 hadith entries, in Turkish, English, German and Arabic</td></tr>
+          <tr><th scope="row">In progress</th><td>Expanding to the full Qur'an and the six canonical hadith collections; topic-level retrieval</td></tr>
+          <tr><th scope="row">Designed, not run</th><td>Published citation-accuracy evaluation: quotation fidelity and citation support scored separately (<a href="https://github.com/mevlanayalcin/bedir-ai/tree/main/eval">spec</a>)</td></tr>
+          <tr><th scope="row">Next</th><td>A cited-answer API for Islamic schools and study platforms; mobile app</td></tr>
+        </table>
+        <p class="demo-note">Figures on this page describe the source collection and the product, not audience size. We
+          publish no user, traffic or revenue numbers because we do not have audited ones.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-legal">Bedir AI · Istanbul, Türkiye · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> ·
+        <a href="/en/privacy/">Privacy</a> · <a href="/en/terms/">Terms</a> ·
+        <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="/data/corpus.json">Corpus</a></p>
+    </div>
+  </footer>
+</body>
+</html>

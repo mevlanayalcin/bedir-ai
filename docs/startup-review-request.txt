@@ -1,0 +1,18 @@
+Subject: Bedir AI — clarification and manual review of startup verification
+
+Hello Claude Startups Support,
+
+I am Mevlana Yalçın, founder of Bedir AI. Our reapplication under merhaba@bedirsavasi.com received a rejection on October 7, 2026 at 14:05 Türkiye time. The email mentions the founding/funding window or an inability to verify the company, without specifying which applies.
+
+Could you clarify the unmet requirement and, if available, arrange a manual review?
+
+Our product is live at https://bedirsavasi.com/en/. It is an educational assistant for exploring Quran and hadith texts with source quotations and links, using the Claude API with document citations and prompt caching. The current collection contains 41 Quran entries and 70 hadith entries, with four supported languages.
+
+For clarity, March 2026 is the project start date, not a representation of legal incorporation. Bedir AI is our product and brand name. The first application used “Bedir Savasi AI AS”; the reapplication corrected this to “Bedir AI” and explained the date distinction.
+
+Does the program accept founder-led projects before incorporation? If so, what evidence would you accept to verify this venture and its start date? Please also let us know whether any website/domain verification or account requirement remains unmet.
+
+Thank you,
+Mevlana Yalçın
+Bedir AI
+https://bedirsavasi.com/en/

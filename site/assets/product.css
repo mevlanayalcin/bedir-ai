@@ -41,3 +41,36 @@
 .foot-note{font-size:.78rem;color:#b7a888;margin-top:1rem}
 .foot-note a{color:#c9a35c}
 [dir=rtl] .demo-source blockquote,[dir=rtl] .demo-out{text-align:right}
+
+/* Product overview: founder-led educational startup, with a clearly labelled example. */
+.product-hero{background:radial-gradient(ellipse at 50% 20%,rgba(201,163,92,.13),transparent 65%);padding-bottom:2rem}
+.product-eyebrow{color:#c9a35c;font-size:.75rem;letter-spacing:.16em;margin:1.4rem 0 1rem;font-weight:700}
+.product-headline{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1.12!important;letter-spacing:-.04em;margin:0 0 1.4rem!important}
+.product-headline em{font-style:normal;color:#dcbf80}
+.product-preview{max-width:680px;margin:0 auto 3rem;padding:1.5rem;border:1px solid #75603c;border-radius:1.2rem;background:linear-gradient(145deg,#271e15,#17110d);box-shadow:0 24px 70px #0005;text-align:start}
+.preview-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#b7a888}
+.preview-question{padding:1rem;background:#ffffff08;border:1px solid #ffffff12;border-radius:.65rem;color:#f5ebda;line-height:1.6}
+.preview-answer{border-inline-start:2px solid #c9a35c;padding-inline-start:1rem;font-size:.95rem;line-height:1.65}
+.preview-brand{font-weight:700;color:#dcbf80}.preview-answer a{font-size:.82rem;color:#dcbf80}.preview-answer p{margin:.4rem 0}
+.product-metrics{display:grid;grid-template-columns:repeat(3,1fr);max-width:760px;margin:0 auto;gap:1rem;text-align:center}
+.product-metrics strong{display:block;font-size:2.2rem;color:#ffebcc;line-height:1.2}.product-metrics span{display:block;font-size:.85rem;color:#b7a888;margin-top:.5rem}
+.metrics-note{text-align:center;color:#b7a888;font-size:.78rem;margin:1.2rem auto 3.5rem;max-width:680px;line-height:1.6}
+.product-audience{padding-bottom:1rem}.section[id]{scroll-margin-top:5rem}
+@media(max-width:720px){.product-preview{margin-inline:1rem;padding:1.1rem}.product-hero{padding-top:6rem}.product-headline{font-size:2.7rem}.product-metrics strong{font-size:1.8rem}.hero-sub{font-size:1.05rem}.waitlist-form input[type=email]{min-width:0;width:100%}}
+body{background-image:none;background-color:#100f0d;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body:before{background:radial-gradient(ellipse at 70% 0%,#b28a3920,transparent 55%)}
+.product-headline{-webkit-text-fill-color:initial;background:none;color:#f8f3e8;font-family:inherit;font-weight:750}
+.section h2,.feature-card h3{font-family:inherit;letter-spacing:-.025em}
+.product-hero{min-height:auto!important;min-height:initial!important}
+.navbar{background:#100f0df2!important;border-bottom:1px solid #ffffff12}
+.product-audience .feature-card{background:#1b1915;border:1px solid #ffffff12;box-shadow:none}
+.demo-box{background:#1b1915;border:1px solid #c9a35c50;box-shadow:0 15px 50px #0003}
+.hero-content{width:100%}.hero-title{margin-inline:auto!important}
+
+/* AI disclosure line above the fatwa note in the Ask section */
+.demo-disclosure { font-size: .86rem; line-height: 1.5; opacity: .78; margin: 18px 0 4px; }
+
+/* Company fact table */
+.fact-table { width: 100%; border-collapse: collapse; margin: 14px 0 26px; font-size: .95rem; }
+.fact-table th, .fact-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid rgba(127,127,127,.25); vertical-align: top; }
+.fact-table th { width: 26%; font-weight: 600; opacity: .8; white-space: nowrap; }

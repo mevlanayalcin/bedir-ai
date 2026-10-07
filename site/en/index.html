@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bedir AI • The AI Islamic Knowledge Assistant That Shows Its Sources</title>
-  <meta name="description" content="Bedir AI: an AI assistant that answers from the Qur'an and authentic hadith collections and shows the verse or hadith behind every sentence. Built on Anthropic's Claude API." />
+  <meta name="description" content="Bedir AI helps readers explore Qur’an and hadith sources with quotations and source links. Ask Bedir AI focused on the Battle of Badr." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://bedirsavasi.com/en/" />
   <link rel="alternate" hreflang="tr" href="https://bedirsavasi.com/" />
@@ -15,7 +15,7 @@
   <link rel="alternate" hreflang="x-default" href="https://bedirsavasi.com/en/" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <meta property="og:title" content="Bedir AI • The AI assistant that shows its sources" />
-  <meta property="og:description" content="An AI assistant that shows the verse or hadith behind every sentence. Try it now, built on the Claude API." />
+  <meta property="og:description" content="Bedir AI helps readers explore Qur’an and hadith sources with quotations and source links. Ask Bedir AI focused on the Battle of Badr." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bedirsavasi.com/en/" />
   <meta property="og:image" content="https://bedirsavasi.com/epic-badr.jpg" />
@@ -32,7 +32,7 @@
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[
-    {"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın"},"address":{"@type":"PostalAddress","addressLocality":"İstanbul","addressCountry":"TR"}},
+    {"@type":"Organization","@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/","email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png","foundingDate":"2026-03","sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],"founder":{"@type":"Person","name":"Mevlana Yalçın"},"address":{"@type":"PostalAddress","addressLocality":"İstanbul","addressCountry":"TR"}},
     {"@type":"WebApplication","name":"Bedir AI","url":"https://bedirsavasi.com/","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":["tr","en","de","ar"],"publisher":{"@id":"https://bedirsavasi.com/#org"},"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Source-cited Islamic knowledge assistant built on Anthropic's Claude API."}
   ]}
   </script>
@@ -64,19 +64,16 @@
     <section class="hero-section product-hero">
       <div class="container hero-content">
         <span class="badge">EARLY ACCESS · FIRST RELEASE LIVE</span>
-        <h1 class="hero-title">Bedir AI</h1>
-        <p class="hero-sub">
-          An AI assistant that answers your questions from the Qur'an and authentic hadith collections, <strong>showing
-          the verse or hadith behind every sentence</strong>. It says nothing the sources don't say, and when it can't
-          find an answer, it tells you so.
-        </p>
+        <p class="product-eyebrow">BEDIR AI · SOURCE-GROUNDED LEARNING</p><h1 class="hero-title product-headline">Ask a question.<br><em>Explore the source.</em></h1>
+        <p class="hero-sub">An AI assistant for readers exploring Qur’an and hadith sources, <strong>with quotations and source links you can inspect</strong>. Try the first release focused on the Battle of Badr and compare its answers with the cited passages. It says nothing the sources do not say, and when the current collection does not cover a question, it tells you so.</p>
         <div class="cta-row">
-          <a class="btn-solid" href="#ask">Ask a question</a>
+          <a class="btn-solid" href="#ask">Ask Bedir AI</a>
           <a class="btn-outline" href="/data/corpus.json">Download the corpus (JSON)</a>
         </div>
       </div>
     </section>
 
+<aside class="product-preview" aria-label="Example question and source"><span class="preview-label">Example question and source</span><p class="preview-question">Which verse describes the help at Badr?</p><div class="preview-answer"><span class="preview-brand">Bedir AI</span><p>Quran 3:123 refers to the help given at Badr. <sup>[1]</sup></p><a href="https://quran.com/3/123" target="_blank" rel="noopener">[1] Quran 3:123 · Open the source ↗</a></div></aside>
     <div class="trust-strip">
       <span>Built on Anthropic's Claude API</span>
       <span>Founder: Mevlana Yalçın</span>
@@ -84,7 +81,8 @@
       <span>Bootstrapped</span>
     </div>
 
-    <section class="section" id="ask">
+    <section class="section product-audience"><div class="container"><div class="product-metrics"><div><strong>111</strong><span>source texts</span></div><div><strong>4</strong><span>supported languages</span></div><div><strong>JSON</strong><span>open corpus</span></div></div><p class="metrics-note">First-release scope: 41 Quran entries + 70 hadith entries. Explore the source collection yourself.</p><h2>Turn curiosity into source-led learning.</h2><p class="lead">Our first release is designed for readers, educators and researchers exploring the Battle of Badr.</p><div class="feature-grid"><article class="feature-card glass"><h3>Independent learners</h3><p>Ask in natural language and follow the answer to a relevant verse or hadith.</p></article><article class="feature-card glass"><h3>Educators</h3><p>Discover passages for lesson preparation, then check the quotations in their original context.</p></article><article class="feature-card glass"><h3>Early-stage research</h3><p>Find a starting point for a topic and inspect the answer, quotation and source together.</p></article></div></div></section>
+<section class="section" id="ask">
       <div class="container">
         <h2>Ask Bedir AI</h2>
         <p class="lead">The first release draws on a library of 41 verses and 70 authentic hadiths about the Battle of Badr. Each number in
@@ -101,6 +99,7 @@
           </div>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
         </div>
+        <p class="demo-disclosure">You are talking to an AI assistant, not a person. Answers are generated from the cited sources below and may contain errors.</p>
         <p class="demo-note">Bedir AI is an information tool and does not issue fatwas. For a binding religious ruling, consult a qualified scholar.</p>
       </div>
     </section>
@@ -108,13 +107,11 @@
     <section class="section">
       <div class="container">
         <h2>Why Bedir AI?</h2>
-        <p class="lead">General-purpose chatbots can easily make up sources when asked about religious texts. In Bedir AI,
-          answers are written only from the source texts given to the model, and every claim is tied to a quotation.</p>
+        <p class="lead">Finding the source behind an answer can take time when researching religious texts. Bedir AI puts the answer and its supporting quotations together so readers can inspect the evidence.</p>
         <div class="feature-grid">
           <div class="feature-card glass">
-            <h3>Citations required</h3>
-            <p>The Claude API's citations feature ties every statement in the answer to an exact passage in the source
-              document. The quoted text is not written by the model; it is the original text from the corpus.</p>
+            <h3>Inspect the sources</h3>
+            <p>Quotations and source links returned through the Claude API’s citations feature appear alongside the answer. A citation does not guarantee that the entire answer is correct.</p>
           </div>
           <div class="feature-card glass">
             <h3>Four languages</h3>
@@ -149,7 +146,7 @@
           <div class="feature-card glass">
             <span class="how-num">3</span>
             <h3>A cited answer</h3>
-            <p>Claude answers using these documents alone. If the corpus doesn't cover the question, it says so plainly.</p>
+            <p>Claude is instructed to answer from the supplied documents and identify questions outside their scope. Answers may contain errors; check quotations and their context.</p>
           </div>
           <div class="feature-card glass">
             <span class="how-num">4</span>
@@ -217,8 +214,7 @@
     <section class="section" style="padding-top:0">
       <div class="container">
         <h2>About us</h2>
-        <p class="lead">Bedir AI is a bootstrapped, solo-founder startup with no outside investment, started by
-          Mevlana Yalçın in Istanbul in March 2026. The product is built on Anthropic's Claude API.</p>
+        <p class="lead">Bedir AI is a bootstrapped educational technology venture started by solo founder Mevlana Yalçın in Istanbul in March 2026. Bedir AI is the product and brand name. Our first release uses the Claude API; corpus expansion and citation-accuracy evaluations are on our roadmap.</p>
         <div class="feature-grid">
           <div class="feature-card glass"><h3>Founder</h3><p>Mevlana Yalçın</p></div>
           <div class="feature-card glass"><h3>Location</h3><p>Istanbul, Türkiye</p></div>
@@ -232,7 +228,7 @@
   <footer class="footer">
     <div class="container">
       <p class="footer-legal">Bedir AI · Istanbul, Türkiye · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a> ·
-        <a href="/en/privacy/">Privacy</a> · <a href="/en/terms/">Terms</a> · <a href="/data/corpus.json">Corpus</a></p>
+        <a href="/en/privacy/">Privacy</a> · <a href="/en/terms/">Terms</a> · <a href="/data/corpus.json">Corpus</a> · <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="/en/company/">Company</a></p>
     </div>
   </footer>
 
