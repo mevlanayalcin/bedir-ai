@@ -1,0 +1,7 @@
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+  command = "mkdir -p site/data && cp data/corpus.json site/data/corpus.json"
+
+[functions]
+  node_bundler = "esbuild"
