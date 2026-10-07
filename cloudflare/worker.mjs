@@ -4,7 +4,8 @@
 // whole collection every time. Static requests fall through to Workers assets.
 import corpus from "../data/corpus.json";
 
-const API = "https://api.anthropic.com/v1/beta/messages";
+// The SDK's beta.messages namespace posts to the same REST path plus an anthropic-beta header.
+const API = "https://api.anthropic.com/v1/messages";
 const MODEL = "claude-opus-5-5";
 const LANGS = ["tr", "en", "de", "ar"];
 const MAX_QUESTION = 400;
