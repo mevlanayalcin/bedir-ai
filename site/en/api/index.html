@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedir AI API documentation</title>
+  <meta name="description" content="The answer endpoint, its request and response shape, error codes, rate limit, and the measured coverage of the published corpus." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bedir AI API documentation" />
+  <meta property="og:description" content="The answer endpoint, its request and response shape, error codes, rate limit, and the measured coverage of the published corpus." />
+  <link rel="canonical" href="https://bedirsavasi.com/%sapi/"en/
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css" />
+  <link rel="stylesheet" href="/assets/product.css" />
+</head>
+<body class="api-doc">
+  <nav class="navbar glass">
+    <div class="container nav-content">
+      <a class="brand" href="/en/"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
+      <div class="nav-links" id="navLinks">
+        <a href="/en/#product" class="btn-ghost">Product</a>
+        <a href="/en/#corpus" class="btn-ghost">Glossary</a>
+        <a href="/en/company/" class="btn-ghost">Company</a>
+        <a href="/en/api/" class="btn-ghost">API</a>
+      </div>
+      <div class="lang-switcher"><a href="/api/" class="lang-btn">TR</a><a href="/en/api/" class="lang-btn active-link">EN</a></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <span class="badge">API DOC · v1 · NO AUTH</span>
+        <h1 class="hero-title">API documentation</h1>
+        <p class="lead">The demo endpoint of Bedir AI: it takes a question, hands the published corpus to the Claude Messages API as <em>document</em> blocks, and returns the answer together with the verbatim passage it was drawn from. CORS is open, so you can call it straight from a browser console.</p>
+
+    <h2>Endpoints</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Endpoint</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>POST /api/ask</td><td>Answers a question and returns the quotations the answer rests on, with ids and publisher links.</td></tr>        <tr><td>GET /api/waitlist</td><td>Returns the number of stored waitlist signups: <code>{"count": n}</code>.</td></tr>        <tr><td>POST /api/waitlist</td><td>Adds an email: <code>{email, lang, source}</code>. A duplicate returns 200; if the honeypot field <code>_gotcha</code> is filled nothing is stored.</td></tr>        <tr><td>GET /data/corpus.json</td><td>The 111 documents the answers come from, including its version and source list.</td></tr>
+      </tbody>
+    </table></div>
+
+        <h2>Request</h2>
+        <pre class="code">curl -X POST https://bedirsavasi.com/api/ask \
+  -H "content-type: application/json" \
+  -d '{"q": "Which verse describes the help given at Badr?", "lang": "en"}'
+    <h2>Request</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Field</th><th>Type</th><th>Required</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>q</td><td>string</td><td>yes</td><td>The question, 1-400 characters. Longer returns <code>bad_question</code>.</td></tr>        <tr><td>lang</td><td>string</td><td>no</td><td><code>tr</code> · <code>en</code> · <code>de</code> · <code>ar</code>; default <code>en</code>. Answers come back in the language of the question; this field picks the language of the interface strings.</td></tr>
+      </tbody>
+    </table></div>
+
+        <h2>Response</h2>
+        <p class="metrics-note">This record is from a real call on 7 October 2026, with <code>provider</code> = <code>claude</code>: production answers are produced by <code>claude-haiku-4-5-20251001</code>. When the endpoint's daily budget is spent or Claude is unreachable, the labelled backup engine answers and <code>provider</code> reads <code>fallback</code>; the interface shows the same label.</p>
+        <pre class="code">{
+  "answer": [
+    {
+      "text": "The verse that mentions help at Badr is Qur'an 8:9, which states: \"[Remember] when you asked help of your Lord, and He answered you, 'Indeed, I will reinforce you with a thousand from the angels, following one another.'\"",
+      "cites": [
+        {
+          "id": "Q8:9",
+          "title": "Qur'an 8:9 (Al-Anfāl)",
+          "url": "https://quran.com/8/9",
+          "quote": "[Remember] when you asked help of your Lord, and He answered you, \"Indeed, I will reinforce you with a thousand from the angels, following one another…"
+        }
+      ]
+    }
+  ],
+  "model": "claude-haiku-4-5-20251001",
+  "provider": "claude",
+  "usage": {
+    "input": 119,
+    "cache_read": 0,
+    "cache_write": 30071,
+    "output": 80
+  },
+  "retrieval": {
+    "mode": "filtered",
+    "documents_sent": 111,
+    "corpus_size": 111,
+    "matched_terms": 3
+  }
+}</pre>
+    <h2>Field meanings</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Field</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>answer[].text</td><td>The answer; factual sentences end with an [n] citation marker.</td></tr>        <tr><td>answer[].cites[]</td><td>The citation: <code>id</code> is the corpus id (Q3:123, B3950, M1763), <code>title</code> names the passage as the publisher numbers it, <code>url</code> points at quran.com or sunnah.com, <code>quote</code> is the verbatim span taken from the document.</td></tr>        <tr><td>provider</td><td><code>claude</code> or <code>fallback</code>. We name the engine that answered rather than claiming credit for Claude. Answers come from <code>claude-haiku-4-5-20251001</code> behind a daily budget on this endpoint.</td></tr>        <tr><td>usage</td><td>input / cache_read / cache_write / output token counts; you can see whether prompt caching hit.</td></tr>        <tr><td>retrieval</td><td><code>documents_sent</code>: documents shipped per request - always the whole collection, because the cached prefix has to stay identical for every question. <code>mode</code>: <code>filtered</code> when distinctive terms narrowed the priority list inside the question (up to 24 passages), <code>full</code> when they did not.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Errors</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Status</th><th>Body</th><th>When</th></tr></thead>
+      <tbody>
+        <tr><td>400</td><td><code>bad_request</code></td><td>The body is not JSON.</td></tr>        <tr><td>400</td><td><code>bad_question</code></td><td>Question empty or longer than 400 characters.</td></tr>        <tr><td>405</td><td><code>method_not_allowed</code></td><td>Any method other than POST.</td></tr>        <tr><td>429</td><td><code>busy</code></td><td>More than 8 requests per IP in 60 seconds, or an Anthropic-side rate limit.</td></tr>        <tr><td>500</td><td><code>not_configured</code></td><td>The endpoint has no API key set.</td></tr>        <tr><td>200</td><td><code>refused</code></td><td>Claude refused to answer; body is empty, status stays 200.</td></tr>        <tr><td>502</td><td><code>upstream</code></td><td>Claude was unreachable and the backup engine could not answer either.</td></tr>
+      </tbody>
+    </table></div>
+
+        <h2>Corpus and coverage</h2>
+        <p class="metrics-note">We state coverage as it is measured; German is thinner than the rest.</p>
+    <h2>Corpus and coverage</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Collection</th><th>Documents</th><th>Languages</th></tr></thead>
+      <tbody>
+        <tr><td>Qur'an - the Badr passages</td><td>41 (Āl ʿImrān 3:12, 3:121-127; Al-Anfāl 8:1-76)</td><td>ar 111/111 · en 111/111 · tr 110/111 · de 41/111</td></tr>        <tr><td>Sahih al-Bukhari (Badr / ghazawa chapters)</td><td>68</td><td>numbered as on sunnah.com</td></tr>        <tr><td>Sahih Muslim</td><td>2</td><td>numbered as on sunnah.com</td></tr>        <tr><td>Version</td><td>2026-10-07</td><td>the corpus carries a <code>version</code> field</td></tr>
+      </tbody>
+    </table></div>
+
+        <p class="metrics-note">Sources: Tanzil (Uthmani) plus the Diyanet Vakfı, Saheeh International and Bubenheim &amp; Elyas renderings through api.alquran.cloud; hadith via fawazahmed0/hadith-api, numbered to match sunnah.com. Licensing and translation-usage notes are in <code>DATA_NOTES.md</code>.</p>
+        <h2>Try it</h2>
+        <p class="metrics-note">Straight from the browser; CORS is open.</p>
+        <form class="demo-form" id="askbox"><input type="text" value="Which verse describes the help given at Badr?" aria-label="q" /><button class="btn-solid" type="button" onclick="this.form.dispatchEvent(new Event('submit',{cancelable:true}))">Send</button></form>
+        <pre class="code" id="askraw">HTTP </pre>
+        <h2>Limits</h2>
+        <ul class="api-list"><li>Answers are produced by <b>claude-haiku-4-5-20251001</b>: with prompt caching a cold question writes a 30-65k token cache and a warm one pays about 130 fresh input tokens (measured). The endpoint has a daily token budget; past it we stop calling Claude, the backup engine answers, and <code>provider</code> says so.</li><li>This is a demo endpoint: no authentication, the rate limit is per IP, and there is no SLA.</li><li>The collection is scoped to the Battle of Badr. On a question it does not cover, it says so instead of inventing an answer.</li><li>The verbatim span is in <code>quote</code>, but a quotation supporting the wrong claim is a different problem: we wrote the measurement for that (<code>eval/</code>) and have not run it at scale yet.</li></ul>
+        <p class="metrics-note">The code and the corpus behind this page: github.com/mevlanayalcin/bedir-ai</p>
+      </div>
+    </section>
+  </main>
+  <footer class="section"><div class="container"><p class="footer-legal">Bedir AI · Ankara, Türkiye · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a></p></div></footer>
+  <script src="/assets/nav.js" defer></script>
+<script>
+(() => {
+  const b = document.getElementById("askbox"); if (!b) return;
+  const out = document.getElementById("askraw");
+  b.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const q = b.querySelector("input").value.trim(); if (!q) return;
+    out.textContent = "POST /api/ask ...";
+    const t0 = performance.now();
+    try {
+      const r = await fetch("/api/ask", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ q, lang: "en" }) });
+      const j = await r.json();
+      out.textContent = "HTTP " + r.status + "  " + Math.round(performance.now() - t0) + " ms\n\n" + JSON.stringify(j, null, 2);
+    } catch (err) { out.textContent = "network error: " + err; }
+  });
+})();
+</script>
+</body>
+</html>

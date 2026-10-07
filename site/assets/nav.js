@@ -7,6 +7,7 @@
   if (!btn || !links) return;
   const setOpen = (open) => {
     links.classList.toggle("active", open);
+    document.body.classList.toggle("nav-open", open);
     btn.setAttribute("aria-expanded", String(open));
   };
   btn.setAttribute("aria-expanded", "false");

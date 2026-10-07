@@ -28,9 +28,9 @@
 <body class="home">
   <nav class="navbar glass">
     <div class="container nav-content">
-      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+      <a class="brand" href="/"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
       <div class="nav-links" id="navLinks">
-        <a href="/" class="btn-ghost active-link">Bedir AI</a>
         <a href="#product" class="btn-ghost">Ürün</a>
         <a href="#how" class="btn-ghost">Nasıl çalışır</a>
         <a href="#corpus" class="btn-ghost">Koleksiyon</a>
@@ -51,14 +51,14 @@
     <section class="hero-section product-hero" id="product">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="badge">KAYNAK-GROUNDED YANIT · CLAUDE API</span>
+          <span class="badge">CLAUDE API · ATIFLI YANIT</span>
           <h1 class="hero-title product-headline">Kaynak atıflı yanıtlar:<br><em>Kur'an ve hadis soruları için.</em></h1>
           <p class="hero-sub">Kurgulanmış bir koleksiyon üzerinde çalışan soru-cevap asistanı ve HTTP API'si. Her yanıt, dayandığı âyeti veya hadisi yayıncı bağlantısıyla açar. Denetleyebilirsin; değiştiremezsin.</p>
           <div class="cta-row">
             <a class="btn-solid" href="#recorded">Örnek kaydı gör</a>
-            <a class="btn-outline" href="#institutions">Geliştiriciler için API</a>
+            <a class="btn-outline" href="/api/">API dokümantasyonu</a>
           </div>
-          <ul class="proof-strip"><li>111 kaynak metnin tamamı tek JSON dosyasında</li><li>4 dil: TR · EN · DE · AR</li><li>Sunucu taraflı atıflar (Claude API)</li></ul>
+          <ul class="proof-strip"><li>41 âyet + 70 hadis: Bedir koleksiyonu</li><li>Kapsama: ar · en · tr tam, de 41/111</li></ul>
         </div>
         <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
@@ -73,6 +73,8 @@
               <p class="preview-question">Bedir'de yardım hangi âyette geçiyor?</p>
               <p class="recorded-answer">Kur'an 3:123, Bedir'de yardım olunduğunu söylüyor. <sup>[1]</sup></p>
               <p class="demo-source demo-source-example"><b>[1]</b> <a href="https://quran.com/3/123" target="_blank" rel="noopener">Kur'an 3:123 (Âl-i İmrân)</a> <span class="src-publisher">· Tanzil · Diyanet Vakfı meali</span></p>
+              <blockquote class="demo-quote">Andolsun, sizler güçsüz olduğunuz halde Allah, Bedir'de de size yardım etmişti. Öyle ise, Allah'tan sakının ki O'na şükretmiş olasınız.</blockquote>
+              <p class="demo-example-link"><a href="/api/">API isteginin ve yanıtının tamamı</a></p>
             </div>
           <p class="demo-note">Bedir AI bir bilgi aracıdır, fetva vermez. Bağlayıcı dinî hüküm için yetkin bir âlime danışın.</p>
         </div>

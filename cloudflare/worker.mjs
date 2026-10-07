@@ -6,9 +6,19 @@ import corpus from "../data/corpus.json";
 
 // The SDK's beta.messages namespace posts to the same REST path plus an anthropic-beta header.
 const API = "https://api.anthropic.com/v1/messages";
-const MODEL = "claude-opus-5-5";
+const MODEL_UCUZ = "claude-haiku-4-5-20251001";
+// fallbacks and output_config are accepted by the Opus/Sonnet 5 family only; sending them to
+// Haiku 4.5 is a 400. The payload is therefore shaped per model instead of one body for all.
+
 const LANGS = ["tr", "en", "de", "ar"];
 const MAX_QUESTION = 400;
+// A public demo on a $5 balance needs a ceiling. Daily Claude tokens are counted in KV; past
+// the cap the endpoint stops spending and answers on the labelled backup engine instead.
+// Cost proxy rather than a token count: a cache read costs about a tenth of a fresh input token
+// and a cache write a quarter more, so counting raw tokens would have cut the demo off after
+// ~40 warm questions that cost fractions of a cent together.
+const BIRIM = { taze: 1_000_000, yazma: 1_250_000, okuma: 100_000, cikti: 5_000_000 };
+const BUTCE_TOKEN = Number(globalThis.__BEDIR_BUTCE__ || 1_500_000); // about $1.50 a day on Haiku
 const TOP_K = Number(globalThis.__BEDIR_TOP_K__ || 24); // documents kept after retrieval
 const WINDOW_SECONDS = 60;
 const WINDOW_LIMIT = 8; // mirrors the old Netlify function's rateLimit: 8 requests / 60s per IP
@@ -207,6 +217,30 @@ async function fallbackAnswer(env, question, lang, keep) {
   }
 }
 
+
+// Models that accept the server-side fallback and effort extensions.
+function genisletme_govdesi(model) {
+  if (/(opus|sonnet)-5/.test(model)) return { fallbacks: "default", output_config: { effort: "low" } };
+  return {};
+}
+
+async function gunlukHarcama(env) {
+  if (!env.WAITLIST) return 0;
+  const bugun = new Date().toISOString().slice(0, 10);
+  return Number((await env.WAITLIST.get("claude:tokens:" + bugun)) || 0);
+}
+
+async function harcamayiEkle(env, kullanim) {
+  if (!env.WAITLIST) return;
+  const bugun = new Date().toISOString().slice(0, 10);
+  const anahtar = "claude:tokens:" + bugun;
+  const u = kullanim || {};
+  const birim = (Number(u.input_tokens || 0) * BIRIM.taze + Number(u.cache_creation_input_tokens || 0) * BIRIM.yazma
+    + Number(u.cache_read_input_tokens || 0) * BIRIM.okuma + Number(u.output_tokens || 0) * BIRIM.cikti) / 1_000_000;
+  const toplam = Number((await env.WAITLIST.get(anahtar)) || 0) + birim;
+  await env.WAITLIST.put(anahtar, String(toplam));
+}
+
 // ---------------------------------------------------------------- throttling
 
 async function allowed(env, ip) {
@@ -288,8 +322,23 @@ export default {
     if (!(await allowed(env, ip))) return json({ error: "busy" }, 429);
     if (!env.ANTHROPIC_API_KEY) return json({ error: "not_configured" }, 500);
 
+    // Budget first: over the daily cap we do not spend Claude tokens at all, and the backup
+    // engine answers with the same citations, labelled as such in the interface.
+    const bittiMi = (await gunlukHarcama(env)) >= BUTCE_TOKEN;
+    if (bittiMi) {
+      const fb = await fallbackAnswer(env, q, lang, keep);
+      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms }, budget: { exhausted: true, cap: BUTCE_TOKEN } }, 200)
+        : json({ error: "upstream" }, 502);
+    }
+
     const { keep, mode, terms } = retrieve(q, lang);
-    const docs = toDocuments(keep, lang);
+    // Retrieval used to select which documents were sent, and that defeated prompt caching
+    // outright: a different document set is a different prefix, so every question wrote a fresh
+    // ~20k token cache and paid the write price (measured: cache_read=0, cache_write=20143).
+    // The prefix is now the whole collection in corpus order, identical for every request, and
+    // retrieval only orders the hint inside the question. Warm questions pay cache reads instead.
+    const docs = toDocuments(corpus.items.map((_, i) => i), lang);
+    const isaret = keep.slice(0, TOP_K).map((i) => corpus.items[i].id).join(", ");
     const payload = docs.map(({ _idx, ...rest }) => rest);
 
     let upstream;
@@ -303,12 +352,11 @@ export default {
           "anthropic-beta": "server-side-fallback-2026-07-01",
         },
         body: JSON.stringify({
-          model: MODEL,
-          max_tokens: 4000,
-          fallbacks: "default",
-          output_config: { effort: "low" },
+          model: env.ANSWER_MODEL || MODEL_UCUZ,
+          max_tokens: 700,
+          ...genisletme_govdesi(env.ANSWER_MODEL || MODEL_UCUZ),
           system: SYSTEM,
-          messages: [{ role: "user", content: [...payload, { type: "text", text: q }] }],
+          messages: [{ role: "user", content: [...payload, { type: "text", text: `Likely passages: ${isaret}.\n\nQuestion: ${q}` }] }],
         }),
       });
     } catch (e) {
@@ -339,6 +387,7 @@ export default {
         }),
       }));
 
+    await harcamayiEkle(env, response.usage);
     return json({
       answer,
       model: response.model,

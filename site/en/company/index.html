@@ -19,7 +19,7 @@
   {"@context":"https://schema.org","@type":"Organization",
    "@id":"https://bedirsavasi.com/#org","name":"Bedir AI","url":"https://bedirsavasi.com/",
    "email":"merhaba@bedirsavasi.com","logo":"https://bedirsavasi.com/favicon.png",
-   "foundingDate":"2026-03","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"https://www.linkedin.com/in/mevlanayalcin/"},
+   "foundingDate":"2026-03-08","founder":{"@type":"Person","name":"Mevlana Yalçın","url":"https://www.linkedin.com/in/mevlanayalcin/"},
    "sameAs":["https://github.com/mevlanayalcin/bedir-ai","https://www.linkedin.com/in/mevlanayalcin/"],
    "description":"Cited answers over Qur'an and hadith sources, built on Anthropic's Claude API.",
    "address":{"@type":"PostalAddress","addressLocality":"Ankara","addressCountry":"TR"}}
@@ -28,8 +28,9 @@
 <body>
   <nav class="navbar glass">
     <div class="container nav-content">
-      <div class="nav-links">
-        <a href="/en/" class="btn-ghost">Bedir AI</a>
+      <a class="brand" href="/en/"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
+      <div class="nav-links" id="navLinks">
         <a href="/en/#ask" class="btn-ghost">Ask a Question</a>
         <a href="/en/company/" class="btn-ghost active-link">Company</a>
         <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">Contact</a>
@@ -113,5 +114,6 @@
         <a href="https://github.com/mevlanayalcin/bedir-ai">GitHub</a> · <a href="/data/corpus.json">Corpus</a></p>
     </div>
   </footer>
+  <script src="/assets/nav.js" defer></script>
 </body>
 </html>

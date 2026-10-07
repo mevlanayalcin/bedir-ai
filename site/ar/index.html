@@ -28,9 +28,9 @@
 <body class="home">
   <nav class="navbar glass">
     <div class="container nav-content">
-      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu">&#9776;</button>
+      <a class="brand" href="/ar/"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
       <div class="nav-links" id="navLinks">
-        <a href="/ar/" class="btn-ghost active-link">Bedir AI</a>
         <a href="#product" class="btn-ghost">المنتج</a>
         <a href="#how" class="btn-ghost">كيف يعمل</a>
         <a href="#corpus" class="btn-ghost">المجموعة</a>
@@ -51,14 +51,14 @@
     <section class="hero-section product-hero" id="product">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="badge">إجابات مستندة إلى المصدر · Claude API</span>
+          <span class="badge">Claude API · اقتباس</span>
           <h1 class="hero-title product-headline">إجابات موثَّقة بالمصدر<br><em>لأسئلة القرآن والحديث.</em></h1>
           <p class="hero-sub">مساعد أسئلة وأجوبة وواجهة HTTP فوق مجموعة مختارة. كل جواب يفتح الآية أو الحديث الذي استند إليه مع رابط الناشر. يمكنك المراجعة، لا التحرير.</p>
           <div class="cta-row">
             <a class="btn-solid" href="#recorded">مثال مسجَّل</a>
-            <a class="btn-outline" href="#institutions">واجهة برمجية للمدارس والمنصات</a>
+            <a class="btn-outline" href="/en/api/">وثائق API</a>
           </div>
-          <ul class="proof-strip"><li>١١١ نصًّا في ملف JSON واحد</li><li>٤ لغات: TR · EN · DE · AR</li><li>اقتباسات من جهة الخادم (Claude API)</li></ul>
+          <ul class="proof-strip"><li>٤١ آية + ٧٠ حديثًا: مجموعة بدر</li><li>التغطية: ar · en · tr كاملة، de ٤١/١١١</li></ul>
         </div>
         <div class="demo-box glass hero-demo" id="ask">
           <form id="demo-form" class="demo-form">
@@ -73,6 +73,8 @@
               <p class="preview-question">أي آية تتحدث عن النصر في بدر؟</p>
               <p class="recorded-answer">القرآن 3:123 يذكر أن الله نصر المؤمنين في بدر. <sup>[1]</sup></p>
               <p class="demo-source demo-source-example"><b>[1]</b> <a href="https://quran.com/3/123" target="_blank" rel="noopener">القرآن 3:123 (آل عمران)</a> <span class="src-publisher">· تنزيل · السعيد الدولية</span></p>
+              <blockquote class="demo-quote">وَلَقَدْ نَصَرَكُمُ ٱللَّهُ بِبَدْرٍۢ وَأَنتُمْ أَذِلَّةٌۭ ۖ فَٱتَّقُوا۟ ٱللَّهَ لَعَلَّكُمْ تَشْكُرُونَ</blockquote>
+              <p class="demo-example-link"><a href="/en/api/">انظر طلب API واستجابته</a></p>
             </div>
           <p class="demo-note">Bedir AI أداة معرفية ولا يُصدر فتاوى. للحكم الشرعي المُلزِم استشر عالمًا مؤهَّلًا.</p>
         </div>

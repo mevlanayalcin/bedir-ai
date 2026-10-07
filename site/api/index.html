@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bedir AI API dokümantasyonu</title>
+  <meta name="description" content="Yanıt uç noktası, istek ve yanet biçimi, hatalar, hız sınırı ve yayınlanmış korpusun kapsama oranları." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bedir AI API dokümantasyonu" />
+  <meta property="og:description" content="Yanıt uç noktası, istek ve yanet biçimi, hatalar, hız sınırı ve yayınlanmış korpusun kapsama oranları." />
+  <link rel="canonical" href="https://bedirsavasi.com/%sapi/"
+  <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="/assets/style-DgdjaNys.css" />
+  <link rel="stylesheet" href="/assets/product.css" />
+</head>
+<body class="api-doc">
+  <nav class="navbar glass">
+    <div class="container nav-content">
+      <a class="brand" href="/"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
+      <div class="nav-links" id="navLinks">
+        <a href="/#product" class="btn-ghost">Ürün</a>
+        <a href="/#corpus" class="btn-ghost">Sözlük</a>
+        <a href="/company/" class="btn-ghost">Kurumsal</a>
+        <a href="/api/" class="btn-ghost">API</a>
+      </div>
+      <div class="lang-switcher"><a href="/api/" class="lang-btn active-link">TR</a><a href="/en/api/" class="lang-btn">EN</a></div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <span class="badge">API DOC · v1 · NO AUTH</span>
+        <h1 class="hero-title">API dokümantasyonu</h1>
+        <p class="lead">Bedir AI'nın demo uç noktası: bir soru alır, yayınlanmış korpusumuzdan belgeleri Claude Messages API'sine <em>document</em> olarak verir, sunucu taraflı atıfla dönen yanıtı ve alıntılandığı metni yayınlar. Açık CORS ile çalışır, yani tarayıcı konsolundan doğrudan deneyebilirsin.</p>
+
+    <h2>Uç noktalar</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Uç nokta</th><th>Ne yapar</th></tr></thead>
+      <tbody>
+        <tr><td>POST /api/ask</td><td>Soruyu yanıtlar; yanıtın dayandığı alıntıları, kimliği ve yayıncı bağlantısını döner.</td></tr>        <tr><td>GET /api/waitlist</td><td>Bekleme listesindeki kayıt sayısını döner: <code>{"count": n}</code>.</td></tr>        <tr><td>POST /api/waitlist</td><td>E-posta ekler: <code>{email, lang, source}</code>. Mükerrer kayıt 200 döner, honeypot alanı <code>_gotcha</code> doluySA kaydedilmez.</td></tr>        <tr><td>GET /data/corpus.json</td><td>Yanıtların türediği 111 belge; sürüm numarası ve kaynak listesini de içerir.</td></tr>
+      </tbody>
+    </table></div>
+
+        <h2>İstek</h2>
+        <pre class="code">curl -X POST https://bedirsavasi.com/api/ask \
+  -H "content-type: application/json" \
+  -d '{"q": "Bedir'de yardım hangi ayette geçiyor?", "lang": "tr"}'
+    <h2>İstek</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Alan</th><th>Tür</th><th>Zorunlu</th><th>Açıklama</th></tr></thead>
+      <tbody>
+        <tr><td>q</td><td>string</td><td>evet</td><td>Soru; 1-400 karakter. Üstü <code>bad_question</code>.</td></tr>        <tr><td>lang</td><td>string</td><td>hayır</td><td><code>tr</code> · <code>en</code> · <code>de</code> · <code>ar</code>; varsayılan <code>en</code>. Yanıt sorunun dilinde gelir, bu alan arayüz dilini seçer.</td></tr>
+      </tbody>
+    </table></div>
+
+        <h2>Yanıt</h2>
+        <p class="metrics-note">Bu kayıt 7 Ekim 2026'da gerçek bir çağrıdan alındı ve <code>provider</code> = <code>claude</code>: yanıtlar üretimde <code>claude-haiku-4-5-20251001</code> ile üretiliyor. Uç noktanın gün bütçesi bittiğinde ya da Claude ulaşılamazda etiketli yedek motor yanıtlar ve <code>provider</code> <code>fallback</code> der; arayüz aynı etiketi gösterir.</p>
+        <pre class="code">{
+  "answer": [
+    {
+      "text": "The verse that mentions help at Badr is Qur'an 8:9, which states: \"[Remember] when you asked help of your Lord, and He answered you, 'Indeed, I will reinforce you with a thousand from the angels, following one another.'\"",
+      "cites": [
+        {
+          "id": "Q8:9",
+          "title": "Qur'an 8:9 (Al-Anfāl)",
+          "url": "https://quran.com/8/9",
+          "quote": "[Remember] when you asked help of your Lord, and He answered you, \"Indeed, I will reinforce you with a thousand from the angels, following one another…"
+        }
+      ]
+    }
+  ],
+  "model": "claude-haiku-4-5-20251001",
+  "provider": "claude",
+  "usage": {
+    "input": 119,
+    "cache_read": 0,
+    "cache_write": 30071,
+    "output": 80
+  },
+  "retrieval": {
+    "mode": "filtered",
+    "documents_sent": 111,
+    "corpus_size": 111,
+    "matched_terms": 3
+  }
+}</pre>
+    <h2>Alanların anlamı</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Alan</th><th>Anlamı</th></tr></thead>
+      <tbody>
+        <tr><td>answer[].text</td><td>Yanıtın metni; cümlelerin sonunda [n] atıf işaretleri bulunur.</td></tr>        <tr><td>answer[].cites[]</td><td>Atıf: <code>id</code> korpus kimliği (Q3:123, B3950, M1763), <code>title</code> yayıncı numaralandırmasıyla başlık, <code>url</code> quran.com veya sunnah.com bağlantısı, <code>quote</code> belgeye birebir ait alıntı parçası.</td></tr>        <tr><td>provider</td><td><code>claude</code> veya <code>fallback</code>. Hangi motorun cevap verdiğini arayüz de söyler; yanıtı Claude'a atfetmeyiz. Yanıtlar <code>claude-haiku-4-5-20251001</code> ile, uç noktada günlük bütçe sınırlı üretilir.</td></tr>        <tr><td>usage</td><td>input / cache_read / cache_write / output token sayıları; cache çalışıp çalışmadığını buradan görebilirsin.</td></tr>        <tr><td>retrieval</td><td><code>documents_sent</code>: istek başına gönderilen belge sayısı - her zaman tüm koleksiyon, çünkü önbellek öncü kısmının her soruda aynı kalması gerekiyor. <code>mode</code>: <code>filtered</code> ise sorudaki ayırt edici terimler öncelik listesini daralttı (en fazla 24 pasaj), <code>full</code> ise daraltacak terim bulunamadı.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Hatalar</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Durum</th><th>Gövde</th><th>Ne zaman</th></tr></thead>
+      <tbody>
+        <tr><td>400</td><td><code>bad_request</code></td><td>Gövde JSON değil.</td></tr>        <tr><td>400</td><td><code>bad_question</code></td><td>Soru boş veya 400 karakterden uzun.</td></tr>        <tr><td>405</td><td><code>method_not_allowed</code></td><td>POST dışında metod.</td></tr>        <tr><td>429</td><td><code>busy</code></td><td>IP başına 60 saniyede 8 istekten fazla; veya Anthropic tarafında oran sınırı.</td></tr>        <tr><td>500</td><td><code>not_configured</code></td><td>Uç noktanın API anahtarı yok.</td></tr>        <tr><td>200</td><td><code>refused</code></td><td>Claude yanıt vermeyi reddetti; gövde boş, durum 200.</td></tr>        <tr><td>502</td><td><code>upstream</code></td><td>Claude erişilemedi ve yedek motor da yanıtlayamadı.</td></tr>
+      </tbody>
+    </table></div>
+
+        <h2>Korpus ve kapsama</h2>
+        <p class="metrics-note">Kapsamı oldugu gibi yaziyoruz; Almanca diğerlerinden az.</p>
+    <h2>Korpus ve kapsama</h2>
+    <div class="table-wrap"><table class="spec">
+      <thead><tr><th>Koleksiyon</th><th>Belge</th><th>Diller</th></tr></thead>
+      <tbody>
+        <tr><td>Kur'an - Bedir pasajları</td><td>41 (Âl-i İmrân 3:12, 3:121-127; Enfâl 8:1-76)</td><td>ar 111/111 · en 111/111 · tr 110/111 · de 41/111</td></tr>        <tr><td>Buhârî (Bedir/ gazve babları)</td><td>68</td><td>sunnah.com numaralandırması</td></tr>        <tr><td>Müslim</td><td>2</td><td>sunnah.com numaralandırması</td></tr>        <tr><td>Sürüm</td><td>2026-10-07</td><td>korpusun içinde <code>version</code> alanı var</td></tr>
+      </tbody>
+    </table></div>
+
+        <p class="metrics-note">Kaynaklar: Tanzil (Uthmani) ve api.alquran.cloud üzerinden Diyanet Vakfı / Saheeh International / Bubenheim &amp; Elyas mealleri; hadisler fawazahmed0/hadith-api üzerinden, numaralandırma sunnah.com ile eşleşir. Ticari kullanım ve meal telifleri <code>DATA_NOTES.md</code> dosyasında tartışıldı.</p>
+        <h2>Dene</h2>
+        <p class="metrics-note">Tarayıcıdan doğrudan; CORS açık.</p>
+        <form class="demo-form" id="askbox"><input type="text" value="Bedir'de yardım hangi ayette geçiyor?" aria-label="q" /><button class="btn-solid" type="button" onclick="this.form.dispatchEvent(new Event('submit',{cancelable:true}))">Gönder</button></form>
+        <pre class="code" id="askraw">HTTP </pre>
+        <h2>Sınırlar</h2>
+        <ul class="api-list"><li>Yanıtlar <b>claude-haiku-4-5-20251001</b> ile üretilir: prompt cache sayesinde soğuk soru 30-65 bin token yazar, sıcak soru yaklaşık 130 taze token öder (ölçüldü). Uç noktanın günlük bir token bütçesi var; aştığında Claude'a hiç gitmez, yedek motor yanıtlar ve <code>provider</code> bunu söyler.</li><li>Bu bir demo uç noktasıdır: kimlik doğrulama yok, hız sınırı IP başınadır, SLO yoktur.</li><li>Koleksiyon Bedir Savaşı ile sınırlıdır; kapsamadığı bir soru sorulduğunda uydurmak yerine kapsamadığını söyler.</li><li>Alıntılandığında birebir alıntı <code>quote</code> alanındadır; ama alıntının doğruyu desteklemesi ayrı bir iştir - bu korpusla ölçümü <code>eval/</code> klasöründe yazdık ama henüz koşmadık.</li></ul>
+        <p class="metrics-note">Bu sayfanın kodu ve korpusu: github.com/mevlanayalcin/bedir-ai</p>
+      </div>
+    </section>
+  </main>
+  <footer class="section"><div class="container"><p class="footer-legal">Bedir AI · Ankara, Türkiye · 2026 · <a href="mailto:merhaba@bedirsavasi.com">merhaba@bedirsavasi.com</a></p></div></footer>
+  <script src="/assets/nav.js" defer></script>
+<script>
+(() => {
+  const b = document.getElementById("askbox"); if (!b) return;
+  const out = document.getElementById("askraw");
+  b.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const q = b.querySelector("input").value.trim(); if (!q) return;
+    out.textContent = "POST /api/ask ...";
+    const t0 = performance.now();
+    try {
+      const r = await fetch("/api/ask", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ q, lang: "tr" }) });
+      const j = await r.json();
+      out.textContent = "HTTP " + r.status + "  " + Math.round(performance.now() - t0) + " ms\n\n" + JSON.stringify(j, null, 2);
+    } catch (err) { out.textContent = "network error: " + err; }
+  });
+})();
+</script>
+</body>
+</html>
