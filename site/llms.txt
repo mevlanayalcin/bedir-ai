@@ -1,0 +1,46 @@
+# Bedir AI
+
+> Source-cited question answering over Qur'an and hadith texts, plus an HTTP API.
+> Built on Anthropic's Claude Messages API: the corpus is passed as document blocks with
+> server-side citations enabled, so every answer carries the verbatim passage it came from.
+
+Operator: Mevlana Yalçın (founder), Ankara, Türkiye · merhaba@bedirsavasi.com
+Started: March 2026 (domain registered 2026-03-08, Verisign RDAP) · funding: bootstrapped, no outside round
+Status: early access, one person, no customers claimed
+
+## Product
+
+- [Turkish](https://bedirsavasi.com/) · [English](https://bedirsavasi.com/en/) · [German](https://bedirsavasi.com/de/) · [Arabic](https://bedirsavasi.com/ar/)
+- [Company record](https://bedirsavasi.com/en/company/) — operator, started date, verification links
+- [API documentation](https://bedirsavasi.com/en/api/) — endpoint, response shape, errors, rate limit
+
+## API
+
+    POST https://bedirsavasi.com/api/ask
+    {"q": "Which verse describes the help given at Badr?", "lang": "en"}
+
+Response: `answer[].text` with `[n]` markers, `answer[].cites[]` carrying `id`, `title`,
+`url` and the verbatim `quote`; `provider` names the engine that answered; `usage` and
+`retrieval` are returned. Rate limit: 8 requests per 60 seconds per IP. No auth, no SLA.
+Answers are produced by `claude-haiku-4-5-20251001`; if the daily budget is exhausted the
+endpoint falls back to a labelled non-Claude engine and says so in `provider`.
+
+## Source data
+
+- [Published corpus](https://bedirsavasi.com/data/corpus.json) — 111 documents, version 2026-10-07
+- Scope: the Battle of Badr. Qur'an: Āl ʿImrān 3:12, 3:121-127 and Al-Anfāl 8:1-76 (41 passages);
+  hadith: 68 Sahih al-Bukhari + 2 Sahih Muslim, numbered as on sunnah.com.
+- Language coverage, measured: Arabic 111/111, English 111/111, Turkish 110/111, German 41/111.
+- Sources: Tanzil (Uthmani) and api.alquran.cloud renderings (Diyanet Vakfı, Saheeh International,
+  Bubenheim & Elyas); hadith via fawazahmed0/hadith-api. Licensing notes: `DATA_NOTES.md`.
+
+## Code
+
+- [github.com/mevlanayalcin/bedir-ai](https://github.com/mevlanayalcin/bedir-ai) — Worker source, corpus,
+  build scripts, and a citation-fidelity evaluation harness (written, not yet run at scale).
+
+## Claims we do not make
+
+No user count, no revenue, no funding round, no institution pilot, and no accuracy benchmark
+has been run yet. The corpus is scoped to one event; questions outside it should be refused,
+and the refusal behaviour is what the evaluation measures.

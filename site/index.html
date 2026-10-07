@@ -31,12 +31,10 @@
       <a class="brand" href="/"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
       <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
       <div class="nav-links" id="navLinks">
-        <a href="#product" class="btn-ghost">Ürün</a>
-        <a href="#how" class="btn-ghost">Nasıl çalışır</a>
+        <a href="#ask" class="btn-ghost">Soru sor</a>
         <a href="#corpus" class="btn-ghost">Koleksiyon</a>
-        <a href="#institutions" class="btn-ghost">Kurumsal</a>
+        <a href="/api/" class="btn-ghost">API dokümanı</a>
         <a href="/company/" class="btn-ghost">Kurumsal bilgi</a>
-        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">İletişim</a>
       </div>
       <div class="lang-switcher">
         <a href="/" class="lang-btn active-link">TR</a>
@@ -68,6 +66,7 @@
           <div class="demo-examples"><button type="button">Bedir'de yardım hangi ayette geçiyor?</button><button type="button">Bedir'e kaç kişiyle gidildi?</button><button type="button">Bedir esirlerine nasıl muamele edildi?</button></div>
           <p class="demo-disclosure">Bir kişiyle değil, yapay zekâ asistanıyla konuşuyorsunuz. Yanıtlar atıf gösterilen kaynaklardan üretilir ve hata içerebilir.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <p class="demo-evidence"><span>POST /api/ask</span><span>model claude-haiku-4-5-20251001</span><span>provider claude</span></p>
             <div class="demo-answer demo-example-answer" id="demo-example">
               <span class="demo-example-label">KAYDEDİLMİŞ ÖRNEK</span>
               <p class="preview-question">Bedir'de yardım hangi âyette geçiyor?</p>

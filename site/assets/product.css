@@ -207,3 +207,21 @@ pre.code { background: #0a0908; border: 1px solid rgba(255,255,255,.11); border-
   .lang-btn { min-height: 36px; }
   .demo-disclosure { font-size: .84rem; }
 }
+
+/* Round 3: header touched both viewport edges, the API link was default blue on
+   dark, the quoted passage was centred and italic, and the evidence sat below a
+   stack of chips and disclaimers. */
+.nav-content { padding-inline: clamp(14px, 4vw, 44px); }
+.demo-example-link a, .demo-source-example a, .api-list a, table.spec a { color: #f2c96b; text-decoration: underline; text-underline-offset: 3px; }
+.demo-example-link a:hover { color: #ffe6b0; }
+.demo-example-answer { order: -1; }
+.hero-demo .demo-example-answer { border-top: 0; margin-top: 0; padding-top: 0; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
+.demo-evidence { display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 0 0 10px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .68rem; letter-spacing: .02em; color: #a99b83; }
+.demo-evidence span { border: 1px solid rgba(255, 255, 255, .12); border-radius: 4px; padding: 2px 6px; }
+.hero-demo, .hero-demo .preview-question, .hero-demo .recorded-answer, .hero-demo .demo-source-example, .hero-demo .demo-quote, .hero-demo .demo-example-label, .hero-demo .demo-example-link { text-align: start; }
+.demo-quote { font-style: normal; }
+@media (max-width: 800px) {
+  .product-hero { padding-top: 5.2rem; }
+  .proof-strip { flex-direction: column; gap: 3px; }
+  .proof-strip li + li::before { content: none; margin: 0; }
+}

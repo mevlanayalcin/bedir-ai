@@ -31,12 +31,10 @@
       <a class="brand" href="/en/"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
       <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
       <div class="nav-links" id="navLinks">
-        <a href="#product" class="btn-ghost">Product</a>
-        <a href="#how" class="btn-ghost">How it works</a>
+        <a href="#ask" class="btn-ghost">Ask</a>
         <a href="#corpus" class="btn-ghost">Corpus</a>
-        <a href="#institutions" class="btn-ghost">For institutions</a>
+        <a href="/en/api/" class="btn-ghost">API docs</a>
         <a href="/en/company/" class="btn-ghost">Company</a>
-        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">Contact</a>
       </div>
       <div class="lang-switcher">
         <a href="/" class="lang-btn">TR</a>
@@ -68,6 +66,7 @@
           <div class="demo-examples"><button type="button">How does the Qur'an describe the help at Badr?</button><button type="button">How many Muslims fought at Badr?</button><button type="button">What happened to Abu Jahl?</button></div>
           <p class="demo-disclosure">You are talking to an AI assistant, not a person. Answers are generated from the cited sources and may contain errors.</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <p class="demo-evidence"><span>POST /api/ask</span><span>model claude-haiku-4-5-20251001</span><span>provider claude</span></p>
             <div class="demo-answer demo-example-answer" id="demo-example">
               <span class="demo-example-label">RECORDED EXAMPLE</span>
               <p class="preview-question">Which verse describes the help given at Badr?</p>

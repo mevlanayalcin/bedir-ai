@@ -26,7 +26,7 @@ T = {
     "tr": dict(
         locale="tr", dir_="ltr", title="Bedir AI • Kaynağını Gösteren Yapay Zekâ İslami Bilgi Asistanı",
         desc="Kur'an ve hadis sorularına, her cümlenin dayandığı âyeti veya hadisi ve kaynağa bağlantıyı göstererek yanıt veren yapay zekâ asistanı. Anthropic Claude API üzerinde kurulu.",
-        nav=dict(product="Ürün", how="Nasıl çalışır", corpus="Koleksiyon", api="Kurumsal", company="Kurumsal bilgi", contact="İletişim"),
+        nav=dict(ask="Soru sor", docs="API dokümanı", product="Ürün", how="Nasıl çalışır", corpus="Koleksiyon", api="Kurumsal", company="Kurumsal bilgi", contact="İletişim"),
         hero=dict(
             eyebrow="CLAUDE API · ATIFLI YANIT", h1a="Kaynak atıflı yanıtlar:", h1b="Kur'an ve hadis soruları için.",
             sub="Kurgulanmış bir koleksiyon üzerinde çalışan soru-cevap asistanı ve HTTP API'si. Her yanıt, dayandığı âyeti veya hadisi yayıncı bağlantısıyla açar. Denetleyebilirsin; değiştiremezsin.",
@@ -77,7 +77,7 @@ T = {
     "en": dict(
         locale="en", dir_="ltr", title="Bedir AI • The AI Islamic Knowledge Assistant That Shows Its Sources",
         desc="An AI assistant for Qur'an and hadith questions that shows the verse or hadith behind every answer, with a link to the publisher. Built on Anthropic's Claude API.",
-        nav=dict(product="Product", how="How it works", corpus="Corpus", api="For institutions", company="Company", contact="Contact"),
+        nav=dict(ask="Ask", docs="API docs", product="Product", how="How it works", corpus="Corpus", api="For institutions", company="Company", contact="Contact"),
         hero=dict(
             eyebrow="CLAUDE API · CITED ANSWERS", h1a="Cited answers for", h1b="Qur'an and hadith questions.",
             sub="A question-answering assistant and an HTTP API over a curated collection. Every answer opens the exact verse or hadith it rests on, with a link to the publisher. You can audit it; you cannot edit it.",
@@ -128,7 +128,7 @@ T = {
     "de": dict(
         locale="de", dir_="ltr", title="Bedir AI • KI-Assistent für islamische Quellen mit Belegen",
         desc="Ein KI-Assistent für Fragen zu Koran und Hadith, der zu jeder Antwort die belegte Stelle und den Link zum Herausgeber zeigt. Aufbau auf der Anthropic-Claude-API.",
-        nav=dict(product="Produkt", how="Funktionsweise", corpus="Korpus", api="Für Institutionen", company="Unternehmen", contact="Kontakt"),
+        nav=dict(ask="Frage", docs="API-Doku", product="Produkt", how="Funktionsweise", corpus="Korpus", api="Für Institutionen", company="Unternehmen", contact="Kontakt"),
         hero=dict(
             eyebrow="CLAUDE-API · ZITATE", h1a="Zitierte Antworten", h1b="auf Koran- und Hadith-Fragen.",
             sub="Ein Assistent und eine HTTP-API über einer kuratierten Sammlung. Jede Antwort öffnet die genaue Stelle samt Verlagslink. Prüfen ja, Editieren nein.",
@@ -179,7 +179,7 @@ T = {
     "ar": dict(
         locale="ar", dir_="rtl", title="Bedir AI • مساعد معرفي بالقرآن والحديث يُظهر مصادره",
         desc="مساعد بالذكاء الاصطناعي لأسئلة القرآن والحديث، يعرض الآية أو الحديث الذي يُبنى عليه الجواب مع رابط إلى الناشر. مبني على Claude API من Anthropic.",
-        nav=dict(product="المنتج", how="كيف يعمل", corpus="المجموعة", api="للمؤسسات", company="عن الشركة", contact="تواصل"),
+        nav=dict(ask="اسأل", docs="وثائق API", product="المنتج", how="كيف يعمل", corpus="المجموعة", api="للمؤسسات", company="عن الشركة", contact="تواصل"),
         hero=dict(
             eyebrow="Claude API · اقتباس", h1a="إجابات موثَّقة بالمصدر", h1b="لأسئلة القرآن والحديث.",
             sub="مساعد أسئلة وأجوبة وواجهة HTTP فوق مجموعة مختارة. كل جواب يفتح الآية أو الحديث الذي استند إليه مع رابط الناشر. يمكنك المراجعة، لا التحرير.",
@@ -258,12 +258,10 @@ TPL = """<!DOCTYPE html>
       <a class="brand" href="{root}"><img src="/favicon.png" alt="" width="22" height="22" />Bedir AI</a>
       <button class="mobile-menu-toggle" id="menuToggle" aria-label="Menu"></button>
       <div class="nav-links" id="navLinks">
-        <a href="#product" class="btn-ghost">{nav_product}</a>
-        <a href="#how" class="btn-ghost">{nav_how}</a>
+        <a href="#ask" class="btn-ghost">{nav_ask}</a>
         <a href="#corpus" class="btn-ghost">{nav_corpus}</a>
-        <a href="#institutions" class="btn-ghost">{nav_api}</a>
+        <a href="{legal_base}api/" class="btn-ghost">{nav_docs}</a>
         <a href="{legal_base}company/" class="btn-ghost">{nav_company}</a>
-        <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">{nav_contact}</a>
       </div>
       <div class="lang-switcher">
         <a href="/" class="lang-btn{tr_active}">TR</a>
@@ -295,6 +293,7 @@ TPL = """<!DOCTYPE html>
           <div class="demo-examples">{chips}</div>
           <p class="demo-disclosure">{disclosure}</p>
           <div id="demo-out" class="demo-out" aria-live="polite"></div>
+            <p class="demo-evidence"><span>POST /api/ask</span><span>model claude-haiku-4-5-20251001</span><span>provider claude</span></p>
             <div class="demo-answer demo-example-answer" id="demo-example">
               <span class="demo-example-label">{ex_label}</span>
               <p class="preview-question">{ex_q}</p>
@@ -486,7 +485,7 @@ def build(lang):
         canonical="https://bedirsavasi.com" + ("/" if lang == "tr" else "/%s/" % lang),
         alternates=alternates, jsonld=jsonld_for(lang, t),
         root=BASE[lang], base=BASE[lang], github=GITHUB,
-        nav_product=t["nav"]["product"], nav_how=t["nav"]["how"], nav_corpus=t["nav"]["corpus"],
+        nav_ask=t["nav"]["ask"], nav_docs=t["nav"]["docs"], nav_product=t["nav"]["product"], nav_how=t["nav"]["how"], nav_corpus=t["nav"]["corpus"],
         nav_api=t["nav"]["api"], nav_company=t["nav"]["company"], nav_contact=t["nav"]["contact"],
         tr_active=" active-link" if lang == "tr" else "",  en_active=" active-link" if lang == "en" else "", 
         de_active=" active-link" if lang == "de" else "",  ar_active=" active-link" if lang == "ar" else "", 
