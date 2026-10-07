@@ -1,3 +1,13 @@
 node_modules/
 .netlify/
 site/data/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+
+dist/
+build/
