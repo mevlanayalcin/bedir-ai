@@ -66,6 +66,8 @@
         <p>All inference runs against the first-party Claude API through the Claude Console — not AWS Bedrock or
           Google Vertex AI. Anthropic is currently the only model provider in the product.</p>
 
+        <h2>Backup engine, stated plainly</h2>
+        <p>While this Claude Console account carries no credit balance (as of 7 October 2026), the public demo answers from a labelled backup model and prints that label above the answer; the backup is never presented as a Claude citation. The Claude path &mdash; the corpus passed as documents with server-side citations and prompt caching &mdash; is what the endpoint uses whenever the account has balance, and the response carries the engine in its <code>provider</code> field.</p>
         <h2>Policy posture</h2>
         <ul>
           <li><strong>AI disclosure.</strong> The answer interface states that users are talking to an AI assistant and

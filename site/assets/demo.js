@@ -10,6 +10,20 @@
     ar: { thinking: "جارٍ البحث في المصادر…", sources: "المصادر", none: "لم تستشهد هذه الإجابة بأي مصدر؛ قد لا تغطي المكتبة الحالية هذا السؤال.", busy: "الطلبات كثيرة الآن، يرجى المحاولة بعد قليل.", error: "حدث خطأ، يرجى المحاولة مرة أخرى.", refused: "تعذّرت الإجابة عن هذا السؤال.", bad: "يرجى كتابة سؤال لا يتجاوز 400 حرف.", open: "فتح المصدر", sampleLabel: "مثال مسجَّل", sampleNote: "الإجابات المباشرة معطّلة مؤقتًا. الإجابة أدناه تعرض شكل المنتج؛ الاقتباسات من المجموعة كما هي، أما هذه الجمل فلم يولّدها النموذج الآن." },
   }[lang] || {};
 
+  // Shown when the answer came from the labelled backup engine rather than Claude.
+  const FB = {
+    tr: { label: "YEDEK MOTOR", note: "Claude hesabında kredi bittiği için bu yanıt etiketli bir yedek modelle üretildi. Numaralar soruyla eşleşen kaynak parçalarını gösterir; Claude atfı değildir." },
+    en: { label: "BACKUP ENGINE", note: "The Claude account is out of credit, so this answer came from a labelled backup model. The numbers point to the passages that matched the question; they are not Claude citations." },
+    de: { label: "AUSWEICHMODUS", note: "Das Claude-Konto hat kein Guthaben; diese Antwort stammt von einem gekennzeichneten Ausweichmodell. Die Nummern markieren die zum Fragewort passenden Textstellen, keine Claude-Zitate." },
+    ar: { label: "محرك احتياطي", note: "رصيد حساب Claude نفد، لذلك أُنشئت هذه الإجابة بنموذج احتياطي موسوم. الأرقام تشير إلى المقاطع المطابقة للسؤال وليست اقتباسات من Claude." },
+  }[lang] || {};
+
+  function markFallback() {
+    if (!FB.label) return;
+    out.insertBefore(el("p", { className: "demo-sample-note", textContent: FB.note }), out.firstChild);
+    out.insertBefore(el("p", { className: "demo-sample-label", textContent: FB.label }), out.firstChild);
+  }
+
   const form = document.getElementById("demo-form");
   if (!form) return;
   const input = form.querySelector("input");
@@ -88,6 +102,7 @@
         throw e;
       }
       render(data.answer);
+      if (data.provider === "fallback") markFallback();
     } catch (err) {
       if (err.offline) renderSample();
       else out.replaceChildren(el("p", { className: "status", textContent: err.message || T.error }));

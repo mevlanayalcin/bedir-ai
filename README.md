@@ -9,6 +9,9 @@ language; the answer comes back with the exact verse or hadith it was drawn from
 - Founder: Mevlana Yalçın · <merhaba@bedirsavasi.com>
 - Infrastructure: Netlify (static site + serverless answer endpoint), Cloudflare (DNS, email routing)
 
+
+> **Engine, honestly.** The product runs on the Claude API. While the Console account has no credit balance (as of 7 October 2026) the public demo falls back to a labelled backup model and says so on screen; every response carries the engine in its `provider` field. Backup answers are never presented as Claude citations.
+
 ## What Claude does in this product
 
 The answer endpoint passes the corpus to the **Claude API as text documents with server-side citations enabled**,

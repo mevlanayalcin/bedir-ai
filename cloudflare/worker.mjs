@@ -135,6 +135,78 @@ function toDocuments(keep, lang) {
   return docs;
 }
 
+// ---------------------------------------------------------------- fallback engine
+// Claude is the product's engine. While the Console account has no credit balance the demo would
+// otherwise return a bare error, so the Worker can answer from a labelled backup model. The backup
+// is never presented as a Claude citation: sources shown for it are the retrieved passages that
+// match the question, marked provider:"fallback" so the UI can say so out loud.
+async function fallbackAnswer(env, question, lang, keep) {
+  if (!env.FALLBACK_API_KEY) return null;
+  const base = env.FALLBACK_BASE_URL || "https://api.deepseek.com/v1";
+  const model = env.FALLBACK_MODEL || "deepseek-chat";
+
+  const passages = keep.slice(0, 12).map((idx, n) => {
+    const item = corpus.items[idx];
+    const body = (item.text[lang] || item.text.en || "").replace(/\s+/g, " ").slice(0, 600);
+    return `[${n + 1}] ${(item.title[lang] || item.title.en)}\n${body}`;
+  });
+  const names = { tr: "Türkçe", en: "English", de: "German", ar: "Arabic" };
+
+  try {
+    const res = await fetch(`${base}/chat/completions`, {
+      method: "POST",
+      headers: { "content-type": "application/json", authorization: `Bearer ${env.FALLBACK_API_KEY}` },
+      body: JSON.stringify({
+        model,
+        max_tokens: 400,
+        temperature: 0.2,
+        messages: [
+          {
+            role: "system",
+            content: `You answer only from the numbered sources given by the user. Reply in ${names[lang] || "English"} in 2-5 short sentences, ending each factual sentence with the [n] marker of the source it comes from. If the sources do not cover the question, say so in one sentence and cite nothing. Do not add rulings or outside knowledge.`,
+          },
+          { role: "user", content: `Sources:\n${passages.join("\n\n")}\n\nQuestion: ${question}` },
+        ],
+      }),
+    });
+    if (!res.ok) {
+      console.error(`fallback error ${res.status}: ${(await res.text()).slice(0, 200)}`);
+      return null;
+    }
+    const data = await res.json();
+    const text = (data.choices?.[0]?.message?.content || "").trim();
+    if (!text) return null;
+
+    const markers = [...new Set((text.match(/\[\d+\]/g) || []).map((m) => Number(m.replace(/\D/g, ""))))]
+      .filter((n) => n >= 1 && n <= keep.length);
+    const cites = markers.map((n) => {
+      const item = corpus.items[keep[n - 1]];
+      const src = item.text[lang] || item.text.en || "";
+      return {
+        id: item.id,
+        title: item.title[lang] || item.title.en,
+        url: item.url,
+        // verbatim excerpt of the cited passage, so fidelity checks stay meaningful
+        quote: src.replace(/\s+/g, " ").slice(0, 200).trim(),
+      };
+    });
+    return {
+      answer: [{ text, cites }],
+      model: data.model || model,
+      provider: "fallback",
+      usage: {
+        input: data.usage?.prompt_tokens,
+        cache_read: 0,
+        cache_write: 0,
+        output: data.usage?.completion_tokens,
+      },
+    };
+  } catch (e) {
+    console.error("fallback fetch failed", String(e));
+    return null;
+  }
+}
+
 // ---------------------------------------------------------------- throttling
 
 async function allowed(env, ip) {
@@ -203,14 +275,17 @@ export default {
           messages: [{ role: "user", content: [...payload, { type: "text", text: q }] }],
         }),
       });
-    } catch {
-      return json({ error: "upstream" }, 502);
+    } catch (e) {
+      console.error("claude fetch failed", String(e));
+      const fb = await fallbackAnswer(env, q, lang, keep);
+      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms } }, 200) : json({ error: "upstream" }, 502);
     }
 
     if (upstream.status === 429) return json({ error: "busy" }, 429);
     if (!upstream.ok) {
       console.error(`Claude API error ${upstream.status}: ${(await upstream.text()).slice(0, 300)}`);
-      return json({ error: "upstream" }, 502);
+      const fb = await fallbackAnswer(env, q, lang, keep);
+      return fb ? json({ ...fb, retrieval: { mode, documents_sent: docs.length, corpus_size: corpusSize, matched_terms: terms } }, 200) : json({ error: "upstream" }, 502);
     }
 
     const response = await upstream.json();
@@ -231,6 +306,7 @@ export default {
     return json({
       answer,
       model: response.model,
+      provider: "claude",
       usage: {
         input: response.usage?.input_tokens,
         cache_read: response.usage?.cache_read_input_tokens,

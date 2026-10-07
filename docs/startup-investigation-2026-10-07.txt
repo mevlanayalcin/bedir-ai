@@ -1,0 +1,40 @@
+Bedir AI — evidence-based investigation, 7 October 2026
+
+Confirmed runtime failure
+Cloudflare Worker has the ANTHROPIC_API_KEY secret binding. Production /api/ask returned HTTP 502; the corresponding Worker log showed Anthropic HTTP 400 invalid_request_error mentioning credit balance/billing. This establishes a credit-related inference failure, not the startup rejection reason. No key was exposed and no purchase was made.
+
+Confirmed application history
+Gmail grouped five rejection messages: 11:33, 14:05, 14:54, 15:39 and 15:46 Türkiye time. The latest expanded message names Bedir AI and repeats the general eligibility-window/company-verification wording. No case-specific reason is disclosed.
+
+Current eligibility source
+https://claude.com/programs/startups
+The opened current FAQ says founded within five years OR funded within two, bootstrapped applicants allowed, Console account, matching domain email and short product description. Search snippets still return older four-year/institutional-equity conditions. Do not mix these snapshots.
+https://www.anthropic.com/startup-program-official-terms
+Evaluation includes traction, funding and Claude integration/usage, with discretionary eligibility. These terms do not establish that zero API balance causes rejection.
+
+Identity and date uncertainty
+The initial application used Bedir Savasi AI AS. Later application used Bedir AI. The live company page expressly describes an unincorporated founder-operated venture. The form asks for month/year incorporated, while March 2026 is a project/domain start date. Whether pre-incorporation projects qualify has not been answered authoritatively. Do not claim incorporation or fabricate a registration number.
+Earlier application/site used Istanbul; latest live site and source use Ankara (commit f16096d). Whether the last user-submitted form matches Ankara has not been inspected. City mismatch is a consistency issue, not a proven rejection trigger.
+
+Access and product evidence
+Matching merhaba@bedirsavasi.com address is confirmed by rejection recipients and Console identity. Browser and external web reader can read the English homepage; GitHub repository is public. One terminal request returned 403, while browser requests reached the Worker; this does not establish a universal crawler block or Anthropic-specific block.
+Local robots.txt allows all crawlers; live robots.txt was not independently verified.
+The UI falls back to recorded Badr sample output when its API fails, even for a different question. It labels that sample, but the rest of the site advertises live answers.
+Homepage/company page still name Netlify despite confirmed Cloudflare Worker hosting. Privacy/waitlist copy still promises Netlify Forms; current Worker only implements /api/ask and static asset fallback. No waitlist submission was made, so form delivery remains unverified.
+The current source now contains lexical retrieval; older descriptions claiming no retrieval are stale. Do not overwrite concurrent work based on the earlier Netlify snapshot.
+
+Support evidence
+Conversation 215476281157717 received the review request. Fin confirmed domain matching and no VC requirement. It explicitly lacked sources on pre-incorporation eligibility and documentary requirements, and provided no direct manual-review path. The initial support channel says free users do not have human support included. Survey email Re: Accept is not an approval or a human-review acknowledgement.
+https://support.claude.com/en/articles/9015913-how-to-get-support
+Human review has not been confirmed. No invented startup-team email address should be used.
+
+Next evidence needed
+1. Authoritative support clarification of pre-incorporation eligibility and exact unmet verification requirement.
+2. Credit funding or a user-owned funded API credential, followed by a real cited response and model evidence. Paying only to seek approval is not justified by current evidence.
+3. Align site, account and next application with actual location, project/legal status and hosting; fix waitlist delivery if offered.
+4. Reapply only after meaningful verified change; repeated submissions have not revealed any new reason.
+
+Do not equate a polished site, public repository, paid API usage or company registration with guaranteed program acceptance.
+
+Support follow-up: Fin explicitly stated it cannot create a review request or view application decisions. It supplied startups@mail.anthropic.com as the dedicated program inbox. An email requesting pre-incorporation eligibility clarification, the actual failed check and manual review was sent from the existing Gmail inbox to that address. It identifies the domain application email and discloses the current Claude credit failure. Gmail showed 'İleti gönderildi'. Delivery, a human response and acceptance remain unconfirmed.
+Delivery correction: At 16:08 Türkiye time, Google Mail Delivery Subsystem returned an immediate bounce for startups@mail.anthropic.com: the email account does not exist. Therefore Fin's suggested address is invalid, and the program team did NOT receive the email. The bounce was reported in the existing support conversation, requesting a verified official route or internal human escalation. Do not reuse this address or infer delivery from Sent status.
