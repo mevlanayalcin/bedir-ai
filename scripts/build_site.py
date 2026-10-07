@@ -262,7 +262,7 @@ TPL = """<!DOCTYPE html>
         <a href="#how" class="btn-ghost">{nav_how}</a>
         <a href="#corpus" class="btn-ghost">{nav_corpus}</a>
         <a href="#institutions" class="btn-ghost">{nav_api}</a>
-        <a href="{base}company/" class="btn-ghost">{nav_company}</a>
+        <a href="{legal_base}company/" class="btn-ghost">{nav_company}</a>
         <a href="mailto:merhaba@bedirsavasi.com" class="btn-ghost">{nav_contact}</a>
       </div>
       <div class="lang-switcher">
@@ -389,7 +389,7 @@ TPL = """<!DOCTYPE html>
 
   <footer class="footer">
     <div class="container">
-      <p class="footer-legal">{legal} · <a href="{base}company/">{nav_company}</a> · <a href="{github}">GitHub</a> · <a href="https://www.linkedin.com/in/mevlanayalcin/">LinkedIn</a> · <a href="{base}privacy/">Privacy</a> · <a href="{base}terms/">Terms</a></p>
+      <p class="footer-legal">{legal} · <a href="{legal_base}company/">{nav_company}</a> · <a href="{github}">GitHub</a> · <a href="https://www.linkedin.com/in/mevlanayalcin/">LinkedIn</a> · <a href="{legal_base}privacy/">Privacy</a> · <a href="{legal_base}terms/">Terms</a></p>
       <div class="library-list">{library}</div>
     </div>
   </footer>
@@ -481,6 +481,7 @@ def build(lang):
         chips="".join('<button type="button">%s</button>' % q for q in CHIP_QS[lang]),
         disclosure=t["disclosure"], fatwa_note=t["fatwa_note"],
         ex_label=t["hero"]["ex_label"], ex_q=t["hero"]["ex_q"], ex_a=t["hero"]["ex_a"],
+        legal_base=(BASE[lang] if lang in ("tr", "en") else "/en/"),
         ex_title=t["hero"]["ex_title"], ex_pub=t["hero"]["ex_pub"], ex_url="https://quran.com/3/123",
         ex_h2=t["example"]["h2"], ex_lead=t["example"]["lead"], ex_note=t["example"]["note"],
         rec_q=rec_q, rec_ans=rec_ans, rec_src_title=rec_title, rec_src_url=rec_url,
